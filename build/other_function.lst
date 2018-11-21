@@ -1,0 +1,136 @@
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cctN4MKd.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"other_function.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.Reset_Flag,"ax",%progbits
+  18              		.align	1
+  19              		.global	Reset_Flag
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	Reset_Flag:
+  26              	.LFB0:
+  27              		.file 1 "Src/other_function.c"
+   1:Src/other_function.c **** #include "other_function.h"
+   2:Src/other_function.c **** #include "global.h"
+   3:Src/other_function.c **** 
+   4:Src/other_function.c **** void Reset_Flag(void){
+  28              		.loc 1 4 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+   5:Src/other_function.c ****     flag.ir_led=0;
+  33              		.loc 1 5 0
+  34 0000 014B     		ldr	r3, .L2
+  35 0002 0022     		movs	r2, #0
+  36 0004 1A70     		strb	r2, [r3]
+   6:Src/other_function.c **** }
+  37              		.loc 1 6 0
+  38 0006 7047     		bx	lr
+  39              	.L3:
+  40              		.align	2
+  41              	.L2:
+  42 0008 00000000 		.word	flag
+  43              		.cfi_endproc
+  44              	.LFE0:
+  46              		.section	.text.Reset_Value,"ax",%progbits
+  47              		.align	1
+  48              		.global	Reset_Value
+  49              		.syntax unified
+  50              		.thumb
+  51              		.thumb_func
+  52              		.fpu fpv4-sp-d16
+  54              	Reset_Value:
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cctN4MKd.s 			page 2
+
+
+  55              	.LFB1:
+   7:Src/other_function.c **** 
+   8:Src/other_function.c **** void Reset_Value(void){
+  56              		.loc 1 8 0
+  57              		.cfi_startproc
+  58              		@ args = 0, pretend = 0, frame = 0
+  59              		@ frame_needed = 0, uses_anonymous_args = 0
+  60              		@ link register save eliminated.
+   9:Src/other_function.c ****     enc_c.distance=0;
+  61              		.loc 1 9 0
+  62 0000 0023     		movs	r3, #0
+  63 0002 074A     		ldr	r2, .L5
+  64 0004 9360     		str	r3, [r2, #8]	@ float
+  10:Src/other_function.c ****     enc_l.distance=0;
+  65              		.loc 1 10 0
+  66 0006 074A     		ldr	r2, .L5+4
+  67 0008 9360     		str	r3, [r2, #8]	@ float
+  11:Src/other_function.c ****     enc_r.distance=0;
+  68              		.loc 1 11 0
+  69 000a 074A     		ldr	r2, .L5+8
+  70 000c 9360     		str	r3, [r2, #8]	@ float
+  12:Src/other_function.c ****     sen_l.before=0;
+  71              		.loc 1 12 0
+  72 000e 0023     		movs	r3, #0
+  73 0010 064A     		ldr	r2, .L5+12
+  74 0012 D380     		strh	r3, [r2, #6]	@ movhi
+  13:Src/other_function.c ****     sen_front.before=0;
+  75              		.loc 1 13 0
+  76 0014 064A     		ldr	r2, .L5+16
+  77 0016 D380     		strh	r3, [r2, #6]	@ movhi
+  14:Src/other_function.c ****     sen_r.before=0;
+  78              		.loc 1 14 0
+  79 0018 064A     		ldr	r2, .L5+20
+  80 001a D380     		strh	r3, [r2, #6]	@ movhi
+  15:Src/other_function.c **** }...
+  81              		.loc 1 15 0
+  82 001c 7047     		bx	lr
+  83              	.L6:
+  84 001e 00BF     		.align	2
+  85              	.L5:
+  86 0020 00000000 		.word	enc_c
+  87 0024 00000000 		.word	enc_l
+  88 0028 00000000 		.word	enc_r
+  89 002c 00000000 		.word	sen_l
+  90 0030 00000000 		.word	sen_front
+  91 0034 00000000 		.word	sen_r
+  92              		.cfi_endproc
+  93              	.LFE1:
+  95              		.text
+  96              	.Letext0:
+  97              		.file 2 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
+  98              		.file 3 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
+  99              		.file 4 "Inc/global.h"
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cctN4MKd.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 other_function.c
+C:\Users\kotaro\AppData\Local\Temp\cctN4MKd.s:18     .text.Reset_Flag:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\cctN4MKd.s:25     .text.Reset_Flag:00000000 Reset_Flag
+C:\Users\kotaro\AppData\Local\Temp\cctN4MKd.s:42     .text.Reset_Flag:00000008 $d
+C:\Users\kotaro\AppData\Local\Temp\cctN4MKd.s:47     .text.Reset_Value:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\cctN4MKd.s:54     .text.Reset_Value:00000000 Reset_Value
+C:\Users\kotaro\AppData\Local\Temp\cctN4MKd.s:86     .text.Reset_Value:00000020 $d
+
+UNDEFINED SYMBOLS
+flag
+enc_c
+enc_l
+enc_r
+sen_l
+sen_front
+sen_r

@@ -1,0 +1,615 @@
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"filter.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.update_wall,"ax",%progbits
+  18              		.align	1
+  19              		.global	update_wall
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	update_wall:
+  26              	.LFB126:
+  27              		.file 1 "Src/filter.c"
+   1:Src/filter.c  **** #include "filter.h"
+   2:Src/filter.c  **** #include "global.h"
+   3:Src/filter.c  **** #include "gpio.h"
+   4:Src/filter.c  **** #include "interface.h"
+   5:Src/filter.c  **** 
+   6:Src/filter.c  **** //pt sensor
+   7:Src/filter.c  **** void update_wall(void){
+  28              		.loc 1 7 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+  33 0000 70B4     		push	{r4, r5, r6}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 12
+  36              		.cfi_offset 4, -12
+  37              		.cfi_offset 5, -8
+  38              		.cfi_offset 6, -4
+   8:Src/filter.c  ****   sen_l.adc = sen_l.adc_on - sen_l.adc_off;
+  39              		.loc 1 8 0
+  40 0002 1E4D     		ldr	r5, .L10
+  41 0004 2C88     		ldrh	r4, [r5]
+  42 0006 6B88     		ldrh	r3, [r5, #2]
+  43 0008 E41A     		subs	r4, r4, r3
+  44 000a A4B2     		uxth	r4, r4
+  45 000c AC80     		strh	r4, [r5, #4]	@ movhi
+   9:Src/filter.c  ****   sen_fl.adc = sen_fl.adc_on - sen_fl.adc_off;
+  46              		.loc 1 9 0
+  47 000e 1C4A     		ldr	r2, .L10+4
+  48 0010 1388     		ldrh	r3, [r2]
+  49 0012 5188     		ldrh	r1, [r2, #2]
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s 			page 2
+
+
+  50 0014 5B1A     		subs	r3, r3, r1
+  51 0016 9BB2     		uxth	r3, r3
+  52 0018 9380     		strh	r3, [r2, #4]	@ movhi
+  10:Src/filter.c  ****   sen_fr.adc = sen_fr.adc_on - sen_fr.adc_off;
+  53              		.loc 1 10 0
+  54 001a 1A4A     		ldr	r2, .L10+8
+  55 001c 1188     		ldrh	r1, [r2]
+  56 001e 5088     		ldrh	r0, [r2, #2]
+  57 0020 091A     		subs	r1, r1, r0
+  58 0022 89B2     		uxth	r1, r1
+  59 0024 9180     		strh	r1, [r2, #4]	@ movhi
+  11:Src/filter.c  ****   sen_r.adc = sen_r.adc_on - sen_r.adc_off;
+  60              		.loc 1 11 0
+  61 0026 1848     		ldr	r0, .L10+12
+  62 0028 0288     		ldrh	r2, [r0]
+  63 002a 4688     		ldrh	r6, [r0, #2]
+  64 002c 921B     		subs	r2, r2, r6
+  65 002e 92B2     		uxth	r2, r2
+  66 0030 8280     		strh	r2, [r0, #4]	@ movhi
+  12:Src/filter.c  **** 
+  13:Src/filter.c  ****   sen_front.adc = ( sen_fl.adc + sen_fr.adc ) /2;
+  67              		.loc 1 13 0
+  68 0032 0B44     		add	r3, r3, r1
+  69 0034 5B08     		lsrs	r3, r3, #1
+  70 0036 1549     		ldr	r1, .L10+16
+  71 0038 8B80     		strh	r3, [r1, #4]	@ movhi
+  14:Src/filter.c  ****   
+  15:Src/filter.c  ****   if(sen_l.adc > sen_l.thresh){
+  72              		.loc 1 15 0
+  73 003a A989     		ldrh	r1, [r5, #12]
+  74 003c 8C42     		cmp	r4, r1
+  75 003e 11D9     		bls	.L2
+  16:Src/filter.c  ****     sen_l.is_wall = TRUE;
+  76              		.loc 1 16 0
+  77 0040 0120     		movs	r0, #1
+  78 0042 A872     		strb	r0, [r5, #10]
+  79              	.L3:
+  17:Src/filter.c  ****   }else{
+  18:Src/filter.c  ****     sen_l.is_wall = FALSE;
+  19:Src/filter.c  ****   }
+  20:Src/filter.c  ****   
+  21:Src/filter.c  ****   if(sen_front.adc > sen_front.thresh){
+  80              		.loc 1 21 0
+  81 0044 1149     		ldr	r1, .L10+16
+  82 0046 8989     		ldrh	r1, [r1, #12]
+  83 0048 8B42     		cmp	r3, r1
+  84 004a 0FD9     		bls	.L4
+  22:Src/filter.c  ****     sen_front.is_wall = TRUE;
+  85              		.loc 1 22 0
+  86 004c 0F4B     		ldr	r3, .L10+16
+  87 004e 0121     		movs	r1, #1
+  88 0050 9972     		strb	r1, [r3, #10]
+  89              	.L5:
+  23:Src/filter.c  ****   }else{
+  24:Src/filter.c  ****     sen_front.is_wall = FALSE;
+  25:Src/filter.c  ****   }
+  26:Src/filter.c  ****   
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s 			page 3
+
+
+  27:Src/filter.c  ****   if(sen_r.adc > sen_r.thresh){
+  90              		.loc 1 27 0
+  91 0052 0D4B     		ldr	r3, .L10+12
+  92 0054 9B89     		ldrh	r3, [r3, #12]
+  93 0056 9A42     		cmp	r2, r3
+  94 0058 0CD8     		bhi	.L9
+  28:Src/filter.c  ****     sen_r.is_wall = TRUE;
+  29:Src/filter.c  ****   }else{
+  30:Src/filter.c  ****     sen_r.is_wall = FALSE;
+  95              		.loc 1 30 0
+  96 005a 0B4B     		ldr	r3, .L10+12
+  97 005c 0022     		movs	r2, #0
+  98 005e 9A72     		strb	r2, [r3, #10]
+  99              	.L1:
+  31:Src/filter.c  ****   }
+  32:Src/filter.c  **** }
+ 100              		.loc 1 32 0
+ 101 0060 70BC     		pop	{r4, r5, r6}
+ 102              	.LCFI1:
+ 103              		.cfi_remember_state
+ 104              		.cfi_restore 6
+ 105              		.cfi_restore 5
+ 106              		.cfi_restore 4
+ 107              		.cfi_def_cfa_offset 0
+ 108 0062 7047     		bx	lr
+ 109              	.L2:
+ 110              	.LCFI2:
+ 111              		.cfi_restore_state
+  18:Src/filter.c  ****   }
+ 112              		.loc 1 18 0
+ 113 0064 0549     		ldr	r1, .L10
+ 114 0066 0020     		movs	r0, #0
+ 115 0068 8872     		strb	r0, [r1, #10]
+ 116 006a EBE7     		b	.L3
+ 117              	.L4:
+  24:Src/filter.c  ****   }
+ 118              		.loc 1 24 0
+ 119 006c 074B     		ldr	r3, .L10+16
+ 120 006e 0021     		movs	r1, #0
+ 121 0070 9972     		strb	r1, [r3, #10]
+ 122 0072 EEE7     		b	.L5
+ 123              	.L9:
+  28:Src/filter.c  ****   }else{
+ 124              		.loc 1 28 0
+ 125 0074 044B     		ldr	r3, .L10+12
+ 126 0076 0122     		movs	r2, #1
+ 127 0078 9A72     		strb	r2, [r3, #10]
+ 128 007a F1E7     		b	.L1
+ 129              	.L11:
+ 130              		.align	2
+ 131              	.L10:
+ 132 007c 00000000 		.word	sen_l
+ 133 0080 00000000 		.word	sen_fl
+ 134 0084 00000000 		.word	sen_fr
+ 135 0088 00000000 		.word	sen_r
+ 136 008c 00000000 		.word	sen_front
+ 137              		.cfi_endproc
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s 			page 4
+
+
+ 138              	.LFE126:
+ 140              		.section	.text.All_IR_OFF,"ax",%progbits
+ 141              		.align	1
+ 142              		.global	All_IR_OFF
+ 143              		.syntax unified
+ 144              		.thumb
+ 145              		.thumb_func
+ 146              		.fpu fpv4-sp-d16
+ 148              	All_IR_OFF:
+ 149              	.LFB127:
+  33:Src/filter.c  **** 
+  34:Src/filter.c  **** 
+  35:Src/filter.c  **** /****************************************************************************************
+  36:Src/filter.c  ****  * outline  : turn off all infrared led
+  37:Src/filter.c  ****  * argument : void
+  38:Src/filter.c  ****  * return   : void
+  39:Src/filter.c  **** ********************************************************************************************/
+  40:Src/filter.c  **** void All_IR_OFF(void){
+ 150              		.loc 1 40 0
+ 151              		.cfi_startproc
+ 152              		@ args = 0, pretend = 0, frame = 0
+ 153              		@ frame_needed = 0, uses_anonymous_args = 0
+ 154 0000 10B5     		push	{r4, lr}
+ 155              	.LCFI3:
+ 156              		.cfi_def_cfa_offset 8
+ 157              		.cfi_offset 4, -8
+ 158              		.cfi_offset 14, -4
+  41:Src/filter.c  ****   HAL_GPIO_WritePin(paluse0_GPIO_Port,paluse0_Pin,GPIO_PIN_RESET);
+ 159              		.loc 1 41 0
+ 160 0002 0B4C     		ldr	r4, .L14
+ 161 0004 0022     		movs	r2, #0
+ 162 0006 0121     		movs	r1, #1
+ 163 0008 2046     		mov	r0, r4
+ 164 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 165              	.LVL0:
+  42:Src/filter.c  ****   HAL_GPIO_WritePin(paluse1_GPIO_Port,paluse1_Pin,GPIO_PIN_RESET);
+ 166              		.loc 1 42 0
+ 167 000e 0022     		movs	r2, #0
+ 168 0010 0221     		movs	r1, #2
+ 169 0012 2046     		mov	r0, r4
+ 170 0014 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 171              	.LVL1:
+  43:Src/filter.c  ****   HAL_GPIO_WritePin(paluse2_GPIO_Port,paluse2_Pin,GPIO_PIN_RESET);
+ 172              		.loc 1 43 0
+ 173 0018 0022     		movs	r2, #0
+ 174 001a 0421     		movs	r1, #4
+ 175 001c 2046     		mov	r0, r4
+ 176 001e FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 177              	.LVL2:
+  44:Src/filter.c  ****   HAL_GPIO_WritePin(paluse3_GPIO_Port,paluse3_Pin,GPIO_PIN_RESET);
+ 178              		.loc 1 44 0
+ 179 0022 0022     		movs	r2, #0
+ 180 0024 0821     		movs	r1, #8
+ 181 0026 2046     		mov	r0, r4
+ 182 0028 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 183              	.LVL3:
+  45:Src/filter.c  **** }
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s 			page 5
+
+
+ 184              		.loc 1 45 0
+ 185 002c 10BD     		pop	{r4, pc}
+ 186              	.L15:
+ 187 002e 00BF     		.align	2
+ 188              	.L14:
+ 189 0030 00080240 		.word	1073874944
+ 190              		.cfi_endproc
+ 191              	.LFE127:
+ 193              		.section	.text.IR_Contoroll,"ax",%progbits
+ 194              		.align	1
+ 195              		.global	IR_Contoroll
+ 196              		.syntax unified
+ 197              		.thumb
+ 198              		.thumb_func
+ 199              		.fpu fpv4-sp-d16
+ 201              	IR_Contoroll:
+ 202              	.LFB128:
+  46:Src/filter.c  **** 
+  47:Src/filter.c  **** /****************************************************************************************
+  48:Src/filter.c  ****  * outline  : control infrared led
+  49:Src/filter.c  ****  * argument : pattern
+  50:Src/filter.c  ****  *            (front_left  side_right  side_left  front_right
+  51:Src/filter.c  ****  *                1000        0100        0010       0001     )
+  52:Src/filter.c  ****  * return   : void
+  53:Src/filter.c  **** ********************************************************************************************/
+  54:Src/filter.c  **** void IR_Contoroll(int pattern){
+ 203              		.loc 1 54 0
+ 204              		.cfi_startproc
+ 205              		@ args = 0, pretend = 0, frame = 0
+ 206              		@ frame_needed = 0, uses_anonymous_args = 0
+ 207              	.LVL4:
+ 208 0000 10B5     		push	{r4, lr}
+ 209              	.LCFI4:
+ 210              		.cfi_def_cfa_offset 8
+ 211              		.cfi_offset 4, -8
+ 212              		.cfi_offset 14, -4
+ 213 0002 0446     		mov	r4, r0
+  55:Src/filter.c  ****   if((pattern & 0b0001) == 0b0001) HAL_GPIO_WritePin(paluse0_GPIO_Port,paluse0_Pin,GPIO_PIN_SET);
+ 214              		.loc 1 55 0
+ 215 0004 10F0010F 		tst	r0, #1
+ 216 0008 1DD0     		beq	.L17
+ 217              		.loc 1 55 0 is_stmt 0 discriminator 1
+ 218 000a 0122     		movs	r2, #1
+ 219 000c 1146     		mov	r1, r2
+ 220 000e 1A48     		ldr	r0, .L27
+ 221              	.LVL5:
+ 222 0010 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 223              	.LVL6:
+ 224              	.L18:
+  56:Src/filter.c  ****   else                             HAL_GPIO_WritePin(paluse0_GPIO_Port,paluse0_Pin,GPIO_PIN_RESET);
+  57:Src/filter.c  ****   if((pattern & 0b0010) == 0b0010) HAL_GPIO_WritePin(paluse1_GPIO_Port,paluse1_Pin,GPIO_PIN_SET);
+ 225              		.loc 1 57 0 is_stmt 1
+ 226 0014 14F0020F 		tst	r4, #2
+ 227 0018 1BD0     		beq	.L19
+ 228              		.loc 1 57 0 is_stmt 0 discriminator 1
+ 229 001a 0122     		movs	r2, #1
+ 230 001c 0221     		movs	r1, #2
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s 			page 6
+
+
+ 231 001e 1648     		ldr	r0, .L27
+ 232 0020 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 233              	.LVL7:
+ 234              	.L20:
+  58:Src/filter.c  ****   else                             HAL_GPIO_WritePin(paluse1_GPIO_Port,paluse1_Pin,GPIO_PIN_RESET);
+  59:Src/filter.c  ****   if((pattern & 0b0100) == 0b0100) HAL_GPIO_WritePin(paluse2_GPIO_Port,paluse2_Pin,GPIO_PIN_SET);
+ 235              		.loc 1 59 0 is_stmt 1
+ 236 0024 14F0040F 		tst	r4, #4
+ 237 0028 19D0     		beq	.L21
+ 238              		.loc 1 59 0 is_stmt 0 discriminator 1
+ 239 002a 0122     		movs	r2, #1
+ 240 002c 0421     		movs	r1, #4
+ 241 002e 1248     		ldr	r0, .L27
+ 242 0030 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 243              	.LVL8:
+ 244              	.L22:
+  60:Src/filter.c  ****   else                             HAL_GPIO_WritePin(paluse2_GPIO_Port,paluse2_Pin,GPIO_PIN_RESET);
+  61:Src/filter.c  ****   if((pattern & 0b1000) == 0b1000) HAL_GPIO_WritePin(paluse3_GPIO_Port,paluse3_Pin,GPIO_PIN_SET);
+ 245              		.loc 1 61 0 is_stmt 1
+ 246 0034 14F0080F 		tst	r4, #8
+ 247 0038 17D1     		bne	.L26
+  62:Src/filter.c  ****   else                             HAL_GPIO_WritePin(paluse3_GPIO_Port,paluse3_Pin,GPIO_PIN_RESET);
+ 248              		.loc 1 62 0
+ 249 003a 0022     		movs	r2, #0
+ 250 003c 0821     		movs	r1, #8
+ 251 003e 0E48     		ldr	r0, .L27
+ 252 0040 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 253              	.LVL9:
+ 254              	.L16:
+  63:Src/filter.c  **** }
+ 255              		.loc 1 63 0
+ 256 0044 10BD     		pop	{r4, pc}
+ 257              	.LVL10:
+ 258              	.L17:
+  56:Src/filter.c  ****   if((pattern & 0b0010) == 0b0010) HAL_GPIO_WritePin(paluse1_GPIO_Port,paluse1_Pin,GPIO_PIN_SET);
+ 259              		.loc 1 56 0
+ 260 0046 0022     		movs	r2, #0
+ 261 0048 0121     		movs	r1, #1
+ 262 004a 0B48     		ldr	r0, .L27
+ 263              	.LVL11:
+ 264 004c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 265              	.LVL12:
+ 266 0050 E0E7     		b	.L18
+ 267              	.L19:
+  58:Src/filter.c  ****   if((pattern & 0b0100) == 0b0100) HAL_GPIO_WritePin(paluse2_GPIO_Port,paluse2_Pin,GPIO_PIN_SET);
+ 268              		.loc 1 58 0
+ 269 0052 0022     		movs	r2, #0
+ 270 0054 0221     		movs	r1, #2
+ 271 0056 0848     		ldr	r0, .L27
+ 272 0058 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 273              	.LVL13:
+ 274 005c E2E7     		b	.L20
+ 275              	.L21:
+  60:Src/filter.c  ****   if((pattern & 0b1000) == 0b1000) HAL_GPIO_WritePin(paluse3_GPIO_Port,paluse3_Pin,GPIO_PIN_SET);
+ 276              		.loc 1 60 0
+ 277 005e 0022     		movs	r2, #0
+ 278 0060 0421     		movs	r1, #4
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s 			page 7
+
+
+ 279 0062 0548     		ldr	r0, .L27
+ 280 0064 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 281              	.LVL14:
+ 282 0068 E4E7     		b	.L22
+ 283              	.L26:
+  61:Src/filter.c  ****   else                             HAL_GPIO_WritePin(paluse3_GPIO_Port,paluse3_Pin,GPIO_PIN_RESET);
+ 284              		.loc 1 61 0 discriminator 1
+ 285 006a 0122     		movs	r2, #1
+ 286 006c 0821     		movs	r1, #8
+ 287 006e 0248     		ldr	r0, .L27
+ 288 0070 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 289              	.LVL15:
+ 290 0074 E6E7     		b	.L16
+ 291              	.L28:
+ 292 0076 00BF     		.align	2
+ 293              	.L27:
+ 294 0078 00080240 		.word	1073874944
+ 295              		.cfi_endproc
+ 296              	.LFE128:
+ 298              		.section	.text.Input_Sensor,"ax",%progbits
+ 299              		.align	1
+ 300              		.global	Input_Sensor
+ 301              		.syntax unified
+ 302              		.thumb
+ 303              		.thumb_func
+ 304              		.fpu fpv4-sp-d16
+ 306              	Input_Sensor:
+ 307              	.LFB129:
+  64:Src/filter.c  **** 
+  65:Src/filter.c  **** void Input_Sensor(void){
+ 308              		.loc 1 65 0
+ 309              		.cfi_startproc
+ 310              		@ args = 0, pretend = 0, frame = 0
+ 311              		@ frame_needed = 0, uses_anonymous_args = 0
+ 312              		@ link register save eliminated.
+  66:Src/filter.c  ****   sen_l.thresh = 2000;
+ 313              		.loc 1 66 0
+ 314 0000 054A     		ldr	r2, .L30
+ 315 0002 4FF4FA63 		mov	r3, #2000
+ 316 0006 9381     		strh	r3, [r2, #12]	@ movhi
+  67:Src/filter.c  ****   sen_l.reference = 2000;
+ 317              		.loc 1 67 0
+ 318 0008 D381     		strh	r3, [r2, #14]	@ movhi
+  68:Src/filter.c  ****   sen_front.thresh = 2000;
+ 319              		.loc 1 68 0
+ 320 000a 044A     		ldr	r2, .L30+4
+ 321 000c 9381     		strh	r3, [r2, #12]	@ movhi
+  69:Src/filter.c  ****   sen_front.reference = 2000;
+ 322              		.loc 1 69 0
+ 323 000e D381     		strh	r3, [r2, #14]	@ movhi
+  70:Src/filter.c  ****   sen_r.thresh = 2000;
+ 324              		.loc 1 70 0
+ 325 0010 034A     		ldr	r2, .L30+8
+ 326 0012 9381     		strh	r3, [r2, #12]	@ movhi
+  71:Src/filter.c  ****   sen_r.reference = 2000;
+ 327              		.loc 1 71 0
+ 328 0014 D381     		strh	r3, [r2, #14]	@ movhi
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s 			page 8
+
+
+  72:Src/filter.c  **** }
+ 329              		.loc 1 72 0
+ 330 0016 7047     		bx	lr
+ 331              	.L31:
+ 332              		.align	2
+ 333              	.L30:
+ 334 0018 00000000 		.word	sen_l
+ 335 001c 00000000 		.word	sen_front
+ 336 0020 00000000 		.word	sen_r
+ 337              		.cfi_endproc
+ 338              	.LFE129:
+ 340              		.global	__aeabi_f2d
+ 341              		.section	.text.Batt_check,"ax",%progbits
+ 342              		.align	1
+ 343              		.global	Batt_check
+ 344              		.syntax unified
+ 345              		.thumb
+ 346              		.thumb_func
+ 347              		.fpu fpv4-sp-d16
+ 349              	Batt_check:
+ 350              	.LFB130:
+  73:Src/filter.c  **** 
+  74:Src/filter.c  **** //batt check
+  75:Src/filter.c  **** void Batt_check(void){
+ 351              		.loc 1 75 0
+ 352              		.cfi_startproc
+ 353              		@ args = 0, pretend = 0, frame = 8
+ 354              		@ frame_needed = 0, uses_anonymous_args = 0
+ 355 0000 10B5     		push	{r4, lr}
+ 356              	.LCFI5:
+ 357              		.cfi_def_cfa_offset 8
+ 358              		.cfi_offset 4, -8
+ 359              		.cfi_offset 14, -4
+ 360 0002 82B0     		sub	sp, sp, #8
+ 361              	.LCFI6:
+ 362              		.cfi_def_cfa_offset 16
+ 363              	.LVL16:
+ 364              	.LBB2:
+  76:Src/filter.c  ****   float buffer=0;
+  77:Src/filter.c  ****   uint8_t pattern;
+  78:Src/filter.c  ****   for(int i=0;i<10;i++){
+ 365              		.loc 1 78 0
+ 366 0004 0023     		movs	r3, #0
+ 367              	.LBE2:
+  76:Src/filter.c  ****   float buffer=0;
+ 368              		.loc 1 76 0
+ 369 0006 9FED1C7A 		vldr.32	s14, .L36
+ 370              	.LBB3:
+ 371              		.loc 1 78 0
+ 372 000a 08E0     		b	.L33
+ 373              	.LVL17:
+ 374              	.L34:
+  79:Src/filter.c  ****     buffer += batt.adc;
+ 375              		.loc 1 79 0 discriminator 3
+ 376 000c 1B4A     		ldr	r2, .L36+4
+ 377 000e 1288     		ldrh	r2, [r2]
+ 378 0010 07EE902A 		vmov	s15, r2	@ int
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s 			page 9
+
+
+ 379 0014 F8EEE77A 		vcvt.f32.s32	s15, s15
+ 380 0018 37EE277A 		vadd.f32	s14, s14, s15
+ 381              	.LVL18:
+  78:Src/filter.c  ****     buffer += batt.adc;
+ 382              		.loc 1 78 0 discriminator 3
+ 383 001c 0133     		adds	r3, r3, #1
+ 384              	.LVL19:
+ 385              	.L33:
+  78:Src/filter.c  ****     buffer += batt.adc;
+ 386              		.loc 1 78 0 is_stmt 0 discriminator 1
+ 387 001e 092B     		cmp	r3, #9
+ 388 0020 F4DD     		ble	.L34
+ 389              	.LBE3:
+  80:Src/filter.c  ****   }
+  81:Src/filter.c  ****   buffer /= 10.0f;
+ 390              		.loc 1 81 0 is_stmt 1
+ 391 0022 F2EE047A 		vmov.f32	s15, #1.0e+1
+ 392 0026 C7EE276A 		vdiv.f32	s13, s14, s15
+ 393              	.LVL20:
+  82:Src/filter.c  ****   batt.voltage = buffer/4095.0f*133.0f/33.0f*3.3f;
+ 394              		.loc 1 82 0
+ 395 002a DFED157A 		vldr.32	s15, .L36+8
+ 396 002e 86EEA77A 		vdiv.f32	s14, s13, s15
+ 397 0032 DFED147A 		vldr.32	s15, .L36+12
+ 398 0036 27EE277A 		vmul.f32	s14, s14, s15
+ 399 003a DFED136A 		vldr.32	s13, .L36+16
+ 400              	.LVL21:
+ 401 003e C7EE267A 		vdiv.f32	s15, s14, s13
+ 402 0042 9FED127A 		vldr.32	s14, .L36+20
+ 403 0046 67EE877A 		vmul.f32	s15, s15, s14
+ 404 004a 0C4B     		ldr	r3, .L36+4
+ 405              	.LVL22:
+ 406 004c C3ED017A 		vstr.32	s15, [r3, #4]
+  83:Src/filter.c  ****   pattern=(uint8_t)batt.voltage;
+ 407              		.loc 1 83 0
+ 408 0050 BCEEE77A 		vcvt.u32.f32	s14, s15
+ 409 0054 8DED017A 		vstr.32	s14, [sp, #4]	@ int
+ 410 0058 9DF80440 		ldrb	r4, [sp, #4]	@ zero_extendqisi2
+ 411              	.LVL23:
+  84:Src/filter.c  **** 
+  85:Src/filter.c  ****   printf("\nbatt:%lf\r\n",batt.voltage);
+ 412              		.loc 1 85 0
+ 413 005c 17EE900A 		vmov	r0, s15
+ 414 0060 FFF7FEFF 		bl	__aeabi_f2d
+ 415              	.LVL24:
+ 416 0064 0246     		mov	r2, r0
+ 417 0066 0B46     		mov	r3, r1
+ 418 0068 0948     		ldr	r0, .L36+24
+ 419 006a FFF7FEFF 		bl	printf
+ 420              	.LVL25:
+  86:Src/filter.c  ****   LED_Control(pattern);
+ 421              		.loc 1 86 0
+ 422 006e 2046     		mov	r0, r4
+ 423 0070 FFF7FEFF 		bl	LED_Control
+ 424              	.LVL26:
+  87:Src/filter.c  **** }
+ 425              		.loc 1 87 0
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s 			page 10
+
+
+ 426 0074 02B0     		add	sp, sp, #8
+ 427              	.LCFI7:
+ 428              		.cfi_def_cfa_offset 8
+ 429              		@ sp needed
+ 430 0076 10BD     		pop	{r4, pc}
+ 431              	.LVL27:
+ 432              	.L37:
+ 433              		.align	2
+ 434              	.L36:
+ 435 0078 00000000 		.word	0
+ 436 007c 00000000 		.word	batt
+ 437 0080 00F07F45 		.word	1166012416
+ 438 0084 00000543 		.word	1124401152
+ 439 0088 00000442 		.word	1107558400
+ 440 008c 33335340 		.word	1079194419
+ 441 0090 00000000 		.word	.LC0
+ 442              		.cfi_endproc
+ 443              	.LFE130:
+ 445              		.section	.rodata.Batt_check.str1.4,"aMS",%progbits,1
+ 446              		.align	2
+ 447              	.LC0:
+ 448 0000 0A626174 		.ascii	"\012batt:%lf\015\012\000"
+ 448      743A256C 
+ 448      660D0A00 
+ 449              		.text
+ 450              	.Letext0:
+ 451              		.file 2 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
+ 452              		.file 3 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
+ 453              		.file 4 "Inc/global.h"
+ 454              		.file 5 "Drivers/CMSIS/Include/core_cm4.h"
+ 455              		.file 6 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
+ 456              		.file 7 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h"
+ 457              		.file 8 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
+ 458              		.file 9 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
+ 459              		.file 10 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\lib\\gcc\\arm-none-eab
+ 460              		.file 11 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include
+ 461              		.file 12 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include
+ 462              		.file 13 "Inc/interface.h"
+ 463              		.file 14 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s 			page 11
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 filter.c
+C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s:18     .text.update_wall:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s:25     .text.update_wall:00000000 update_wall
+C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s:132    .text.update_wall:0000007c $d
+C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s:141    .text.All_IR_OFF:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s:148    .text.All_IR_OFF:00000000 All_IR_OFF
+C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s:189    .text.All_IR_OFF:00000030 $d
+C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s:194    .text.IR_Contoroll:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s:201    .text.IR_Contoroll:00000000 IR_Contoroll
+C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s:294    .text.IR_Contoroll:00000078 $d
+C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s:299    .text.Input_Sensor:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s:306    .text.Input_Sensor:00000000 Input_Sensor
+C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s:334    .text.Input_Sensor:00000018 $d
+C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s:342    .text.Batt_check:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s:349    .text.Batt_check:00000000 Batt_check
+C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s:435    .text.Batt_check:00000078 $d
+C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s:446    .rodata.Batt_check.str1.4:00000000 $d
+
+UNDEFINED SYMBOLS
+sen_l
+sen_fl
+sen_fr
+sen_r
+sen_front
+HAL_GPIO_WritePin
+__aeabi_f2d
+printf
+LED_Control
+batt
