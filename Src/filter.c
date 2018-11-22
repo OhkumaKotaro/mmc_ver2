@@ -84,4 +84,12 @@ void Batt_check(void){
 
   printf("\nbatt:%lf\r\n",batt.voltage);
   LED_Control(pattern);
+
+  while(1){
+    if(Push()==ON){
+      Output_Buzzer(HZ_C_H);
+      HAL_Delay(500);
+      break;
+    }
+  }
 }

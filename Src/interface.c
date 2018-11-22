@@ -9,9 +9,9 @@
  * return   : void
 ********************************************************************************************/
 void Output_Buzzer(unsigned char Hz){
-    Buzzer_pwm(Hz,300);
-    HAL_Delay(100);
-    Buzzer_pwm(HZ_NORMAL,0);
+  Buzzer_pwm(Hz,300);
+  HAL_Delay(100);
+  Buzzer_pwm(HZ_NORMAL,0);
 }
 
 /****************************************************************************************

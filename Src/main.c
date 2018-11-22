@@ -123,8 +123,6 @@ int main(void)
   MX_ADC3_Init();
   /* USER CODE BEGIN 2 */
   Init_Main();
-  HAL_Delay(1000);
-  gyro_offset_calc_reset();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -133,9 +131,9 @@ int main(void)
   {
 
   /* USER CODE END WHILE */
-
+  Mode_mouse(Mode_select());
   /* USER CODE BEGIN 3 */
-  printf("%f\r",gyro.degree);
+
   }
   /* USER CODE END 3 */
 
@@ -207,6 +205,9 @@ void SystemClock_Config(void)
  * return   : void
 ********************************************************************************************/
 void Init_Main(void){
+  //start check
+  Output_Buzzer(HZ_B);
+  Output_Buzzer(HZ_A);
   //printf
   setbuf(stdout, NULL);
   //tim start
@@ -222,10 +223,6 @@ void Init_Main(void){
   set_mpu6500();
   //battry check
   Batt_check();
-
-  //finish Init_Main
-  Output_Buzzer(HZ_B);
-  Output_Buzzer(HZ_A);
 }
 /* USER CODE END 4 */
 

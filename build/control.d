@@ -1,4 +1,4 @@
-build/mode.d: Src/mode.c Inc/mode.h Inc/filter.h Inc/global.h Inc/gpio.h \
+build/control.d: Src/control.c Inc/control.h Inc/global.h Inc/tim.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  Inc/stm32f4xx_hal_conf.h Inc/main.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -26,16 +26,13 @@ build/mode.d: Src/mode.c Inc/mode.h Inc/filter.h Inc/global.h Inc/gpio.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
- Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h Inc/interface.h \
- Inc/motion.h
+ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 
-Inc/mode.h:
-
-Inc/filter.h:
+Inc/control.h:
 
 Inc/global.h:
 
-Inc/gpio.h:
+Inc/tim.h:
 
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 
@@ -98,7 +95,3 @@ Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 
 Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
-
-Inc/interface.h:
-
-Inc/motion.h:

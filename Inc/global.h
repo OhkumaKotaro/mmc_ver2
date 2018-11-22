@@ -12,6 +12,8 @@
 //define
 #define TRUE 1
 #define FALSE 0
+#define ON 1
+#define OFF 0
 //calc
 #define dt 0.001f
 
@@ -20,6 +22,8 @@
 typedef struct{
     uint8_t ir_led;
     uint8_t gyro_calc;
+    uint8_t straight;
+    uint8_t yawrate;
 }flag_t;
 
 extern volatile flag_t flag;
@@ -75,6 +79,32 @@ typedef struct{
     int32_t offset;
 }gyro_t;
 extern gyro_t gyro;
+
+
+//calculation
+typedef struct{
+    uint16_t up;
+    uint16_t cons;
+    uint16_t down;
+}trapezoid_tim_t;
+extern trapezoid_tim_t straight_tim;
+extern trapezoid_tim_t yawrate_tim;
+
+typedef struct{
+    int16_t velocity;
+    int16_t accel; 
+    int8_t dir;
+}target_t;
+extern target_t straight_tgt;
+extern target_t yawrate_tgt;
+
+typedef struct{
+    float kp;
+    float ki;
+    float kd;
+}pid_param_t;
+
+extern uint16_t count_ms;
 
 #ifdef __cplusplus
 }

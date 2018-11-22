@@ -1,0 +1,222 @@
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccwBdMDU.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"calculate.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.Straight_Calc_fb,"ax",%progbits
+  18              		.align	1
+  19              		.global	Straight_Calc_fb
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	Straight_Calc_fb:
+  26              	.LFB0:
+  27              		.file 1 "Src/calculate.c"
+   1:Src/calculate.c **** #include "calculate.h"
+   2:Src/calculate.c **** #include "global.h"
+   3:Src/calculate.c **** 
+   4:Src/calculate.c **** 
+   5:Src/calculate.c **** /****************************************************************************************
+   6:Src/calculate.c ****  * outline  : calcurate accele distance
+   7:Src/calculate.c ****  * argument : distance[mm],v_start[mm/s],v_end[mm/s]
+   8:Src/calculate.c ****  * return   : void
+   9:Src/calculate.c **** ********************************************************************************************/
+  10:Src/calculate.c **** void Straight_Calc_fb(int16_t distant,int16_t v_start,int16_t v_end,uint16_t v_max,uint16_t accel){
+  28              		.loc 1 10 0
+  29              		.cfi_startproc
+  30              		@ args = 4, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+  33              	.LVL0:
+  34 0000 70B4     		push	{r4, r5, r6}
+  35              	.LCFI0:
+  36              		.cfi_def_cfa_offset 12
+  37              		.cfi_offset 4, -12
+  38              		.cfi_offset 5, -8
+  39              		.cfi_offset 6, -4
+  40 0002 BDF80C40 		ldrh	r4, [sp, #12]
+  11:Src/calculate.c ****     float t1,t2,t3;
+  12:Src/calculate.c ****     float constant_L;
+  13:Src/calculate.c **** 
+  14:Src/calculate.c ****     straight_tgt.velocity = v_start;
+  41              		.loc 1 14 0
+  42 0006 2D4D     		ldr	r5, .L6
+  43 0008 2980     		strh	r1, [r5]	@ movhi
+  15:Src/calculate.c ****     straight_tgt.accel = accel;
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccwBdMDU.s 			page 2
+
+
+  44              		.loc 1 15 0
+  45 000a 6C80     		strh	r4, [r5, #2]	@ movhi
+  16:Src/calculate.c **** 
+  17:Src/calculate.c ****     if(distant<0){
+  46              		.loc 1 17 0
+  47 000c 0028     		cmp	r0, #0
+  48              	.LVL1:
+  49 000e 50DB     		blt	.L5
+  18:Src/calculate.c ****         distant = -1*distant;
+  19:Src/calculate.c ****         straight_tgt.dir=-1;
+  20:Src/calculate.c ****     }else{
+  21:Src/calculate.c ****         straight_tgt.dir=1;
+  50              		.loc 1 21 0
+  51 0010 2A4D     		ldr	r5, .L6
+  52 0012 0126     		movs	r6, #1
+  53 0014 2E71     		strb	r6, [r5, #4]
+  54              	.LVL2:
+  55              	.L3:
+  22:Src/calculate.c ****     }
+  23:Src/calculate.c **** 
+  24:Src/calculate.c ****     t1 = (float)(v_max - v_start) / accel;
+  56              		.loc 1 24 0
+  57 0016 5D1A     		subs	r5, r3, r1
+  58 0018 07EE105A 		vmov	s14, r5	@ int
+  59 001c B8EEC77A 		vcvt.f32.s32	s14, s14
+  60 0020 07EE904A 		vmov	s15, r4	@ int
+  61 0024 F8EEE77A 		vcvt.f32.s32	s15, s15
+  62 0028 87EE276A 		vdiv.f32	s12, s14, s15
+  63              	.LVL3:
+  25:Src/calculate.c ****     t3 = (float)(v_max - v_end) / accel;
+  64              		.loc 1 25 0
+  65 002c 9C1A     		subs	r4, r3, r2
+  66 002e 07EE104A 		vmov	s14, r4	@ int
+  67 0032 B8EEC77A 		vcvt.f32.s32	s14, s14
+  68 0036 C7EE276A 		vdiv.f32	s13, s14, s15
+  69              	.LVL4:
+  26:Src/calculate.c **** 
+  27:Src/calculate.c ****     constant_L = (float)distant - (v_max + v_start) * t1 / 2 - (v_max + v_end) * t3 / 2;
+  70              		.loc 1 27 0
+  71 003a 07EE900A 		vmov	s15, r0	@ int
+  72 003e B8EEE77A 		vcvt.f32.s32	s14, s15
+  73 0042 5918     		adds	r1, r3, r1
+  74              	.LVL5:
+  75 0044 07EE901A 		vmov	s15, r1	@ int
+  76 0048 F8EEE77A 		vcvt.f32.s32	s15, s15
+  77 004c 67EE867A 		vmul.f32	s15, s15, s12
+  78 0050 F6EE005A 		vmov.f32	s11, #5.0e-1
+  79 0054 67EEA57A 		vmul.f32	s15, s15, s11
+  80 0058 77EE677A 		vsub.f32	s15, s14, s15
+  81 005c 9A18     		adds	r2, r3, r2
+  82              	.LVL6:
+  83 005e 07EE102A 		vmov	s14, r2	@ int
+  84 0062 B8EEC77A 		vcvt.f32.s32	s14, s14
+  85 0066 27EE267A 		vmul.f32	s14, s14, s13
+  86 006a 27EE257A 		vmul.f32	s14, s14, s11
+  87 006e 37EEC77A 		vsub.f32	s14, s15, s14
+  88              	.LVL7:
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccwBdMDU.s 			page 3
+
+
+  28:Src/calculate.c **** 
+  29:Src/calculate.c ****     t2 = constant_L / v_max;
+  89              		.loc 1 29 0
+  90 0072 07EE903A 		vmov	s15, r3	@ int
+  91 0076 F8EEE77A 		vcvt.f32.s32	s15, s15
+  92 007a C7EE275A 		vdiv.f32	s11, s14, s15
+  93              	.LVL8:
+  30:Src/calculate.c **** 
+  31:Src/calculate.c ****     t1 *= 1000;
+  94              		.loc 1 31 0
+  95 007e 9FED107A 		vldr.32	s14, .L6+4
+  96              	.LVL9:
+  97 0082 26EE076A 		vmul.f32	s12, s12, s14
+  98              	.LVL10:
+  32:Src/calculate.c ****     t2 *= 1000;
+  99              		.loc 1 32 0
+ 100 0086 65EE877A 		vmul.f32	s15, s11, s14
+ 101              	.LVL11:
+  33:Src/calculate.c ****     t3 *= 1000;
+ 102              		.loc 1 33 0
+ 103 008a 66EE876A 		vmul.f32	s13, s13, s14
+ 104              	.LVL12:
+  34:Src/calculate.c **** 
+  35:Src/calculate.c ****     straight_tim.up = t1;
+ 105              		.loc 1 35 0
+ 106 008e 0D4B     		ldr	r3, .L6+8
+ 107              	.LVL13:
+ 108 0090 BCEEC66A 		vcvt.u32.f32	s12, s12
+ 109              	.LVL14:
+ 110 0094 16EE102A 		vmov	r2, s12	@ int
+ 111              	.LVL15:
+ 112 0098 1A80     		strh	r2, [r3]	@ movhi
+  36:Src/calculate.c ****     straight_tim.cons = t2;
+ 113              		.loc 1 36 0
+ 114 009a FCEEE77A 		vcvt.u32.f32	s15, s15
+ 115              	.LVL16:
+ 116 009e 17EE902A 		vmov	r2, s15	@ int
+ 117 00a2 5A80     		strh	r2, [r3, #2]	@ movhi
+  37:Src/calculate.c ****     straight_tim.down = t3;
+ 118              		.loc 1 37 0
+ 119 00a4 FCEEE66A 		vcvt.u32.f32	s13, s13
+ 120              	.LVL17:
+ 121 00a8 16EE902A 		vmov	r2, s13	@ int
+ 122 00ac 9A80     		strh	r2, [r3, #4]	@ movhi
+  38:Src/calculate.c **** 
+  39:Src/calculate.c ****     //printf("%d %d %d\r\n",accel_T,constant_T,decrease_T);
+  40:Src/calculate.c **** }
+ 123              		.loc 1 40 0
+ 124 00ae 70BC     		pop	{r4, r5, r6}
+ 125              	.LCFI1:
+ 126              		.cfi_remember_state
+ 127              		.cfi_restore 6
+ 128              		.cfi_restore 5
+ 129              		.cfi_restore 4
+ 130              		.cfi_def_cfa_offset 0
+ 131              	.LVL18:
+ 132 00b0 7047     		bx	lr
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccwBdMDU.s 			page 4
+
+
+ 133              	.LVL19:
+ 134              	.L5:
+ 135              	.LCFI2:
+ 136              		.cfi_restore_state
+  18:Src/calculate.c ****         straight_tgt.dir=-1;
+ 137              		.loc 1 18 0
+ 138 00b2 4042     		negs	r0, r0
+ 139 00b4 00B2     		sxth	r0, r0
+ 140              	.LVL20:
+  19:Src/calculate.c ****     }else{
+ 141              		.loc 1 19 0
+ 142 00b6 FF26     		movs	r6, #255
+ 143 00b8 2E71     		strb	r6, [r5, #4]
+ 144 00ba ACE7     		b	.L3
+ 145              	.L7:
+ 146              		.align	2
+ 147              	.L6:
+ 148 00bc 00000000 		.word	straight_tgt
+ 149 00c0 00007A44 		.word	1148846080
+ 150 00c4 00000000 		.word	straight_tim
+ 151              		.cfi_endproc
+ 152              	.LFE0:
+ 154              		.text
+ 155              	.Letext0:
+ 156              		.file 2 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
+ 157              		.file 3 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
+ 158              		.file 4 "Inc/global.h"
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccwBdMDU.s 			page 5
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 calculate.c
+C:\Users\kotaro\AppData\Local\Temp\ccwBdMDU.s:18     .text.Straight_Calc_fb:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\ccwBdMDU.s:25     .text.Straight_Calc_fb:00000000 Straight_Calc_fb
+C:\Users\kotaro\AppData\Local\Temp\ccwBdMDU.s:148    .text.Straight_Calc_fb:000000bc $d
+
+UNDEFINED SYMBOLS
+straight_tgt
+straight_tim

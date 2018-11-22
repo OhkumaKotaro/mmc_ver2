@@ -41,6 +41,7 @@
 #include "filter.h"
 #include "tim.h"
 #include "spi.h"
+#include "control.h"
 
 unsigned char count_tim5=0;
 /* USER CODE END 0 */
@@ -190,6 +191,11 @@ void SysTick_Handler(void)
   Update_gyro(flag.gyro_calc);
   update_encoder();
   update_batt_date();
+
+  if(flag.straight==ON){
+    Straight_SysTic_fb();
+  }
+  Control_pwm();
   /* USER CODE END SysTick_IRQn 1 */
 }
 

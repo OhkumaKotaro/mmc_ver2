@@ -1,0 +1,150 @@
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccucLgFN.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"motion.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.Straight_half_accel,"ax",%progbits
+  18              		.align	1
+  19              		.global	Straight_half_accel
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	Straight_half_accel:
+  26              	.LFB0:
+  27              		.file 1 "Src/motion.c"
+   1:Src/motion.c  **** #include "motion.h"
+   2:Src/motion.c  **** #include "calculate.h"
+   3:Src/motion.c  **** #include "global.h"
+   4:Src/motion.c  **** 
+   5:Src/motion.c  **** void Straight_half_accel(void){
+  28              		.loc 1 5 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 00B5     		push	{lr}
+  33              	.LCFI0:
+  34              		.cfi_def_cfa_offset 4
+  35              		.cfi_offset 14, -4
+  36 0002 83B0     		sub	sp, sp, #12
+  37              	.LCFI1:
+  38              		.cfi_def_cfa_offset 16
+   6:Src/motion.c  ****     Straight_Calc_fb(90,0,MAX_VELOCITY,MAX_VELOCITY,ACCEL);
+  39              		.loc 1 6 0
+  40 0004 4FF47A63 		mov	r3, #4000
+  41 0008 0093     		str	r3, [sp]
+  42 000a 4FF4C873 		mov	r3, #400
+  43 000e 1A46     		mov	r2, r3
+  44 0010 0021     		movs	r1, #0
+  45 0012 5A20     		movs	r0, #90
+  46 0014 FFF7FEFF 		bl	Straight_Calc_fb
+  47              	.LVL0:
+   7:Src/motion.c  ****     flag.straight = ON;
+  48              		.loc 1 7 0
+  49 0018 024B     		ldr	r3, .L3
+  50 001a 0122     		movs	r2, #1
+  51 001c 9A70     		strb	r2, [r3, #2]
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccucLgFN.s 			page 2
+
+
+   8:Src/motion.c  **** }
+  52              		.loc 1 8 0
+  53 001e 03B0     		add	sp, sp, #12
+  54              	.LCFI2:
+  55              		.cfi_def_cfa_offset 4
+  56              		@ sp needed
+  57 0020 5DF804FB 		ldr	pc, [sp], #4
+  58              	.L4:
+  59              		.align	2
+  60              	.L3:
+  61 0024 00000000 		.word	flag
+  62              		.cfi_endproc
+  63              	.LFE0:
+  65              		.section	.text.Straight_half_stop,"ax",%progbits
+  66              		.align	1
+  67              		.global	Straight_half_stop
+  68              		.syntax unified
+  69              		.thumb
+  70              		.thumb_func
+  71              		.fpu fpv4-sp-d16
+  73              	Straight_half_stop:
+  74              	.LFB1:
+   9:Src/motion.c  **** 
+  10:Src/motion.c  **** void Straight_half_stop(void){
+  75              		.loc 1 10 0
+  76              		.cfi_startproc
+  77              		@ args = 0, pretend = 0, frame = 0
+  78              		@ frame_needed = 0, uses_anonymous_args = 0
+  79 0000 00B5     		push	{lr}
+  80              	.LCFI3:
+  81              		.cfi_def_cfa_offset 4
+  82              		.cfi_offset 14, -4
+  83 0002 83B0     		sub	sp, sp, #12
+  84              	.LCFI4:
+  85              		.cfi_def_cfa_offset 16
+  11:Src/motion.c  ****     Straight_Calc_fb(90,MAX_VELOCITY,0,MAX_VELOCITY,ACCEL);
+  86              		.loc 1 11 0
+  87 0004 4FF47A63 		mov	r3, #4000
+  88 0008 0093     		str	r3, [sp]
+  89 000a 4FF4C873 		mov	r3, #400
+  90 000e 0022     		movs	r2, #0
+  91 0010 1946     		mov	r1, r3
+  92 0012 5A20     		movs	r0, #90
+  93 0014 FFF7FEFF 		bl	Straight_Calc_fb
+  94              	.LVL1:
+  12:Src/motion.c  ****     flag.straight = ON;
+  95              		.loc 1 12 0
+  96 0018 024B     		ldr	r3, .L7
+  97 001a 0122     		movs	r2, #1
+  98 001c 9A70     		strb	r2, [r3, #2]
+  13:Src/motion.c  **** }...
+  99              		.loc 1 13 0
+ 100 001e 03B0     		add	sp, sp, #12
+ 101              	.LCFI5:
+ 102              		.cfi_def_cfa_offset 4
+ 103              		@ sp needed
+ 104 0020 5DF804FB 		ldr	pc, [sp], #4
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccucLgFN.s 			page 3
+
+
+ 105              	.L8:
+ 106              		.align	2
+ 107              	.L7:
+ 108 0024 00000000 		.word	flag
+ 109              		.cfi_endproc
+ 110              	.LFE1:
+ 112              		.text
+ 113              	.Letext0:
+ 114              		.file 2 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
+ 115              		.file 3 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
+ 116              		.file 4 "Inc/global.h"
+ 117              		.file 5 "Inc/calculate.h"
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccucLgFN.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 motion.c
+C:\Users\kotaro\AppData\Local\Temp\ccucLgFN.s:18     .text.Straight_half_accel:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\ccucLgFN.s:25     .text.Straight_half_accel:00000000 Straight_half_accel
+C:\Users\kotaro\AppData\Local\Temp\ccucLgFN.s:61     .text.Straight_half_accel:00000024 $d
+C:\Users\kotaro\AppData\Local\Temp\ccucLgFN.s:66     .text.Straight_half_stop:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\ccucLgFN.s:73     .text.Straight_half_stop:00000000 Straight_half_stop
+C:\Users\kotaro\AppData\Local\Temp\ccucLgFN.s:108    .text.Straight_half_stop:00000024 $d
+
+UNDEFINED SYMBOLS
+Straight_Calc_fb
+flag

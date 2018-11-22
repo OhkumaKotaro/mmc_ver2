@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccoYXqiv.s 			page 1
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cch2SiZ3.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -17,28 +17,38 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccoYXqiv.s 			page 1
   14              		.text
   15              	.Ltext0:
   16              		.cfi_sections	.debug_frame
-  17              		.comm	batt,4,4
-  18              		.comm	gyro,16,4
-  19              		.comm	enc_c,16,4
-  20              		.comm	enc_r,16,4
-  21              		.comm	enc_l,16,4
-  22              		.comm	sen_front,16,4
-  23              		.comm	sen_r,16,4
-  24              		.comm	sen_fr,16,4
-  25              		.comm	sen_fl,16,4
-  26              		.comm	sen_l,16,4
-  27              		.comm	flag,2,4
-  28              	.Letext0:
-  29              		.file 1 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
-  30              		.file 2 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
-  31              		.file 3 "Inc/global.h"
-  32              		.file 4 "Src/global.c"
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccoYXqiv.s 			page 2
+  17              		.comm	count_ms,2,2
+  18              		.comm	yawrate_tgt,6,4
+  19              		.comm	straight_tgt,6,4
+  20              		.comm	yawrate_tim,6,4
+  21              		.comm	straight_tim,6,4
+  22              		.comm	batt,8,4
+  23              		.comm	gyro,16,4
+  24              		.comm	enc_c,16,4
+  25              		.comm	enc_r,16,4
+  26              		.comm	enc_l,16,4
+  27              		.comm	sen_front,16,4
+  28              		.comm	sen_r,16,4
+  29              		.comm	sen_fr,16,4
+  30              		.comm	sen_fl,16,4
+  31              		.comm	sen_l,16,4
+  32              		.comm	flag,4,4
+  33              	.Letext0:
+  34              		.file 1 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
+  35              		.file 2 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
+  36              		.file 3 "Inc/global.h"
+  37              		.file 4 "Src/global.c"
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cch2SiZ3.s 			page 2
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 global.c
-                            *COM*:00000004 batt
+                            *COM*:00000002 count_ms
+                            *COM*:00000006 yawrate_tgt
+                            *COM*:00000006 straight_tgt
+                            *COM*:00000006 yawrate_tim
+                            *COM*:00000006 straight_tim
+                            *COM*:00000008 batt
                             *COM*:00000010 gyro
                             *COM*:00000010 enc_c
                             *COM*:00000010 enc_r
@@ -48,6 +58,6 @@ DEFINED SYMBOLS
                             *COM*:00000010 sen_fr
                             *COM*:00000010 sen_fl
                             *COM*:00000010 sen_l
-                            *COM*:00000002 flag
+                            *COM*:00000004 flag
 
 NO UNDEFINED SYMBOLS

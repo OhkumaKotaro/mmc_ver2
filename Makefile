@@ -79,7 +79,10 @@ Src/interface.c \
 Src/global.c \
 Src/filter.c \
 Src/mode.c \
-Src/other_function.c
+Src/other_function.c \
+Src/motion.c \
+Src/control.c \
+Src/calculate.c
 
 # ASM sources
 ASM_SOURCES =  \

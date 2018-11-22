@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s 			page 1
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccFjTtGP.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s 			page 1
   47 000e 1C4A     		ldr	r2, .L10+4
   48 0010 1388     		ldrh	r3, [r2]
   49 0012 5188     		ldrh	r1, [r2, #2]
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s 			page 2
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccFjTtGP.s 			page 2
 
 
   50 0014 5B1A     		subs	r3, r3, r1
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s 			page 1
   24:Src/filter.c  ****     sen_front.is_wall = FALSE;
   25:Src/filter.c  ****   }
   26:Src/filter.c  ****   
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s 			page 3
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccFjTtGP.s 			page 3
 
 
   27:Src/filter.c  ****   if(sen_r.adc > sen_r.thresh){
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s 			page 1
  135 0088 00000000 		.word	sen_r
  136 008c 00000000 		.word	sen_front
  137              		.cfi_endproc
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s 			page 4
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccFjTtGP.s 			page 4
 
 
  138              	.LFE126:
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s 			page 1
  182 0028 FFF7FEFF 		bl	HAL_GPIO_WritePin
  183              	.LVL3:
   45:Src/filter.c  **** }
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s 			page 5
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccFjTtGP.s 			page 5
 
 
  184              		.loc 1 45 0
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s 			page 1
  228              		.loc 1 57 0 is_stmt 0 discriminator 1
  229 001a 0122     		movs	r2, #1
  230 001c 0221     		movs	r1, #2
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s 			page 6
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccFjTtGP.s 			page 6
 
 
  231 001e 1648     		ldr	r0, .L27
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s 			page 1
  276              		.loc 1 60 0
  277 005e 0022     		movs	r2, #0
  278 0060 0421     		movs	r1, #4
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s 			page 7
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccFjTtGP.s 			page 7
 
 
  279 0062 0548     		ldr	r0, .L27
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s 			page 1
   71:Src/filter.c  ****   sen_r.reference = 2000;
  327              		.loc 1 71 0
  328 0014 D381     		strh	r3, [r2, #14]	@ movhi
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s 			page 8
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccFjTtGP.s 			page 8
 
 
   72:Src/filter.c  **** }
@@ -467,7 +467,7 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s 			page 1
  367              	.LBE2:
   76:Src/filter.c  ****   float buffer=0;
  368              		.loc 1 76 0
- 369 0006 9FED1C7A 		vldr.32	s14, .L36
+ 369 0006 9FED227A 		vldr.32	s14, .L37
  370              	.LBB3:
  371              		.loc 1 78 0
  372 000a 08E0     		b	.L33
@@ -475,10 +475,10 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s 			page 1
  374              	.L34:
   79:Src/filter.c  ****     buffer += batt.adc;
  375              		.loc 1 79 0 discriminator 3
- 376 000c 1B4A     		ldr	r2, .L36+4
+ 376 000c 214A     		ldr	r2, .L37+4
  377 000e 1288     		ldrh	r2, [r2]
  378 0010 07EE902A 		vmov	s15, r2	@ int
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s 			page 9
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccFjTtGP.s 			page 9
 
 
  379 0014 F8EEE77A 		vcvt.f32.s32	s15, s15
@@ -502,16 +502,16 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s 			page 1
  393              	.LVL20:
   82:Src/filter.c  ****   batt.voltage = buffer/4095.0f*133.0f/33.0f*3.3f;
  394              		.loc 1 82 0
- 395 002a DFED157A 		vldr.32	s15, .L36+8
+ 395 002a DFED1B7A 		vldr.32	s15, .L37+8
  396 002e 86EEA77A 		vdiv.f32	s14, s13, s15
- 397 0032 DFED147A 		vldr.32	s15, .L36+12
+ 397 0032 DFED1A7A 		vldr.32	s15, .L37+12
  398 0036 27EE277A 		vmul.f32	s14, s14, s15
- 399 003a DFED136A 		vldr.32	s13, .L36+16
+ 399 003a DFED196A 		vldr.32	s13, .L37+16
  400              	.LVL21:
  401 003e C7EE267A 		vdiv.f32	s15, s14, s13
- 402 0042 9FED127A 		vldr.32	s14, .L36+20
+ 402 0042 9FED187A 		vldr.32	s14, .L37+20
  403 0046 67EE877A 		vmul.f32	s15, s15, s14
- 404 004a 0C4B     		ldr	r3, .L36+4
+ 404 004a 124B     		ldr	r3, .L37+4
  405              	.LVL22:
  406 004c C3ED017A 		vstr.32	s15, [r3, #4]
   83:Src/filter.c  ****   pattern=(uint8_t)batt.voltage;
@@ -528,7 +528,7 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s 			page 1
  415              	.LVL24:
  416 0064 0246     		mov	r2, r0
  417 0066 0B46     		mov	r3, r1
- 418 0068 0948     		ldr	r0, .L36+24
+ 418 0068 0F48     		ldr	r0, .L37+24
  419 006a FFF7FEFF 		bl	printf
  420              	.LVL25:
   86:Src/filter.c  ****   LED_Control(pattern);
@@ -536,71 +536,97 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s 			page 1
  422 006e 2046     		mov	r0, r4
  423 0070 FFF7FEFF 		bl	LED_Control
  424              	.LVL26:
-  87:Src/filter.c  **** }
- 425              		.loc 1 87 0
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s 			page 10
+ 425              	.L35:
+  87:Src/filter.c  **** 
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccFjTtGP.s 			page 10
 
 
- 426 0074 02B0     		add	sp, sp, #8
- 427              	.LCFI7:
- 428              		.cfi_def_cfa_offset 8
- 429              		@ sp needed
- 430 0076 10BD     		pop	{r4, pc}
- 431              	.LVL27:
- 432              	.L37:
- 433              		.align	2
- 434              	.L36:
- 435 0078 00000000 		.word	0
- 436 007c 00000000 		.word	batt
- 437 0080 00F07F45 		.word	1166012416
- 438 0084 00000543 		.word	1124401152
- 439 0088 00000442 		.word	1107558400
- 440 008c 33335340 		.word	1079194419
- 441 0090 00000000 		.word	.LC0
- 442              		.cfi_endproc
- 443              	.LFE130:
- 445              		.section	.rodata.Batt_check.str1.4,"aMS",%progbits,1
- 446              		.align	2
- 447              	.LC0:
- 448 0000 0A626174 		.ascii	"\012batt:%lf\015\012\000"
- 448      743A256C 
- 448      660D0A00 
- 449              		.text
- 450              	.Letext0:
- 451              		.file 2 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
- 452              		.file 3 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
- 453              		.file 4 "Inc/global.h"
- 454              		.file 5 "Drivers/CMSIS/Include/core_cm4.h"
- 455              		.file 6 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
- 456              		.file 7 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h"
- 457              		.file 8 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
- 458              		.file 9 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
- 459              		.file 10 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\lib\\gcc\\arm-none-eab
- 460              		.file 11 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include
- 461              		.file 12 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include
- 462              		.file 13 "Inc/interface.h"
- 463              		.file 14 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s 			page 11
+  88:Src/filter.c  ****   while(1){
+  89:Src/filter.c  ****     if(Push()==ON){
+ 426              		.loc 1 89 0
+ 427 0074 FFF7FEFF 		bl	Push
+ 428              	.LVL27:
+ 429 0078 0128     		cmp	r0, #1
+ 430 007a FBD1     		bne	.L35
+  90:Src/filter.c  ****       Output_Buzzer(HZ_C_H);
+ 431              		.loc 1 90 0
+ 432 007c 4C20     		movs	r0, #76
+ 433 007e FFF7FEFF 		bl	Output_Buzzer
+ 434              	.LVL28:
+  91:Src/filter.c  ****       HAL_Delay(500);
+ 435              		.loc 1 91 0
+ 436 0082 4FF4FA70 		mov	r0, #500
+ 437 0086 FFF7FEFF 		bl	HAL_Delay
+ 438              	.LVL29:
+  92:Src/filter.c  ****       break;
+  93:Src/filter.c  ****     }
+  94:Src/filter.c  ****   }
+  95:Src/filter.c  **** }
+ 439              		.loc 1 95 0
+ 440 008a 02B0     		add	sp, sp, #8
+ 441              	.LCFI7:
+ 442              		.cfi_def_cfa_offset 8
+ 443              		@ sp needed
+ 444 008c 10BD     		pop	{r4, pc}
+ 445              	.LVL30:
+ 446              	.L38:
+ 447 008e 00BF     		.align	2
+ 448              	.L37:
+ 449 0090 00000000 		.word	0
+ 450 0094 00000000 		.word	batt
+ 451 0098 00F07F45 		.word	1166012416
+ 452 009c 00000543 		.word	1124401152
+ 453 00a0 00000442 		.word	1107558400
+ 454 00a4 33335340 		.word	1079194419
+ 455 00a8 00000000 		.word	.LC0
+ 456              		.cfi_endproc
+ 457              	.LFE130:
+ 459              		.section	.rodata.Batt_check.str1.4,"aMS",%progbits,1
+ 460              		.align	2
+ 461              	.LC0:
+ 462 0000 0A626174 		.ascii	"\012batt:%lf\015\012\000"
+ 462      743A256C 
+ 462      660D0A00 
+ 463              		.text
+ 464              	.Letext0:
+ 465              		.file 2 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
+ 466              		.file 3 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
+ 467              		.file 4 "Inc/global.h"
+ 468              		.file 5 "Drivers/CMSIS/Include/core_cm4.h"
+ 469              		.file 6 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
+ 470              		.file 7 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h"
+ 471              		.file 8 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
+ 472              		.file 9 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
+ 473              		.file 10 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\lib\\gcc\\arm-none-eab
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccFjTtGP.s 			page 11
+
+
+ 474              		.file 11 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include
+ 475              		.file 12 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include
+ 476              		.file 13 "Inc/interface.h"
+ 477              		.file 14 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
+ 478              		.file 15 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccFjTtGP.s 			page 12
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 filter.c
-C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s:18     .text.update_wall:00000000 $t
-C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s:25     .text.update_wall:00000000 update_wall
-C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s:132    .text.update_wall:0000007c $d
-C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s:141    .text.All_IR_OFF:00000000 $t
-C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s:148    .text.All_IR_OFF:00000000 All_IR_OFF
-C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s:189    .text.All_IR_OFF:00000030 $d
-C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s:194    .text.IR_Contoroll:00000000 $t
-C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s:201    .text.IR_Contoroll:00000000 IR_Contoroll
-C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s:294    .text.IR_Contoroll:00000078 $d
-C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s:299    .text.Input_Sensor:00000000 $t
-C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s:306    .text.Input_Sensor:00000000 Input_Sensor
-C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s:334    .text.Input_Sensor:00000018 $d
-C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s:342    .text.Batt_check:00000000 $t
-C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s:349    .text.Batt_check:00000000 Batt_check
-C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s:435    .text.Batt_check:00000078 $d
-C:\Users\kotaro\AppData\Local\Temp\ccBorzqz.s:446    .rodata.Batt_check.str1.4:00000000 $d
+C:\Users\kotaro\AppData\Local\Temp\ccFjTtGP.s:18     .text.update_wall:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\ccFjTtGP.s:25     .text.update_wall:00000000 update_wall
+C:\Users\kotaro\AppData\Local\Temp\ccFjTtGP.s:132    .text.update_wall:0000007c $d
+C:\Users\kotaro\AppData\Local\Temp\ccFjTtGP.s:141    .text.All_IR_OFF:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\ccFjTtGP.s:148    .text.All_IR_OFF:00000000 All_IR_OFF
+C:\Users\kotaro\AppData\Local\Temp\ccFjTtGP.s:189    .text.All_IR_OFF:00000030 $d
+C:\Users\kotaro\AppData\Local\Temp\ccFjTtGP.s:194    .text.IR_Contoroll:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\ccFjTtGP.s:201    .text.IR_Contoroll:00000000 IR_Contoroll
+C:\Users\kotaro\AppData\Local\Temp\ccFjTtGP.s:294    .text.IR_Contoroll:00000078 $d
+C:\Users\kotaro\AppData\Local\Temp\ccFjTtGP.s:299    .text.Input_Sensor:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\ccFjTtGP.s:306    .text.Input_Sensor:00000000 Input_Sensor
+C:\Users\kotaro\AppData\Local\Temp\ccFjTtGP.s:334    .text.Input_Sensor:00000018 $d
+C:\Users\kotaro\AppData\Local\Temp\ccFjTtGP.s:342    .text.Batt_check:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\ccFjTtGP.s:349    .text.Batt_check:00000000 Batt_check
+C:\Users\kotaro\AppData\Local\Temp\ccFjTtGP.s:449    .text.Batt_check:00000090 $d
+C:\Users\kotaro\AppData\Local\Temp\ccFjTtGP.s:460    .rodata.Batt_check.str1.4:00000000 $d
 
 UNDEFINED SYMBOLS
 sen_l
@@ -612,4 +638,7 @@ HAL_GPIO_WritePin
 __aeabi_f2d
 printf
 LED_Control
+Push
+Output_Buzzer
+HAL_Delay
 batt
