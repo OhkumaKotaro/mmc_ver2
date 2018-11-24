@@ -45,8 +45,6 @@
 #include "gpio.h"
 
 /* USER CODE BEGIN Includes */
-#include "stdint.h"
-#include "arm_math.h"
 #include "interface.h"
 #include "other_function.h"
 #include "mode.h"

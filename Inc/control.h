@@ -10,7 +10,9 @@
 
 float PID_value(float target,float measured,float *sum,float *old,float Kp,float Ki,float Kd);
 void Straight_SysTic_fb(void);
+void Yawrate_SysTic_fb(void);
 void Control_pwm(void);
+void Control_val_reset(void);
 
 
 #ifdef __cplusplus

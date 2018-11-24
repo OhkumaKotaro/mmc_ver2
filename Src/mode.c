@@ -4,6 +4,7 @@
 #include "gpio.h"
 #include "interface.h"
 #include "motion.h"
+#include "spi.h"
 
 
 
@@ -15,19 +16,47 @@
 void Mode_mouse(int8_t mode){
     switch(mode){
         case 0:
-            Straight_half_accel();
-            while(flag.straight==ON){}
-            Straight_half_stop();
-            while(flag.straight==ON){}
+            flag.ir_led = TRUE;
+            while(sen_front.is_wall != TRUE){}
+            flag.ir_led = FALSE;
+            Output_Buzzer(HZ_F);
+            gyro_offset_calc_reset();
+            HAL_Delay(2500);
+            Motion_Start();
+            Motion_Right();
+            Motion_Left();
+            Motion_Straight();
+            Motion_Goal();
             break;
         case 1:
-            
+            flag.ir_led = TRUE;
+            while(sen_front.is_wall != TRUE){}
+            flag.ir_led = FALSE;
+            Output_Buzzer(HZ_F);
+            gyro_offset_calc_reset();
+            HAL_Delay(2500);
+            LeftTurn();
+            while(flag.motion_end==FALSE){}
             break;
         case 2:
-            
+            flag.ir_led = TRUE;
+            while(sen_front.is_wall != TRUE){}
+            flag.ir_led = FALSE;
+            Output_Buzzer(HZ_F);
+            gyro_offset_calc_reset();
+            HAL_Delay(2500);
+            RightTurn();
+            while(flag.motion_end==FALSE){}
             break;
         case 3:
-            
+            flag.ir_led = TRUE;
+            while(sen_front.is_wall != TRUE){}
+            flag.ir_led = FALSE;
+            Output_Buzzer(HZ_F);
+            gyro_offset_calc_reset();
+            HAL_Delay(2500);
+            U_Turn();
+            while(flag.motion_end==FALSE){}
             break;
         case 4:
             

@@ -1,0 +1,431 @@
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccQ0Q3Y2.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"maze_analysis.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.MAZE_Create_Step,"ax",%progbits
+  18              		.align	1
+  19              		.global	MAZE_Create_Step
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	MAZE_Create_Step:
+  26              	.LFB0:
+  27              		.file 1 "Src/maze_analysis.c"
+   1:Src/maze_analysis.c **** #include "maze_analysis.h"
+   2:Src/maze_analysis.c **** #include "maze_infomation.h"
+   3:Src/maze_analysis.c **** #include "global.h"
+   4:Src/maze_analysis.c **** 
+   5:Src/maze_analysis.c **** /**************************************************************************************************
+   6:Src/maze_analysis.c ****  * outline : create map
+   7:Src/maze_analysis.c ****  * argument : void
+   8:Src/maze_analysis.c ****  * return : void
+   9:Src/maze_analysis.c **** ***************************************************************************************************
+  10:Src/maze_analysis.c **** void MAZE_Create_Step( void ){
+  28              		.loc 1 10 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 8
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+  33 0000 70B4     		push	{r4, r5, r6}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 12
+  36              		.cfi_offset 4, -12
+  37              		.cfi_offset 5, -8
+  38              		.cfi_offset 6, -4
+  39 0002 83B0     		sub	sp, sp, #12
+  40              	.LCFI1:
+  41              		.cfi_def_cfa_offset 24
+  42              	.LVL0:
+  43              	.LBB2:
+  11:Src/maze_analysis.c **** 	/* <概要>   : 歩数マップ作成
+  12:Src/maze_analysis.c **** 	 * <引数>   : 走行の状態( 探索,最短 )
+  13:Src/maze_analysis.c **** 	 * <戻り値> : なし
+  14:Src/maze_analysis.c **** 	 */
+  15:Src/maze_analysis.c **** 	// 初期化
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccQ0Q3Y2.s 			page 2
+
+
+  16:Src/maze_analysis.c **** 	for( int i = 0; i <= MAZE_SIZE; i++ ){
+  44              		.loc 1 16 0
+  45 0004 0021     		movs	r1, #0
+  46 0006 16E0     		b	.L2
+  47              	.LVL1:
+  48              	.L3:
+  49              	.LBB3:
+  17:Src/maze_analysis.c **** 		for( int j = 0; j <= MAZE_SIZE; j++ ){
+  18:Src/maze_analysis.c **** 			if( i == mazeDef.maze_goal_x && j == mazeDef.maze_goal_y ){
+  19:Src/maze_analysis.c **** 				maze.step[i][j] = 0;
+  20:Src/maze_analysis.c **** 			}
+  21:Src/maze_analysis.c **** 			else{
+  22:Src/maze_analysis.c **** 				maze.step[i][j] = MAX_STEP;
+  50              		.loc 1 22 0
+  51 0008 544A     		ldr	r2, .L29
+  52 000a 02EB0112 		add	r2, r2, r1, lsl #4
+  53 000e FE20     		movs	r0, #254
+  54 0010 D054     		strb	r0, [r2, r3]
+  55              	.L4:
+  17:Src/maze_analysis.c **** 		for( int j = 0; j <= MAZE_SIZE; j++ ){
+  56              		.loc 1 17 0 discriminator 2
+  57 0012 0133     		adds	r3, r3, #1
+  58              	.LVL2:
+  59              	.L6:
+  17:Src/maze_analysis.c **** 		for( int j = 0; j <= MAZE_SIZE; j++ ){
+  60              		.loc 1 17 0 is_stmt 0 discriminator 1
+  61 0014 0F2B     		cmp	r3, #15
+  62 0016 0DDC     		bgt	.L20
+  18:Src/maze_analysis.c **** 				maze.step[i][j] = 0;
+  63              		.loc 1 18 0 is_stmt 1
+  64 0018 514A     		ldr	r2, .L29+4
+  65 001a 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
+  66 001c 8A42     		cmp	r2, r1
+  67 001e F3D1     		bne	.L3
+  18:Src/maze_analysis.c **** 				maze.step[i][j] = 0;
+  68              		.loc 1 18 0 is_stmt 0 discriminator 1
+  69 0020 4F4A     		ldr	r2, .L29+4
+  70 0022 5278     		ldrb	r2, [r2, #1]	@ zero_extendqisi2
+  71 0024 9A42     		cmp	r2, r3
+  72 0026 EFD1     		bne	.L3
+  19:Src/maze_analysis.c **** 			}
+  73              		.loc 1 19 0 is_stmt 1
+  74 0028 4C4A     		ldr	r2, .L29
+  75 002a 02EB0112 		add	r2, r2, r1, lsl #4
+  76 002e 0020     		movs	r0, #0
+  77 0030 D054     		strb	r0, [r2, r3]
+  78 0032 EEE7     		b	.L4
+  79              	.L20:
+  80              	.LBE3:
+  16:Src/maze_analysis.c **** 		for( int j = 0; j <= MAZE_SIZE; j++ ){
+  81              		.loc 1 16 0 discriminator 2
+  82 0034 0131     		adds	r1, r1, #1
+  83              	.LVL3:
+  84              	.L2:
+  16:Src/maze_analysis.c **** 		for( int j = 0; j <= MAZE_SIZE; j++ ){
+  85              		.loc 1 16 0 is_stmt 0 discriminator 1
+  86 0036 0F29     		cmp	r1, #15
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccQ0Q3Y2.s 			page 3
+
+
+  87 0038 01DC     		bgt	.L21
+  88              	.LBB4:
+  17:Src/maze_analysis.c **** 			if( i == mazeDef.maze_goal_x && j == mazeDef.maze_goal_y ){
+  89              		.loc 1 17 0 is_stmt 1
+  90 003a 0023     		movs	r3, #0
+  91 003c EAE7     		b	.L6
+  92              	.L21:
+  93              	.LBE4:
+  94              	.LBE2:
+  23:Src/maze_analysis.c **** 			}
+  24:Src/maze_analysis.c **** 		}
+  25:Src/maze_analysis.c **** 	}
+  26:Src/maze_analysis.c **** 
+  27:Src/maze_analysis.c **** 	volatile uint8_t end_flag = TRUE;	// 終了フラグ
+  95              		.loc 1 27 0
+  96 003e 0123     		movs	r3, #1
+  97 0040 8DF80730 		strb	r3, [sp, #7]
+  98              	.LVL4:
+  28:Src/maze_analysis.c **** 	uint8_t stepNum = 0;		// 設定中の歩数
+  99              		.loc 1 28 0
+ 100 0044 0025     		movs	r5, #0
+  29:Src/maze_analysis.c **** 	// 探索
+  30:Src/maze_analysis.c **** 	
+  31:Src/maze_analysis.c **** 	while( end_flag == TRUE ){
+ 101              		.loc 1 31 0
+ 102 0046 79E0     		b	.L7
+ 103              	.LVL5:
+ 104              	.L25:
+ 105              	.LBB5:
+ 106              	.LBB6:
+  32:Src/maze_analysis.c **** 		end_flag = FALSE;
+  33:Src/maze_analysis.c **** 		uint8_t i=0;
+  34:Src/maze_analysis.c **** 		for( i = 0; i <= MAZE_SIZE; i++ ){
+  35:Src/maze_analysis.c **** 			uint8_t j=0;
+  36:Src/maze_analysis.c **** 			for( j = 0; j <= MAZE_SIZE; j++ ){
+  37:Src/maze_analysis.c **** 				if( maze.step[i][j] == MAX_STEP ){
+  38:Src/maze_analysis.c **** 					if( j < MAZE_SIZE){	//北壁
+  39:Src/maze_analysis.c **** 						if( (maze.wall_north[i][j] == FALSE)&&(maze.step[i][j+1] == stepNum) ){
+  40:Src/maze_analysis.c **** 							maze.step[i][j] = stepNum + 1;
+ 107              		.loc 1 40 0
+ 108 0048 6E1C     		adds	r6, r5, #1
+ 109 004a 444A     		ldr	r2, .L29
+ 110 004c 02EB0412 		add	r2, r2, r4, lsl #4
+ 111 0050 D654     		strb	r6, [r2, r3]
+  41:Src/maze_analysis.c **** 							end_flag = TRUE;
+ 112              		.loc 1 41 0
+ 113 0052 0122     		movs	r2, #1
+ 114 0054 8DF80720 		strb	r2, [sp, #7]
+ 115 0058 39E0     		b	.L10
+ 116              	.L11:
+  42:Src/maze_analysis.c **** 						}
+  43:Src/maze_analysis.c **** 					}
+  44:Src/maze_analysis.c **** 					if( i < MAZE_SIZE){	//東壁
+  45:Src/maze_analysis.c **** 						if( (maze.wall_east[i][j] == FALSE)&&(maze.step[i+1][j] == stepNum) ){
+  46:Src/maze_analysis.c **** 							maze.step[i][j] = stepNum + 1;
+  47:Src/maze_analysis.c **** 							end_flag = TRUE;
+  48:Src/maze_analysis.c **** 						}
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccQ0Q3Y2.s 			page 4
+
+
+  49:Src/maze_analysis.c **** 					}
+  50:Src/maze_analysis.c **** 					if( j > 0 ) {					//南壁
+ 117              		.loc 1 50 0
+ 118 005a 6BB1     		cbz	r3, .L12
+  51:Src/maze_analysis.c **** 						if( (maze.wall_south[i][j] == FALSE)&&(maze.step[i][j-1] == stepNum) ){
+ 119              		.loc 1 51 0
+ 120 005c 3F4A     		ldr	r2, .L29
+ 121 005e 02EB0012 		add	r2, r2, r0, lsl #4
+ 122 0062 0A44     		add	r2, r2, r1
+ 123 0064 92F80024 		ldrb	r2, [r2, #1024]	@ zero_extendqisi2
+ 124 0068 32B9     		cbnz	r2, .L12
+ 125              		.loc 1 51 0 is_stmt 0 discriminator 1
+ 126 006a 4A1E     		subs	r2, r1, #1
+ 127 006c 3B4E     		ldr	r6, .L29
+ 128 006e 06EB0016 		add	r6, r6, r0, lsl #4
+ 129 0072 B25C     		ldrb	r2, [r6, r2]	@ zero_extendqisi2
+ 130 0074 AA42     		cmp	r2, r5
+ 131 0076 44D0     		beq	.L22
+ 132              	.L12:
+  52:Src/maze_analysis.c **** 							maze.step[i][j] = stepNum + 1;
+  53:Src/maze_analysis.c **** 							end_flag = TRUE;
+  54:Src/maze_analysis.c **** 						}
+  55:Src/maze_analysis.c **** 					}
+  56:Src/maze_analysis.c **** 					if( i > 0 ){					//西壁
+ 133              		.loc 1 56 0 is_stmt 1
+ 134 0078 6CB1     		cbz	r4, .L9
+  57:Src/maze_analysis.c **** 						if( (maze.wall_west[i][j] == FALSE)&&(maze.step[i-1][j] == stepNum) ){
+ 135              		.loc 1 57 0
+ 136 007a 384A     		ldr	r2, .L29
+ 137 007c 02EB0012 		add	r2, r2, r0, lsl #4
+ 138 0080 0A44     		add	r2, r2, r1
+ 139 0082 92F80025 		ldrb	r2, [r2, #1280]	@ zero_extendqisi2
+ 140 0086 32B9     		cbnz	r2, .L9
+ 141              		.loc 1 57 0 is_stmt 0 discriminator 1
+ 142 0088 421E     		subs	r2, r0, #1
+ 143 008a 344E     		ldr	r6, .L29
+ 144 008c 06EB0212 		add	r2, r6, r2, lsl #4
+ 145 0090 525C     		ldrb	r2, [r2, r1]	@ zero_extendqisi2
+ 146 0092 AA42     		cmp	r2, r5
+ 147 0094 3ED0     		beq	.L23
+ 148              	.L9:
+  36:Src/maze_analysis.c **** 				if( maze.step[i][j] == MAX_STEP ){
+ 149              		.loc 1 36 0 is_stmt 1 discriminator 2
+ 150 0096 0133     		adds	r3, r3, #1
+ 151              	.LVL6:
+ 152 0098 DBB2     		uxtb	r3, r3
+ 153              	.LVL7:
+ 154              	.L14:
+  36:Src/maze_analysis.c **** 				if( maze.step[i][j] == MAX_STEP ){
+ 155              		.loc 1 36 0 is_stmt 0 discriminator 1
+ 156 009a 0F2B     		cmp	r3, #15
+ 157 009c 43D8     		bhi	.L24
+  37:Src/maze_analysis.c **** 					if( j < MAZE_SIZE){	//北壁
+ 158              		.loc 1 37 0 is_stmt 1
+ 159 009e 2046     		mov	r0, r4
+ 160 00a0 1946     		mov	r1, r3
+ 161 00a2 2E4A     		ldr	r2, .L29
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccQ0Q3Y2.s 			page 5
+
+
+ 162 00a4 02EB0412 		add	r2, r2, r4, lsl #4
+ 163 00a8 D25C     		ldrb	r2, [r2, r3]	@ zero_extendqisi2
+ 164 00aa FE2A     		cmp	r2, #254
+ 165 00ac F3D1     		bne	.L9
+  38:Src/maze_analysis.c **** 						if( (maze.wall_north[i][j] == FALSE)&&(maze.step[i][j+1] == stepNum) ){
+ 166              		.loc 1 38 0
+ 167 00ae 0E2B     		cmp	r3, #14
+ 168 00b0 0DD8     		bhi	.L10
+  39:Src/maze_analysis.c **** 							maze.step[i][j] = stepNum + 1;
+ 169              		.loc 1 39 0
+ 170 00b2 2A4A     		ldr	r2, .L29
+ 171 00b4 02EB0412 		add	r2, r2, r4, lsl #4
+ 172 00b8 1A44     		add	r2, r2, r3
+ 173 00ba 92F80022 		ldrb	r2, [r2, #512]	@ zero_extendqisi2
+ 174 00be 32B9     		cbnz	r2, .L10
+  39:Src/maze_analysis.c **** 							maze.step[i][j] = stepNum + 1;
+ 175              		.loc 1 39 0 is_stmt 0 discriminator 1
+ 176 00c0 5A1C     		adds	r2, r3, #1
+ 177 00c2 264E     		ldr	r6, .L29
+ 178 00c4 06EB0416 		add	r6, r6, r4, lsl #4
+ 179 00c8 B25C     		ldrb	r2, [r6, r2]	@ zero_extendqisi2
+ 180 00ca AA42     		cmp	r2, r5
+ 181 00cc BCD0     		beq	.L25
+ 182              	.L10:
+  44:Src/maze_analysis.c **** 						if( (maze.wall_east[i][j] == FALSE)&&(maze.step[i+1][j] == stepNum) ){
+ 183              		.loc 1 44 0 is_stmt 1
+ 184 00ce 0E2C     		cmp	r4, #14
+ 185 00d0 C3D8     		bhi	.L11
+  45:Src/maze_analysis.c **** 							maze.step[i][j] = stepNum + 1;
+ 186              		.loc 1 45 0
+ 187 00d2 224A     		ldr	r2, .L29
+ 188 00d4 02EB0012 		add	r2, r2, r0, lsl #4
+ 189 00d8 0A44     		add	r2, r2, r1
+ 190 00da 92F80023 		ldrb	r2, [r2, #768]	@ zero_extendqisi2
+ 191 00de 002A     		cmp	r2, #0
+ 192 00e0 BBD1     		bne	.L11
+  45:Src/maze_analysis.c **** 							maze.step[i][j] = stepNum + 1;
+ 193              		.loc 1 45 0 is_stmt 0 discriminator 1
+ 194 00e2 421C     		adds	r2, r0, #1
+ 195 00e4 1D4E     		ldr	r6, .L29
+ 196 00e6 06EB0212 		add	r2, r6, r2, lsl #4
+ 197 00ea 525C     		ldrb	r2, [r2, r1]	@ zero_extendqisi2
+ 198 00ec AA42     		cmp	r2, r5
+ 199 00ee B4D1     		bne	.L11
+  46:Src/maze_analysis.c **** 							end_flag = TRUE;
+ 200              		.loc 1 46 0 is_stmt 1
+ 201 00f0 6E1C     		adds	r6, r5, #1
+ 202 00f2 1A4A     		ldr	r2, .L29
+ 203 00f4 02EB0012 		add	r2, r2, r0, lsl #4
+ 204 00f8 5654     		strb	r6, [r2, r1]
+  47:Src/maze_analysis.c **** 						}
+ 205              		.loc 1 47 0
+ 206 00fa 0122     		movs	r2, #1
+ 207 00fc 8DF80720 		strb	r2, [sp, #7]
+ 208 0100 ABE7     		b	.L11
+ 209              	.L22:
+  52:Src/maze_analysis.c **** 							end_flag = TRUE;
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccQ0Q3Y2.s 			page 6
+
+
+ 210              		.loc 1 52 0
+ 211 0102 6E1C     		adds	r6, r5, #1
+ 212 0104 154A     		ldr	r2, .L29
+ 213 0106 02EB0012 		add	r2, r2, r0, lsl #4
+ 214 010a 5654     		strb	r6, [r2, r1]
+  53:Src/maze_analysis.c **** 						}
+ 215              		.loc 1 53 0
+ 216 010c 0122     		movs	r2, #1
+ 217 010e 8DF80720 		strb	r2, [sp, #7]
+ 218 0112 B1E7     		b	.L12
+ 219              	.L23:
+  58:Src/maze_analysis.c **** 							maze.step[i][j] = stepNum + 1;
+ 220              		.loc 1 58 0
+ 221 0114 6E1C     		adds	r6, r5, #1
+ 222 0116 114A     		ldr	r2, .L29
+ 223 0118 02EB0010 		add	r0, r2, r0, lsl #4
+ 224 011c 4654     		strb	r6, [r0, r1]
+  59:Src/maze_analysis.c **** 							end_flag = TRUE;
+ 225              		.loc 1 59 0
+ 226 011e 0122     		movs	r2, #1
+ 227 0120 8DF80720 		strb	r2, [sp, #7]
+ 228 0124 B7E7     		b	.L9
+ 229              	.L24:
+ 230              	.LBE6:
+  34:Src/maze_analysis.c **** 			uint8_t j=0;
+ 231              		.loc 1 34 0 discriminator 2
+ 232 0126 0134     		adds	r4, r4, #1
+ 233              	.LVL8:
+ 234 0128 E4B2     		uxtb	r4, r4
+ 235              	.LVL9:
+ 236              	.L8:
+  34:Src/maze_analysis.c **** 			uint8_t j=0;
+ 237              		.loc 1 34 0 is_stmt 0 discriminator 1
+ 238 012a 0F2C     		cmp	r4, #15
+ 239 012c 01D8     		bhi	.L26
+ 240              	.LBB7:
+  36:Src/maze_analysis.c **** 				if( maze.step[i][j] == MAX_STEP ){
+ 241              		.loc 1 36 0 is_stmt 1
+ 242 012e 0023     		movs	r3, #0
+ 243 0130 B3E7     		b	.L14
+ 244              	.L26:
+ 245              	.LBE7:
+  60:Src/maze_analysis.c **** 						}
+  61:Src/maze_analysis.c **** 					}
+  62:Src/maze_analysis.c **** 				}
+  63:Src/maze_analysis.c **** 			}
+  64:Src/maze_analysis.c **** 		}
+  65:Src/maze_analysis.c **** 		if (end_flag == TRUE) {
+ 246              		.loc 1 65 0
+ 247 0132 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 248 0136 DBB2     		uxtb	r3, r3
+ 249 0138 012B     		cmp	r3, #1
+ 250 013a 08D0     		beq	.L27
+ 251              	.LVL10:
+ 252              	.L7:
+ 253              	.LBE5:
+  31:Src/maze_analysis.c **** 		end_flag = FALSE;
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccQ0Q3Y2.s 			page 7
+
+
+ 254              		.loc 1 31 0
+ 255 013c 9DF80730 		ldrb	r3, [sp, #7]	@ zero_extendqisi2
+ 256 0140 DBB2     		uxtb	r3, r3
+ 257 0142 012B     		cmp	r3, #1
+ 258 0144 06D1     		bne	.L28
+ 259              	.LBB8:
+  32:Src/maze_analysis.c **** 		uint8_t i=0;
+ 260              		.loc 1 32 0
+ 261 0146 0024     		movs	r4, #0
+ 262 0148 8DF80740 		strb	r4, [sp, #7]
+ 263              	.LVL11:
+  34:Src/maze_analysis.c **** 			uint8_t j=0;
+ 264              		.loc 1 34 0
+ 265 014c EDE7     		b	.L8
+ 266              	.LVL12:
+ 267              	.L27:
+  66:Src/maze_analysis.c **** 			stepNum++;
+ 268              		.loc 1 66 0
+ 269 014e 0135     		adds	r5, r5, #1
+ 270              	.LVL13:
+ 271 0150 EDB2     		uxtb	r5, r5
+ 272              	.LVL14:
+ 273 0152 F3E7     		b	.L7
+ 274              	.LVL15:
+ 275              	.L28:
+ 276              	.LBE8:
+  67:Src/maze_analysis.c **** 		}
+  68:Src/maze_analysis.c **** 	}
+  69:Src/maze_analysis.c **** 	
+  70:Src/maze_analysis.c **** }...
+ 277              		.loc 1 70 0
+ 278 0154 03B0     		add	sp, sp, #12
+ 279              	.LCFI2:
+ 280              		.cfi_def_cfa_offset 12
+ 281              		@ sp needed
+ 282 0156 70BC     		pop	{r4, r5, r6}
+ 283              	.LCFI3:
+ 284              		.cfi_restore 6
+ 285              		.cfi_restore 5
+ 286              		.cfi_restore 4
+ 287              		.cfi_def_cfa_offset 0
+ 288              	.LVL16:
+ 289 0158 7047     		bx	lr
+ 290              	.L30:
+ 291 015a 00BF     		.align	2
+ 292              	.L29:
+ 293 015c 00000000 		.word	maze
+ 294 0160 00000000 		.word	mazeDef
+ 295              		.cfi_endproc
+ 296              	.LFE0:
+ 298              		.text
+ 299              	.Letext0:
+ 300              		.file 2 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
+ 301              		.file 3 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
+ 302              		.file 4 "Inc/maze_infomation.h"
+ 303              		.file 5 "Inc/global.h"
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccQ0Q3Y2.s 			page 8
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 maze_analysis.c
+C:\Users\kotaro\AppData\Local\Temp\ccQ0Q3Y2.s:18     .text.MAZE_Create_Step:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\ccQ0Q3Y2.s:25     .text.MAZE_Create_Step:00000000 MAZE_Create_Step
+C:\Users\kotaro\AppData\Local\Temp\ccQ0Q3Y2.s:293    .text.MAZE_Create_Step:0000015c $d
+
+UNDEFINED SYMBOLS
+maze
+mazeDef

@@ -8,22 +8,31 @@
 #include "stdint.h"
 
 
-//define
-//define
+/***********define***************/
+
 #define TRUE 1
 #define FALSE 0
+
 #define ON 1
 #define OFF 0
+
+#define LEFT 0
+#define FRONT 1
+#define RIGHT 2
+#define BACK 3
+
 //calc
 #define dt 0.001f
 
 
+
+
+/*************struct**************/
 //flag
 typedef struct{
     uint8_t ir_led;
     uint8_t gyro_calc;
-    uint8_t straight;
-    uint8_t yawrate;
+    uint8_t motion_end;
 }flag_t;
 
 extern volatile flag_t flag;

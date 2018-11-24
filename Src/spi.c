@@ -43,7 +43,6 @@
 #include "gpio.h"
 
 /* USER CODE BEGIN 0 */
-#include "stdint.h"
 #include "global.h"
 /* USER CODE END 0 */
 

@@ -192,9 +192,9 @@ void SysTick_Handler(void)
   update_encoder();
   update_batt_date();
 
-  if(flag.straight==ON){
-    Straight_SysTic_fb();
-  }
+  Straight_SysTic_fb();
+  Yawrate_SysTic_fb();
+
   Control_pwm();
   /* USER CODE END SysTick_IRQn 1 */
 }

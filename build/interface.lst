@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc9rA02X.s 			page 1
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccqVifGh.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc9rA02X.s 			page 1
   43 000a 6420     		movs	r0, #100
   44 000c FFF7FEFF 		bl	HAL_Delay
   45              	.LVL2:
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc9rA02X.s 			page 2
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccqVifGh.s 			page 2
 
 
   14:Src/interface.c ****   Buzzer_pwm(HZ_NORMAL,0);
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc9rA02X.s 			page 1
   88 0018 0120     		movs	r0, #1
   89              	.L4:
   90              	.LVL6:
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc9rA02X.s 			page 3
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccqVifGh.s 			page 3
 
 
   28:Src/interface.c ****     push = 0;
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc9rA02X.s 			page 1
  132 0010 0022     		movs	r2, #0
  133 0012 4FF48041 		mov	r1, #16384
  134 0016 2046     		mov	r0, r4
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc9rA02X.s 			page 4
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccqVifGh.s 			page 4
 
 
  135 0018 FFF7FEFF 		bl	HAL_GPIO_WritePin
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc9rA02X.s 			page 1
  179 0004 0122     		movs	r2, #1
  180 0006 4FF40051 		mov	r1, #8192
  181 000a 2046     		mov	r0, r4
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc9rA02X.s 			page 5
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccqVifGh.s 			page 5
 
 
  182 000c FFF7FEFF 		bl	HAL_GPIO_WritePin
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc9rA02X.s 			page 1
  231              		.loc 1 60 0
  232 0002 0446     		mov	r4, r0
  233 0004 18B3     		cbz	r0, .L28
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc9rA02X.s 			page 6
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccqVifGh.s 			page 6
 
 
  234              	.LVL17:
@@ -351,21 +351,21 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc9rA02X.s 			page 1
  273 0048 FFF7FEFF 		bl	HAL_GPIO_WritePin
  274              	.LVL21:
  275              	.L17:
-  69:Src/interface.c **** }...
+  69:Src/interface.c **** }
  276              		.loc 1 69 0
  277 004c 10BD     		pop	{r4, pc}
  278              	.LVL22:
  279              	.L28:
-  60:Src/interface.c ****   if(pattern == 0) All_LED_OFF();
+  60:Src/interface.c ****   if((pattern & 0b0001) == 0b0001) HAL_GPIO_WritePin(led0_GPIO_Port,led0_Pin,GPIO_PIN_RESET);
  280              		.loc 1 60 0 discriminator 1
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc9rA02X.s 			page 7
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccqVifGh.s 			page 7
 
 
  281 004e FFF7FEFF 		bl	All_LED_OFF
  282              	.LVL23:
  283 0052 D8E7     		b	.L18
  284              	.L19:
-  62:Src/interface.c ****   else                             HAL_GPIO_WritePin(led0_GPIO_Port,led0_Pin,GPIO_PIN_SET);
+  62:Src/interface.c ****   if((pattern & 0b0010) == 0b0010) HAL_GPIO_WritePin(led1_GPIO_Port,led1_Pin,GPIO_PIN_RESET);
  285              		.loc 1 62 0
  286 0054 0122     		movs	r2, #1
  287 0056 4FF40051 		mov	r1, #8192
@@ -374,7 +374,7 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc9rA02X.s 			page 1
  290              	.LVL24:
  291 0060 DAE7     		b	.L20
  292              	.L21:
-  64:Src/interface.c ****   else                             HAL_GPIO_WritePin(led1_GPIO_Port,led1_Pin,GPIO_PIN_SET);
+  64:Src/interface.c ****   if((pattern & 0b0100) == 0b0100) HAL_GPIO_WritePin(led2_GPIO_Port,led2_Pin,GPIO_PIN_RESET);
  293              		.loc 1 64 0
  294 0062 0122     		movs	r2, #1
  295 0064 4FF48041 		mov	r1, #16384
@@ -383,7 +383,7 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc9rA02X.s 			page 1
  298              	.LVL25:
  299 006e DCE7     		b	.L22
  300              	.L23:
-  66:Src/interface.c ****   else                             HAL_GPIO_WritePin(led2_GPIO_Port,led2_Pin,GPIO_PIN_SET);
+  66:Src/interface.c ****   if((pattern & 0b1000) == 0b1000) HAL_GPIO_WritePin(led3_GPIO_Port,led3_Pin,GPIO_PIN_RESET);
  301              		.loc 1 66 0
  302 0070 0122     		movs	r2, #1
  303 0072 8021     		movs	r1, #128
@@ -392,7 +392,7 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc9rA02X.s 			page 1
  306              	.LVL26:
  307 007a DEE7     		b	.L24
  308              	.L29:
-  67:Src/interface.c ****   if((pattern & 0b1000) == 0b1000) HAL_GPIO_WritePin(led3_GPIO_Port,led3_Pin,GPIO_PIN_RESET);
+  67:Src/interface.c ****   else                             HAL_GPIO_WritePin(led3_GPIO_Port,led3_Pin,GPIO_PIN_SET);
  309              		.loc 1 67 0 discriminator 1
  310 007c 0022     		movs	r2, #0
  311 007e 4FF48071 		mov	r1, #256
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc9rA02X.s 			page 1
  332              		.file 9 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\lib\\gcc\\arm-none-eabi
  333              		.file 10 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include
  334              		.file 11 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc9rA02X.s 			page 8
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccqVifGh.s 			page 8
 
 
  335              		.file 12 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
@@ -426,25 +426,25 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc9rA02X.s 			page 1
  337              		.file 14 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
  338              		.file 15 "Inc/tim.h"
  339              		.file 16 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc9rA02X.s 			page 9
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccqVifGh.s 			page 9
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 interface.c
-C:\Users\kotaro\AppData\Local\Temp\cc9rA02X.s:18     .text.Output_Buzzer:00000000 $t
-C:\Users\kotaro\AppData\Local\Temp\cc9rA02X.s:25     .text.Output_Buzzer:00000000 Output_Buzzer
-C:\Users\kotaro\AppData\Local\Temp\cc9rA02X.s:57     .text.Push:00000000 $t
-C:\Users\kotaro\AppData\Local\Temp\cc9rA02X.s:64     .text.Push:00000000 Push
-C:\Users\kotaro\AppData\Local\Temp\cc9rA02X.s:101    .text.Push:00000020 $d
-C:\Users\kotaro\AppData\Local\Temp\cc9rA02X.s:106    .text.All_LED_ON:00000000 $t
-C:\Users\kotaro\AppData\Local\Temp\cc9rA02X.s:113    .text.All_LED_ON:00000000 All_LED_ON
-C:\Users\kotaro\AppData\Local\Temp\cc9rA02X.s:154    .text.All_LED_ON:00000034 $d
-C:\Users\kotaro\AppData\Local\Temp\cc9rA02X.s:159    .text.All_LED_OFF:00000000 $t
-C:\Users\kotaro\AppData\Local\Temp\cc9rA02X.s:166    .text.All_LED_OFF:00000000 All_LED_OFF
-C:\Users\kotaro\AppData\Local\Temp\cc9rA02X.s:207    .text.All_LED_OFF:00000034 $d
-C:\Users\kotaro\AppData\Local\Temp\cc9rA02X.s:212    .text.LED_Control:00000000 $t
-C:\Users\kotaro\AppData\Local\Temp\cc9rA02X.s:219    .text.LED_Control:00000000 LED_Control
-C:\Users\kotaro\AppData\Local\Temp\cc9rA02X.s:319    .text.LED_Control:0000008c $d
+C:\Users\kotaro\AppData\Local\Temp\ccqVifGh.s:18     .text.Output_Buzzer:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\ccqVifGh.s:25     .text.Output_Buzzer:00000000 Output_Buzzer
+C:\Users\kotaro\AppData\Local\Temp\ccqVifGh.s:57     .text.Push:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\ccqVifGh.s:64     .text.Push:00000000 Push
+C:\Users\kotaro\AppData\Local\Temp\ccqVifGh.s:101    .text.Push:00000020 $d
+C:\Users\kotaro\AppData\Local\Temp\ccqVifGh.s:106    .text.All_LED_ON:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\ccqVifGh.s:113    .text.All_LED_ON:00000000 All_LED_ON
+C:\Users\kotaro\AppData\Local\Temp\ccqVifGh.s:154    .text.All_LED_ON:00000034 $d
+C:\Users\kotaro\AppData\Local\Temp\ccqVifGh.s:159    .text.All_LED_OFF:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\ccqVifGh.s:166    .text.All_LED_OFF:00000000 All_LED_OFF
+C:\Users\kotaro\AppData\Local\Temp\ccqVifGh.s:207    .text.All_LED_OFF:00000034 $d
+C:\Users\kotaro\AppData\Local\Temp\ccqVifGh.s:212    .text.LED_Control:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\ccqVifGh.s:219    .text.LED_Control:00000000 LED_Control
+C:\Users\kotaro\AppData\Local\Temp\ccqVifGh.s:319    .text.LED_Control:0000008c $d
 
 UNDEFINED SYMBOLS
 Buzzer_pwm

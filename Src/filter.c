@@ -65,8 +65,10 @@ void IR_Contoroll(int pattern){
 void Input_Sensor(void){
   sen_l.thresh = 2000;
   sen_l.reference = 2000;
+
   sen_front.thresh = 2000;
   sen_front.reference = 2000;
+  
   sen_r.thresh = 2000;
   sen_r.reference = 2000;
 }

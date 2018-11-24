@@ -2,7 +2,9 @@
 #include "global.h"
 
 void Reset_Flag(void){
-    flag.ir_led=0;
+    flag.ir_led = FALSE;
+    flag.motion_end = TRUE;
+    flag.gyro_calc = FALSE;
 }
 
 void Reset_Value(void){
