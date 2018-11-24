@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccOYT5ch.s 			page 1
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc2gCfmC.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccOYT5ch.s 			page 1
   47 000e 1C4A     		ldr	r2, .L10+4
   48 0010 1388     		ldrh	r3, [r2]
   49 0012 5188     		ldrh	r1, [r2, #2]
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccOYT5ch.s 			page 2
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc2gCfmC.s 			page 2
 
 
   50 0014 5B1A     		subs	r3, r3, r1
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccOYT5ch.s 			page 1
   24:Src/filter.c  ****     sen_front.is_wall = FALSE;
   25:Src/filter.c  ****   }
   26:Src/filter.c  ****   
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccOYT5ch.s 			page 3
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc2gCfmC.s 			page 3
 
 
   27:Src/filter.c  ****   if(sen_r.adc > sen_r.thresh){
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccOYT5ch.s 			page 1
  135 0088 00000000 		.word	sen_r
  136 008c 00000000 		.word	sen_front
  137              		.cfi_endproc
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccOYT5ch.s 			page 4
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc2gCfmC.s 			page 4
 
 
  138              	.LFE126:
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccOYT5ch.s 			page 1
  182 0028 FFF7FEFF 		bl	HAL_GPIO_WritePin
  183              	.LVL3:
   45:Src/filter.c  **** }
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccOYT5ch.s 			page 5
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc2gCfmC.s 			page 5
 
 
  184              		.loc 1 45 0
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccOYT5ch.s 			page 1
  228              		.loc 1 57 0 is_stmt 0 discriminator 1
  229 001a 0122     		movs	r2, #1
  230 001c 0221     		movs	r1, #2
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccOYT5ch.s 			page 6
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc2gCfmC.s 			page 6
 
 
  231 001e 1648     		ldr	r0, .L27
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccOYT5ch.s 			page 1
  276              		.loc 1 60 0
  277 005e 0022     		movs	r2, #0
  278 0060 0421     		movs	r1, #4
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccOYT5ch.s 			page 7
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc2gCfmC.s 			page 7
 
 
  279 0062 0548     		ldr	r0, .L27
@@ -396,239 +396,242 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccOYT5ch.s 			page 1
  310              		@ args = 0, pretend = 0, frame = 0
  311              		@ frame_needed = 0, uses_anonymous_args = 0
  312              		@ link register save eliminated.
-  66:Src/filter.c  ****   sen_l.thresh = 2000;
+  66:Src/filter.c  ****   sen_l.thresh = 2500;
  313              		.loc 1 66 0
- 314 0000 054A     		ldr	r2, .L30
- 315 0002 4FF4FA63 		mov	r3, #2000
+ 314 0000 084A     		ldr	r2, .L30
+ 315 0002 40F6C413 		movw	r3, #2500
  316 0006 9381     		strh	r3, [r2, #12]	@ movhi
   67:Src/filter.c  ****   sen_l.reference = 2000;
  317              		.loc 1 67 0
- 318 0008 D381     		strh	r3, [r2, #14]	@ movhi
+ 318 0008 4FF4FA63 		mov	r3, #2000
+ 319 000c D381     		strh	r3, [r2, #14]	@ movhi
   68:Src/filter.c  **** 
-  69:Src/filter.c  ****   sen_front.thresh = 2000;
- 319              		.loc 1 69 0
- 320 000a 044A     		ldr	r2, .L30+4
- 321 000c 9381     		strh	r3, [r2, #12]	@ movhi
+  69:Src/filter.c  ****   sen_front.thresh = 3050;
+ 320              		.loc 1 69 0
+ 321 000e 064A     		ldr	r2, .L30+4
+ 322 0010 40F6EA31 		movw	r1, #3050
+ 323 0014 9181     		strh	r1, [r2, #12]	@ movhi
   70:Src/filter.c  ****   sen_front.reference = 2000;
- 322              		.loc 1 70 0
- 323 000e D381     		strh	r3, [r2, #14]	@ movhi
+ 324              		.loc 1 70 0
+ 325 0016 D381     		strh	r3, [r2, #14]	@ movhi
   71:Src/filter.c  ****   
-  72:Src/filter.c  ****   sen_r.thresh = 2000;
- 324              		.loc 1 72 0
- 325 0010 034A     		ldr	r2, .L30+8
- 326 0012 9381     		strh	r3, [r2, #12]	@ movhi
+  72:Src/filter.c  ****   sen_r.thresh = 2900;
+ 326              		.loc 1 72 0
+ 327 0018 044A     		ldr	r2, .L30+8
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc2gCfmC.s 			page 8
+
+
+ 328 001a 40F65431 		movw	r1, #2900
+ 329 001e 9181     		strh	r1, [r2, #12]	@ movhi
   73:Src/filter.c  ****   sen_r.reference = 2000;
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccOYT5ch.s 			page 8
-
-
- 327              		.loc 1 73 0
- 328 0014 D381     		strh	r3, [r2, #14]	@ movhi
+ 330              		.loc 1 73 0
+ 331 0020 D381     		strh	r3, [r2, #14]	@ movhi
   74:Src/filter.c  **** }
- 329              		.loc 1 74 0
- 330 0016 7047     		bx	lr
- 331              	.L31:
- 332              		.align	2
- 333              	.L30:
- 334 0018 00000000 		.word	sen_l
- 335 001c 00000000 		.word	sen_front
- 336 0020 00000000 		.word	sen_r
- 337              		.cfi_endproc
- 338              	.LFE129:
- 340              		.global	__aeabi_f2d
- 341              		.section	.text.Batt_check,"ax",%progbits
- 342              		.align	1
- 343              		.global	Batt_check
- 344              		.syntax unified
- 345              		.thumb
- 346              		.thumb_func
- 347              		.fpu fpv4-sp-d16
- 349              	Batt_check:
- 350              	.LFB130:
+ 332              		.loc 1 74 0
+ 333 0022 7047     		bx	lr
+ 334              	.L31:
+ 335              		.align	2
+ 336              	.L30:
+ 337 0024 00000000 		.word	sen_l
+ 338 0028 00000000 		.word	sen_front
+ 339 002c 00000000 		.word	sen_r
+ 340              		.cfi_endproc
+ 341              	.LFE129:
+ 343              		.global	__aeabi_f2d
+ 344              		.section	.text.Batt_check,"ax",%progbits
+ 345              		.align	1
+ 346              		.global	Batt_check
+ 347              		.syntax unified
+ 348              		.thumb
+ 349              		.thumb_func
+ 350              		.fpu fpv4-sp-d16
+ 352              	Batt_check:
+ 353              	.LFB130:
   75:Src/filter.c  **** 
   76:Src/filter.c  **** //batt check
   77:Src/filter.c  **** void Batt_check(void){
- 351              		.loc 1 77 0
- 352              		.cfi_startproc
- 353              		@ args = 0, pretend = 0, frame = 8
- 354              		@ frame_needed = 0, uses_anonymous_args = 0
- 355 0000 10B5     		push	{r4, lr}
- 356              	.LCFI5:
- 357              		.cfi_def_cfa_offset 8
- 358              		.cfi_offset 4, -8
- 359              		.cfi_offset 14, -4
- 360 0002 82B0     		sub	sp, sp, #8
- 361              	.LCFI6:
- 362              		.cfi_def_cfa_offset 16
- 363              	.LVL16:
- 364              	.LBB2:
+ 354              		.loc 1 77 0
+ 355              		.cfi_startproc
+ 356              		@ args = 0, pretend = 0, frame = 8
+ 357              		@ frame_needed = 0, uses_anonymous_args = 0
+ 358 0000 10B5     		push	{r4, lr}
+ 359              	.LCFI5:
+ 360              		.cfi_def_cfa_offset 8
+ 361              		.cfi_offset 4, -8
+ 362              		.cfi_offset 14, -4
+ 363 0002 82B0     		sub	sp, sp, #8
+ 364              	.LCFI6:
+ 365              		.cfi_def_cfa_offset 16
+ 366              	.LVL16:
+ 367              	.LBB2:
   78:Src/filter.c  ****   float buffer=0;
   79:Src/filter.c  ****   uint8_t pattern;
   80:Src/filter.c  ****   for(int i=0;i<10;i++){
- 365              		.loc 1 80 0
- 366 0004 0023     		movs	r3, #0
- 367              	.LBE2:
+ 368              		.loc 1 80 0
+ 369 0004 0023     		movs	r3, #0
+ 370              	.LBE2:
   78:Src/filter.c  ****   float buffer=0;
- 368              		.loc 1 78 0
- 369 0006 9FED227A 		vldr.32	s14, .L37
- 370              	.LBB3:
- 371              		.loc 1 80 0
- 372 000a 08E0     		b	.L33
- 373              	.LVL17:
- 374              	.L34:
+ 371              		.loc 1 78 0
+ 372 0006 9FED227A 		vldr.32	s14, .L37
+ 373              	.LBB3:
+ 374              		.loc 1 80 0
+ 375 000a 08E0     		b	.L33
+ 376              	.LVL17:
+ 377              	.L34:
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc2gCfmC.s 			page 9
+
+
   81:Src/filter.c  ****     buffer += batt.adc;
- 375              		.loc 1 81 0 discriminator 3
- 376 000c 214A     		ldr	r2, .L37+4
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccOYT5ch.s 			page 9
-
-
- 377 000e 1288     		ldrh	r2, [r2]
- 378 0010 07EE902A 		vmov	s15, r2	@ int
- 379 0014 F8EEE77A 		vcvt.f32.s32	s15, s15
- 380 0018 37EE277A 		vadd.f32	s14, s14, s15
- 381              	.LVL18:
+ 378              		.loc 1 81 0 discriminator 3
+ 379 000c 214A     		ldr	r2, .L37+4
+ 380 000e 1288     		ldrh	r2, [r2]
+ 381 0010 07EE902A 		vmov	s15, r2	@ int
+ 382 0014 F8EEE77A 		vcvt.f32.s32	s15, s15
+ 383 0018 37EE277A 		vadd.f32	s14, s14, s15
+ 384              	.LVL18:
   80:Src/filter.c  ****     buffer += batt.adc;
- 382              		.loc 1 80 0 discriminator 3
- 383 001c 0133     		adds	r3, r3, #1
- 384              	.LVL19:
- 385              	.L33:
+ 385              		.loc 1 80 0 discriminator 3
+ 386 001c 0133     		adds	r3, r3, #1
+ 387              	.LVL19:
+ 388              	.L33:
   80:Src/filter.c  ****     buffer += batt.adc;
- 386              		.loc 1 80 0 is_stmt 0 discriminator 1
- 387 001e 092B     		cmp	r3, #9
- 388 0020 F4DD     		ble	.L34
- 389              	.LBE3:
+ 389              		.loc 1 80 0 is_stmt 0 discriminator 1
+ 390 001e 092B     		cmp	r3, #9
+ 391 0020 F4DD     		ble	.L34
+ 392              	.LBE3:
   82:Src/filter.c  ****   }
   83:Src/filter.c  ****   buffer /= 10.0f;
- 390              		.loc 1 83 0 is_stmt 1
- 391 0022 F2EE047A 		vmov.f32	s15, #1.0e+1
- 392 0026 C7EE276A 		vdiv.f32	s13, s14, s15
- 393              	.LVL20:
+ 393              		.loc 1 83 0 is_stmt 1
+ 394 0022 F2EE047A 		vmov.f32	s15, #1.0e+1
+ 395 0026 C7EE276A 		vdiv.f32	s13, s14, s15
+ 396              	.LVL20:
   84:Src/filter.c  ****   batt.voltage = buffer/4095.0f*133.0f/33.0f*3.3f;
- 394              		.loc 1 84 0
- 395 002a DFED1B7A 		vldr.32	s15, .L37+8
- 396 002e 86EEA77A 		vdiv.f32	s14, s13, s15
- 397 0032 DFED1A7A 		vldr.32	s15, .L37+12
- 398 0036 27EE277A 		vmul.f32	s14, s14, s15
- 399 003a DFED196A 		vldr.32	s13, .L37+16
- 400              	.LVL21:
- 401 003e C7EE267A 		vdiv.f32	s15, s14, s13
- 402 0042 9FED187A 		vldr.32	s14, .L37+20
- 403 0046 67EE877A 		vmul.f32	s15, s15, s14
- 404 004a 124B     		ldr	r3, .L37+4
- 405              	.LVL22:
- 406 004c C3ED017A 		vstr.32	s15, [r3, #4]
+ 397              		.loc 1 84 0
+ 398 002a DFED1B7A 		vldr.32	s15, .L37+8
+ 399 002e 86EEA77A 		vdiv.f32	s14, s13, s15
+ 400 0032 DFED1A7A 		vldr.32	s15, .L37+12
+ 401 0036 27EE277A 		vmul.f32	s14, s14, s15
+ 402 003a DFED196A 		vldr.32	s13, .L37+16
+ 403              	.LVL21:
+ 404 003e C7EE267A 		vdiv.f32	s15, s14, s13
+ 405 0042 9FED187A 		vldr.32	s14, .L37+20
+ 406 0046 67EE877A 		vmul.f32	s15, s15, s14
+ 407 004a 124B     		ldr	r3, .L37+4
+ 408              	.LVL22:
+ 409 004c C3ED017A 		vstr.32	s15, [r3, #4]
   85:Src/filter.c  ****   pattern=(uint8_t)batt.voltage;
- 407              		.loc 1 85 0
- 408 0050 BCEEE77A 		vcvt.u32.f32	s14, s15
- 409 0054 8DED017A 		vstr.32	s14, [sp, #4]	@ int
- 410 0058 9DF80440 		ldrb	r4, [sp, #4]	@ zero_extendqisi2
- 411              	.LVL23:
+ 410              		.loc 1 85 0
+ 411 0050 BCEEE77A 		vcvt.u32.f32	s14, s15
+ 412 0054 8DED017A 		vstr.32	s14, [sp, #4]	@ int
+ 413 0058 9DF80440 		ldrb	r4, [sp, #4]	@ zero_extendqisi2
+ 414              	.LVL23:
   86:Src/filter.c  **** 
   87:Src/filter.c  ****   printf("\nbatt:%lf\r\n",batt.voltage);
- 412              		.loc 1 87 0
- 413 005c 17EE900A 		vmov	r0, s15
- 414 0060 FFF7FEFF 		bl	__aeabi_f2d
- 415              	.LVL24:
- 416 0064 0246     		mov	r2, r0
- 417 0066 0B46     		mov	r3, r1
- 418 0068 0F48     		ldr	r0, .L37+24
- 419 006a FFF7FEFF 		bl	printf
- 420              	.LVL25:
+ 415              		.loc 1 87 0
+ 416 005c 17EE900A 		vmov	r0, s15
+ 417 0060 FFF7FEFF 		bl	__aeabi_f2d
+ 418              	.LVL24:
+ 419 0064 0246     		mov	r2, r0
+ 420 0066 0B46     		mov	r3, r1
+ 421 0068 0F48     		ldr	r0, .L37+24
+ 422 006a FFF7FEFF 		bl	printf
+ 423              	.LVL25:
   88:Src/filter.c  ****   LED_Control(pattern);
- 421              		.loc 1 88 0
- 422 006e 2046     		mov	r0, r4
- 423 0070 FFF7FEFF 		bl	LED_Control
- 424              	.LVL26:
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccOYT5ch.s 			page 10
+ 424              		.loc 1 88 0
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc2gCfmC.s 			page 10
 
 
- 425              	.L35:
+ 425 006e 2046     		mov	r0, r4
+ 426 0070 FFF7FEFF 		bl	LED_Control
+ 427              	.LVL26:
+ 428              	.L35:
   89:Src/filter.c  **** 
   90:Src/filter.c  ****   while(1){
   91:Src/filter.c  ****     if(Push()==ON){
- 426              		.loc 1 91 0
- 427 0074 FFF7FEFF 		bl	Push
- 428              	.LVL27:
- 429 0078 0128     		cmp	r0, #1
- 430 007a FBD1     		bne	.L35
+ 429              		.loc 1 91 0
+ 430 0074 FFF7FEFF 		bl	Push
+ 431              	.LVL27:
+ 432 0078 0128     		cmp	r0, #1
+ 433 007a FBD1     		bne	.L35
   92:Src/filter.c  ****       Output_Buzzer(HZ_C_H);
- 431              		.loc 1 92 0
- 432 007c 4C20     		movs	r0, #76
- 433 007e FFF7FEFF 		bl	Output_Buzzer
- 434              	.LVL28:
+ 434              		.loc 1 92 0
+ 435 007c 4C20     		movs	r0, #76
+ 436 007e FFF7FEFF 		bl	Output_Buzzer
+ 437              	.LVL28:
   93:Src/filter.c  ****       HAL_Delay(500);
- 435              		.loc 1 93 0
- 436 0082 4FF4FA70 		mov	r0, #500
- 437 0086 FFF7FEFF 		bl	HAL_Delay
- 438              	.LVL29:
+ 438              		.loc 1 93 0
+ 439 0082 4FF4FA70 		mov	r0, #500
+ 440 0086 FFF7FEFF 		bl	HAL_Delay
+ 441              	.LVL29:
   94:Src/filter.c  ****       break;
   95:Src/filter.c  ****     }
   96:Src/filter.c  ****   }
   97:Src/filter.c  **** }
- 439              		.loc 1 97 0
- 440 008a 02B0     		add	sp, sp, #8
- 441              	.LCFI7:
- 442              		.cfi_def_cfa_offset 8
- 443              		@ sp needed
- 444 008c 10BD     		pop	{r4, pc}
- 445              	.LVL30:
- 446              	.L38:
- 447 008e 00BF     		.align	2
- 448              	.L37:
- 449 0090 00000000 		.word	0
- 450 0094 00000000 		.word	batt
- 451 0098 00F07F45 		.word	1166012416
- 452 009c 00000543 		.word	1124401152
- 453 00a0 00000442 		.word	1107558400
- 454 00a4 33335340 		.word	1079194419
- 455 00a8 00000000 		.word	.LC0
- 456              		.cfi_endproc
- 457              	.LFE130:
- 459              		.section	.rodata.Batt_check.str1.4,"aMS",%progbits,1
- 460              		.align	2
- 461              	.LC0:
- 462 0000 0A626174 		.ascii	"\012batt:%lf\015\012\000"
- 462      743A256C 
- 462      660D0A00 
- 463              		.text
- 464              	.Letext0:
- 465              		.file 2 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
- 466              		.file 3 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
- 467              		.file 4 "Inc/global.h"
- 468              		.file 5 "Drivers/CMSIS/Include/core_cm4.h"
- 469              		.file 6 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
- 470              		.file 7 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h"
- 471              		.file 8 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccOYT5ch.s 			page 11
+ 442              		.loc 1 97 0
+ 443 008a 02B0     		add	sp, sp, #8
+ 444              	.LCFI7:
+ 445              		.cfi_def_cfa_offset 8
+ 446              		@ sp needed
+ 447 008c 10BD     		pop	{r4, pc}
+ 448              	.LVL30:
+ 449              	.L38:
+ 450 008e 00BF     		.align	2
+ 451              	.L37:
+ 452 0090 00000000 		.word	0
+ 453 0094 00000000 		.word	batt
+ 454 0098 00F07F45 		.word	1166012416
+ 455 009c 00000543 		.word	1124401152
+ 456 00a0 00000442 		.word	1107558400
+ 457 00a4 33335340 		.word	1079194419
+ 458 00a8 00000000 		.word	.LC0
+ 459              		.cfi_endproc
+ 460              	.LFE130:
+ 462              		.section	.rodata.Batt_check.str1.4,"aMS",%progbits,1
+ 463              		.align	2
+ 464              	.LC0:
+ 465 0000 0A626174 		.ascii	"\012batt:%lf\015\012\000"
+ 465      743A256C 
+ 465      660D0A00 
+ 466              		.text
+ 467              	.Letext0:
+ 468              		.file 2 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
+ 469              		.file 3 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
+ 470              		.file 4 "Inc/global.h"
+ 471              		.file 5 "Drivers/CMSIS/Include/core_cm4.h"
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc2gCfmC.s 			page 11
 
 
- 472              		.file 9 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
- 473              		.file 10 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\lib\\gcc\\arm-none-eab
- 474              		.file 11 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include
- 475              		.file 12 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include
- 476              		.file 13 "Inc/interface.h"
- 477              		.file 14 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
- 478              		.file 15 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccOYT5ch.s 			page 12
+ 472              		.file 6 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
+ 473              		.file 7 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h"
+ 474              		.file 8 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
+ 475              		.file 9 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
+ 476              		.file 10 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\lib\\gcc\\arm-none-eab
+ 477              		.file 11 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include
+ 478              		.file 12 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include
+ 479              		.file 13 "Inc/interface.h"
+ 480              		.file 14 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
+ 481              		.file 15 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc2gCfmC.s 			page 12
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 filter.c
-C:\Users\kotaro\AppData\Local\Temp\ccOYT5ch.s:18     .text.update_wall:00000000 $t
-C:\Users\kotaro\AppData\Local\Temp\ccOYT5ch.s:25     .text.update_wall:00000000 update_wall
-C:\Users\kotaro\AppData\Local\Temp\ccOYT5ch.s:132    .text.update_wall:0000007c $d
-C:\Users\kotaro\AppData\Local\Temp\ccOYT5ch.s:141    .text.All_IR_OFF:00000000 $t
-C:\Users\kotaro\AppData\Local\Temp\ccOYT5ch.s:148    .text.All_IR_OFF:00000000 All_IR_OFF
-C:\Users\kotaro\AppData\Local\Temp\ccOYT5ch.s:189    .text.All_IR_OFF:00000030 $d
-C:\Users\kotaro\AppData\Local\Temp\ccOYT5ch.s:194    .text.IR_Contoroll:00000000 $t
-C:\Users\kotaro\AppData\Local\Temp\ccOYT5ch.s:201    .text.IR_Contoroll:00000000 IR_Contoroll
-C:\Users\kotaro\AppData\Local\Temp\ccOYT5ch.s:294    .text.IR_Contoroll:00000078 $d
-C:\Users\kotaro\AppData\Local\Temp\ccOYT5ch.s:299    .text.Input_Sensor:00000000 $t
-C:\Users\kotaro\AppData\Local\Temp\ccOYT5ch.s:306    .text.Input_Sensor:00000000 Input_Sensor
-C:\Users\kotaro\AppData\Local\Temp\ccOYT5ch.s:334    .text.Input_Sensor:00000018 $d
-C:\Users\kotaro\AppData\Local\Temp\ccOYT5ch.s:342    .text.Batt_check:00000000 $t
-C:\Users\kotaro\AppData\Local\Temp\ccOYT5ch.s:349    .text.Batt_check:00000000 Batt_check
-C:\Users\kotaro\AppData\Local\Temp\ccOYT5ch.s:449    .text.Batt_check:00000090 $d
-C:\Users\kotaro\AppData\Local\Temp\ccOYT5ch.s:460    .rodata.Batt_check.str1.4:00000000 $d
+C:\Users\kotaro\AppData\Local\Temp\cc2gCfmC.s:18     .text.update_wall:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\cc2gCfmC.s:25     .text.update_wall:00000000 update_wall
+C:\Users\kotaro\AppData\Local\Temp\cc2gCfmC.s:132    .text.update_wall:0000007c $d
+C:\Users\kotaro\AppData\Local\Temp\cc2gCfmC.s:141    .text.All_IR_OFF:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\cc2gCfmC.s:148    .text.All_IR_OFF:00000000 All_IR_OFF
+C:\Users\kotaro\AppData\Local\Temp\cc2gCfmC.s:189    .text.All_IR_OFF:00000030 $d
+C:\Users\kotaro\AppData\Local\Temp\cc2gCfmC.s:194    .text.IR_Contoroll:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\cc2gCfmC.s:201    .text.IR_Contoroll:00000000 IR_Contoroll
+C:\Users\kotaro\AppData\Local\Temp\cc2gCfmC.s:294    .text.IR_Contoroll:00000078 $d
+C:\Users\kotaro\AppData\Local\Temp\cc2gCfmC.s:299    .text.Input_Sensor:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\cc2gCfmC.s:306    .text.Input_Sensor:00000000 Input_Sensor
+C:\Users\kotaro\AppData\Local\Temp\cc2gCfmC.s:337    .text.Input_Sensor:00000024 $d
+C:\Users\kotaro\AppData\Local\Temp\cc2gCfmC.s:345    .text.Batt_check:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\cc2gCfmC.s:352    .text.Batt_check:00000000 Batt_check
+C:\Users\kotaro\AppData\Local\Temp\cc2gCfmC.s:452    .text.Batt_check:00000090 $d
+C:\Users\kotaro\AppData\Local\Temp\cc2gCfmC.s:463    .rodata.Batt_check.str1.4:00000000 $d
 
 UNDEFINED SYMBOLS
 sen_l

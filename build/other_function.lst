@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccCOsX1f.s 			page 1
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccE9690b.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccCOsX1f.s 			page 1
   48              		.cfi_endproc
   49              	.LFE0:
   51              		.section	.text.Reset_Value,"ax",%progbits
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccCOsX1f.s 			page 2
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccE9690b.s 			page 2
 
 
   52              		.align	1
@@ -118,23 +118,23 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccCOsX1f.s 			page 1
   98              	.LFE1:
  100              		.text
  101              	.Letext0:
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccCOsX1f.s 			page 3
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccE9690b.s 			page 3
 
 
  102              		.file 2 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
  103              		.file 3 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
  104              		.file 4 "Inc/global.h"
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccCOsX1f.s 			page 4
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccE9690b.s 			page 4
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 other_function.c
-C:\Users\kotaro\AppData\Local\Temp\ccCOsX1f.s:18     .text.Reset_Flag:00000000 $t
-C:\Users\kotaro\AppData\Local\Temp\ccCOsX1f.s:25     .text.Reset_Flag:00000000 Reset_Flag
-C:\Users\kotaro\AppData\Local\Temp\ccCOsX1f.s:47     .text.Reset_Flag:00000010 $d
-C:\Users\kotaro\AppData\Local\Temp\ccCOsX1f.s:52     .text.Reset_Value:00000000 $t
-C:\Users\kotaro\AppData\Local\Temp\ccCOsX1f.s:59     .text.Reset_Value:00000000 Reset_Value
-C:\Users\kotaro\AppData\Local\Temp\ccCOsX1f.s:91     .text.Reset_Value:00000020 $d
+C:\Users\kotaro\AppData\Local\Temp\ccE9690b.s:18     .text.Reset_Flag:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\ccE9690b.s:25     .text.Reset_Flag:00000000 Reset_Flag
+C:\Users\kotaro\AppData\Local\Temp\ccE9690b.s:47     .text.Reset_Flag:00000010 $d
+C:\Users\kotaro\AppData\Local\Temp\ccE9690b.s:52     .text.Reset_Value:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\ccE9690b.s:59     .text.Reset_Value:00000000 Reset_Value
+C:\Users\kotaro\AppData\Local\Temp\ccE9690b.s:91     .text.Reset_Value:00000020 $d
 
 UNDEFINED SYMBOLS
 flag

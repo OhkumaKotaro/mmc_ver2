@@ -5,6 +5,7 @@
 #include "interface.h"
 #include "motion.h"
 #include "spi.h"
+#include "motion_plan.h"
 
 
 
@@ -16,17 +17,7 @@
 void Mode_mouse(int8_t mode){
     switch(mode){
         case 0:
-            flag.ir_led = TRUE;
-            while(sen_front.is_wall != TRUE){}
-            flag.ir_led = FALSE;
-            Output_Buzzer(HZ_F);
-            gyro_offset_calc_reset();
-            HAL_Delay(2500);
-            Motion_Start();
-            Motion_Right();
-            Motion_Left();
-            Motion_Straight();
-            Motion_Goal();
+            Mode_Run();
             break;
         case 1:
             flag.ir_led = TRUE;
@@ -104,6 +95,11 @@ int8_t Mode_select(void){
         printf("%d\r",mode);
     }
     return mode;
+}
+
+
+void Mode_Run(void){
+    Plan_Adachi();
 }
 
 

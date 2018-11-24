@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s 			page 1
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s 			page 1
   49 0018 0020     		movs	r0, #0
   50 001a 0090     		str	r0, [sp]
   51 001c 0346     		mov	r3, r0
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s 			page 2
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s 			page 2
 
 
   52 001e 0246     		mov	r2, r0
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s 			page 1
   13:Src/motion.c  **** }
  103              		.loc 1 13 0
  104 0026 03B0     		add	sp, sp, #12
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s 			page 3
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s 			page 3
 
 
  105              	.LCFI5:
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s 			page 1
  156              		.cfi_endproc
  157              	.LFE2:
  159              		.section	.text.LeftTurn,"ax",%progbits
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s 			page 4
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s 			page 4
 
 
  160              		.align	1
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s 			page 1
  211              		.syntax unified
  212              		.thumb
  213              		.thumb_func
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s 			page 5
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s 			page 5
 
 
  214              		.fpu fpv4-sp-d16
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s 			page 1
  266              	.LFB5:
   29:Src/motion.c  **** 
   30:Src/motion.c  **** void U_Turn(void){
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s 			page 6
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s 			page 6
 
 
  267              		.loc 1 30 0
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s 			page 1
  318              		@ args = 0, pretend = 0, frame = 0
  319              		@ frame_needed = 0, uses_anonymous_args = 0
  320 0000 00B5     		push	{lr}
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s 			page 7
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s 			page 7
 
 
  321              	.LCFI18:
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s 			page 1
  369 0050 034B     		ldr	r3, .L17
  370 0052 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
  371 0054 002B     		cmp	r3, #0
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s 			page 8
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s 			page 8
 
 
  372 0056 FBD0     		beq	.L15
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s 			page 1
  421              	.LFE7:
  423              		.section	.text.Motion_Left,"ax",%progbits
  424              		.align	1
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s 			page 9
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s 			page 9
 
 
  425              		.global	Motion_Left
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s 			page 1
  471              	.L30:
  472              		.align	2
  473              	.L29:
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s 			page 10
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s 			page 10
 
 
  474 0028 00000000 		.word	flag
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s 			page 1
  522 0022 002B     		cmp	r3, #0
  523 0024 FBD0     		beq	.L34
   66:Src/motion.c  **** }
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s 			page 11
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s 			page 11
 
 
  524              		.loc 1 66 0
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s 			page 1
  573              	.L41:
   74:Src/motion.c  ****     while(flag.motion_end==FALSE){}
  574              		.loc 1 74 0 discriminator 1
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s 			page 12
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s 			page 12
 
 
  575 001e 024B     		ldr	r3, .L43
@@ -674,17 +674,17 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s 			page 1
  584 0028 00000000 		.word	flag
  585              		.cfi_endproc
  586              	.LFE10:
- 588              		.section	.text.Motion_Kabe,"ax",%progbits
+ 588              		.section	.text.Motion_Kabeate,"ax",%progbits
  589              		.align	1
- 590              		.global	Motion_Kabe
+ 590              		.global	Motion_Kabeate
  591              		.syntax unified
  592              		.thumb
  593              		.thumb_func
  594              		.fpu fpv4-sp-d16
- 596              	Motion_Kabe:
+ 596              	Motion_Kabeate:
  597              	.LFB11:
   76:Src/motion.c  **** 
-  77:Src/motion.c  **** void Motion_Kabe(void){
+  77:Src/motion.c  **** void Motion_Kabeate(void){
  598              		.loc 1 77 0
  599              		.cfi_startproc
  600              		@ args = 0, pretend = 0, frame = 0
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s 			page 1
  623 0014 1B4B     		ldr	r3, .L52
  624 0016 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
  625 0018 002B     		cmp	r3, #0
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s 			page 13
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s 			page 13
 
 
  626 001a FBD0     		beq	.L47
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s 			page 1
  672 006c 0246     		mov	r2, r0
  673 006e 0146     		mov	r1, r0
  674 0070 FFF7FEFF 		bl	Yawrate_Calc_fb
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s 			page 14
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s 			page 14
 
 
  675              	.LVL32:
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s 			page 1
  724 000e 08BD     		pop	{r3, pc}
  725              	.L58:
  726              		.align	2
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s 			page 15
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s 			page 15
 
 
  727              	.L57:
@@ -851,44 +851,44 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s 			page 1
  735              		.file 3 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
  736              		.file 4 "Inc/global.h"
  737              		.file 5 "Inc/calculate.h"
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s 			page 16
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s 			page 16
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 motion.c
-C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s:18     .text.Straight_half_accel:00000000 $t
-C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s:25     .text.Straight_half_accel:00000000 Straight_half_accel
-C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s:66     .text.Straight_half_stop:00000000 $t
-C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s:73     .text.Straight_half_stop:00000000 Straight_half_stop
-C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s:113    .text.Straight_const:00000000 $t
-C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s:120    .text.Straight_const:00000000 Straight_const
-C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s:160    .text.LeftTurn:00000000 $t
-C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s:167    .text.LeftTurn:00000000 LeftTurn
-C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s:209    .text.RightTurn:00000000 $t
-C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s:216    .text.RightTurn:00000000 RightTurn
-C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s:258    .text.U_Turn:00000000 $t
-C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s:265    .text.U_Turn:00000000 U_Turn
-C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s:307    .text.Motion_Start:00000000 $t
-C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s:314    .text.Motion_Start:00000000 Motion_Start
-C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s:382    .text.Motion_Start:00000060 $d
-C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s:387    .text.Motion_Straight:00000000 $t
-C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s:394    .text.Motion_Straight:00000000 Motion_Straight
-C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s:419    .text.Motion_Straight:00000010 $d
-C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s:424    .text.Motion_Left:00000000 $t
-C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s:431    .text.Motion_Left:00000000 Motion_Left
-C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s:474    .text.Motion_Left:00000028 $d
-C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s:479    .text.Motion_Right:00000000 $t
-C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s:486    .text.Motion_Right:00000000 Motion_Right
-C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s:529    .text.Motion_Right:00000028 $d
-C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s:534    .text.Motion_Uturn:00000000 $t
-C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s:541    .text.Motion_Uturn:00000000 Motion_Uturn
-C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s:584    .text.Motion_Uturn:00000028 $d
-C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s:589    .text.Motion_Kabe:00000000 $t
-C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s:596    .text.Motion_Kabe:00000000 Motion_Kabe
-C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s:691    .text.Motion_Kabe:00000084 $d
-C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s:696    .text.Motion_Goal:00000000 $t
-C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s:703    .text.Motion_Goal:00000000 Motion_Goal
-C:\Users\kotaro\AppData\Local\Temp\cc4N9mN9.s:728    .text.Motion_Goal:00000010 $d
+C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s:18     .text.Straight_half_accel:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s:25     .text.Straight_half_accel:00000000 Straight_half_accel
+C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s:66     .text.Straight_half_stop:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s:73     .text.Straight_half_stop:00000000 Straight_half_stop
+C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s:113    .text.Straight_const:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s:120    .text.Straight_const:00000000 Straight_const
+C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s:160    .text.LeftTurn:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s:167    .text.LeftTurn:00000000 LeftTurn
+C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s:209    .text.RightTurn:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s:216    .text.RightTurn:00000000 RightTurn
+C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s:258    .text.U_Turn:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s:265    .text.U_Turn:00000000 U_Turn
+C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s:307    .text.Motion_Start:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s:314    .text.Motion_Start:00000000 Motion_Start
+C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s:382    .text.Motion_Start:00000060 $d
+C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s:387    .text.Motion_Straight:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s:394    .text.Motion_Straight:00000000 Motion_Straight
+C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s:419    .text.Motion_Straight:00000010 $d
+C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s:424    .text.Motion_Left:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s:431    .text.Motion_Left:00000000 Motion_Left
+C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s:474    .text.Motion_Left:00000028 $d
+C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s:479    .text.Motion_Right:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s:486    .text.Motion_Right:00000000 Motion_Right
+C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s:529    .text.Motion_Right:00000028 $d
+C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s:534    .text.Motion_Uturn:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s:541    .text.Motion_Uturn:00000000 Motion_Uturn
+C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s:584    .text.Motion_Uturn:00000028 $d
+C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s:589    .text.Motion_Kabeate:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s:596    .text.Motion_Kabeate:00000000 Motion_Kabeate
+C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s:691    .text.Motion_Kabeate:00000084 $d
+C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s:696    .text.Motion_Goal:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s:703    .text.Motion_Goal:00000000 Motion_Goal
+C:\Users\kotaro\AppData\Local\Temp\cci2bBQ9.s:728    .text.Motion_Goal:00000010 $d
 
 UNDEFINED SYMBOLS
 Straight_Calc_fb

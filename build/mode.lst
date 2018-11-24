@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccpGmg3b.s 			page 1
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccIkshKQ.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -34,135 +34,126 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccpGmg3b.s 			page 1
    5:Src/mode.c    **** #include "interface.h"
    6:Src/mode.c    **** #include "motion.h"
    7:Src/mode.c    **** #include "spi.h"
-   8:Src/mode.c    **** 
+   8:Src/mode.c    **** #include "motion_plan.h"
    9:Src/mode.c    **** 
   10:Src/mode.c    **** 
-  11:Src/mode.c    **** /****************************************************************************************
-  12:Src/mode.c    ****  * outline  : wright mode 
-  13:Src/mode.c    ****  * argument : mode nomber
-  14:Src/mode.c    ****  * return   : void
-  15:Src/mode.c    **** ********************************************************************************************/
-  16:Src/mode.c    **** void Mode_mouse(int8_t mode){
-  17:Src/mode.c    ****     switch(mode){
-  18:Src/mode.c    ****         case 0:
-  19:Src/mode.c    ****             flag.ir_led = TRUE;
-  20:Src/mode.c    ****             while(sen_front.is_wall != TRUE){}
-  21:Src/mode.c    ****             flag.ir_led = FALSE;
-  22:Src/mode.c    ****             Output_Buzzer(HZ_F);
-  23:Src/mode.c    ****             gyro_offset_calc_reset();
-  24:Src/mode.c    ****             HAL_Delay(2500);
-  25:Src/mode.c    ****             Motion_Start();
-  26:Src/mode.c    ****             Motion_Right();
-  27:Src/mode.c    ****             Motion_Left();
-  28:Src/mode.c    ****             Motion_Straight();
-  29:Src/mode.c    ****             Motion_Goal();
-  30:Src/mode.c    ****             break;
-  31:Src/mode.c    ****         case 1:
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccpGmg3b.s 			page 2
+  11:Src/mode.c    **** 
+  12:Src/mode.c    **** /****************************************************************************************
+  13:Src/mode.c    ****  * outline  : wright mode 
+  14:Src/mode.c    ****  * argument : mode nomber
+  15:Src/mode.c    ****  * return   : void
+  16:Src/mode.c    **** ********************************************************************************************/
+  17:Src/mode.c    **** void Mode_mouse(int8_t mode){
+  18:Src/mode.c    ****     switch(mode){
+  19:Src/mode.c    ****         case 0:
+  20:Src/mode.c    ****             Mode_Run();
+  21:Src/mode.c    ****             break;
+  22:Src/mode.c    ****         case 1:
+  23:Src/mode.c    ****             flag.ir_led = TRUE;
+  24:Src/mode.c    ****             while(sen_front.is_wall != TRUE){}
+  25:Src/mode.c    ****             flag.ir_led = FALSE;
+  26:Src/mode.c    ****             Output_Buzzer(HZ_F);
+  27:Src/mode.c    ****             gyro_offset_calc_reset();
+  28:Src/mode.c    ****             HAL_Delay(2500);
+  29:Src/mode.c    ****             LeftTurn();
+  30:Src/mode.c    ****             while(flag.motion_end==FALSE){}
+  31:Src/mode.c    ****             break;
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccIkshKQ.s 			page 2
 
 
-  32:Src/mode.c    ****             flag.ir_led = TRUE;
-  33:Src/mode.c    ****             while(sen_front.is_wall != TRUE){}
-  34:Src/mode.c    ****             flag.ir_led = FALSE;
-  35:Src/mode.c    ****             Output_Buzzer(HZ_F);
-  36:Src/mode.c    ****             gyro_offset_calc_reset();
-  37:Src/mode.c    ****             HAL_Delay(2500);
-  38:Src/mode.c    ****             LeftTurn();
-  39:Src/mode.c    ****             while(flag.motion_end==FALSE){}
-  40:Src/mode.c    ****             break;
-  41:Src/mode.c    ****         case 2:
-  42:Src/mode.c    ****             flag.ir_led = TRUE;
-  43:Src/mode.c    ****             while(sen_front.is_wall != TRUE){}
-  44:Src/mode.c    ****             flag.ir_led = FALSE;
-  45:Src/mode.c    ****             Output_Buzzer(HZ_F);
-  46:Src/mode.c    ****             gyro_offset_calc_reset();
-  47:Src/mode.c    ****             HAL_Delay(2500);
-  48:Src/mode.c    ****             RightTurn();
-  49:Src/mode.c    ****             while(flag.motion_end==FALSE){}
-  50:Src/mode.c    ****             break;
-  51:Src/mode.c    ****         case 3:
-  52:Src/mode.c    ****             flag.ir_led = TRUE;
-  53:Src/mode.c    ****             while(sen_front.is_wall != TRUE){}
-  54:Src/mode.c    ****             flag.ir_led = FALSE;
-  55:Src/mode.c    ****             Output_Buzzer(HZ_F);
-  56:Src/mode.c    ****             gyro_offset_calc_reset();
-  57:Src/mode.c    ****             HAL_Delay(2500);
-  58:Src/mode.c    ****             U_Turn();
-  59:Src/mode.c    ****             while(flag.motion_end==FALSE){}
+  32:Src/mode.c    ****         case 2:
+  33:Src/mode.c    ****             flag.ir_led = TRUE;
+  34:Src/mode.c    ****             while(sen_front.is_wall != TRUE){}
+  35:Src/mode.c    ****             flag.ir_led = FALSE;
+  36:Src/mode.c    ****             Output_Buzzer(HZ_F);
+  37:Src/mode.c    ****             gyro_offset_calc_reset();
+  38:Src/mode.c    ****             HAL_Delay(2500);
+  39:Src/mode.c    ****             RightTurn();
+  40:Src/mode.c    ****             while(flag.motion_end==FALSE){}
+  41:Src/mode.c    ****             break;
+  42:Src/mode.c    ****         case 3:
+  43:Src/mode.c    ****             flag.ir_led = TRUE;
+  44:Src/mode.c    ****             while(sen_front.is_wall != TRUE){}
+  45:Src/mode.c    ****             flag.ir_led = FALSE;
+  46:Src/mode.c    ****             Output_Buzzer(HZ_F);
+  47:Src/mode.c    ****             gyro_offset_calc_reset();
+  48:Src/mode.c    ****             HAL_Delay(2500);
+  49:Src/mode.c    ****             U_Turn();
+  50:Src/mode.c    ****             while(flag.motion_end==FALSE){}
+  51:Src/mode.c    ****             break;
+  52:Src/mode.c    ****         case 4:
+  53:Src/mode.c    ****             
+  54:Src/mode.c    ****             break;
+  55:Src/mode.c    ****         case 5:
+  56:Src/mode.c    ****             
+  57:Src/mode.c    ****             break;
+  58:Src/mode.c    ****         case 6:
+  59:Src/mode.c    ****             Mode_Sensor_Check();
   60:Src/mode.c    ****             break;
-  61:Src/mode.c    ****         case 4:
-  62:Src/mode.c    ****             
-  63:Src/mode.c    ****             break;
-  64:Src/mode.c    ****         case 5:
-  65:Src/mode.c    ****             
-  66:Src/mode.c    ****             break;
-  67:Src/mode.c    ****         case 6:
-  68:Src/mode.c    ****             Mode_Sensor_Check();
-  69:Src/mode.c    ****             break;
-  70:Src/mode.c    ****         default:
-  71:Src/mode.c    ****             break;
-  72:Src/mode.c    ****     }
-  73:Src/mode.c    **** }
-  74:Src/mode.c    **** 
-  75:Src/mode.c    **** 
-  76:Src/mode.c    **** /****************************************************************************************
-  77:Src/mode.c    ****  * outline  : return mode nomber
-  78:Src/mode.c    ****  * argument : void
-  79:Src/mode.c    ****  * return   : mode nomber 
-  80:Src/mode.c    **** ********************************************************************************************/
-  81:Src/mode.c    **** int8_t Mode_select(void){
-  28              		.loc 1 81 0
+  61:Src/mode.c    ****         default:
+  62:Src/mode.c    ****             break;
+  63:Src/mode.c    ****     }
+  64:Src/mode.c    **** }
+  65:Src/mode.c    **** 
+  66:Src/mode.c    **** 
+  67:Src/mode.c    **** /****************************************************************************************
+  68:Src/mode.c    ****  * outline  : return mode nomber
+  69:Src/mode.c    ****  * argument : void
+  70:Src/mode.c    ****  * return   : mode nomber 
+  71:Src/mode.c    **** ********************************************************************************************/
+  72:Src/mode.c    **** int8_t Mode_select(void){
+  28              		.loc 1 72 0
   29              		.cfi_startproc
   30              		@ args = 0, pretend = 0, frame = 0
   31              		@ frame_needed = 0, uses_anonymous_args = 0
   32 0000 10B5     		push	{r4, lr}
   33              	.LCFI0:
   34              		.cfi_def_cfa_offset 8
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccpGmg3b.s 			page 3
-
-
   35              		.cfi_offset 4, -8
   36              		.cfi_offset 14, -4
   37              	.LVL0:
-  82:Src/mode.c    ****     int8_t mode=0;
-  38              		.loc 1 82 0
+  73:Src/mode.c    ****     int8_t mode=0;
+  38              		.loc 1 73 0
   39 0002 0024     		movs	r4, #0
   40 0004 1FE0     		b	.L7
   41              	.LVL1:
   42              	.L3:
-  83:Src/mode.c    ****     while(1){
-  84:Src/mode.c    ****         if((int16_t)enc_l.distance > 30 || (int16_t)enc_l.distance < -30){
-  85:Src/mode.c    ****             if((int16_t)enc_l.distance > 30){
-  86:Src/mode.c    ****                 mode++;
-  87:Src/mode.c    ****             }else if((int16_t)enc_l.distance < -30){
-  43              		.loc 1 87 0
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccIkshKQ.s 			page 3
+
+
+  74:Src/mode.c    ****     while(1){
+  75:Src/mode.c    ****         if((int16_t)enc_l.distance > 30 || (int16_t)enc_l.distance < -30){
+  76:Src/mode.c    ****             if((int16_t)enc_l.distance > 30){
+  77:Src/mode.c    ****                 mode++;
+  78:Src/mode.c    ****             }else if((int16_t)enc_l.distance < -30){
+  43              		.loc 1 78 0
   44 0006 13F11E0F 		cmn	r3, #30
   45 000a 2DDA     		bge	.L4
-  88:Src/mode.c    ****                 mode--;
-  46              		.loc 1 88 0
+  79:Src/mode.c    ****                 mode--;
+  46              		.loc 1 79 0
   47 000c 013C     		subs	r4, r4, #1
   48              	.LVL2:
   49 000e 64B2     		sxtb	r4, r4
   50              	.LVL3:
   51 0010 2AE0     		b	.L4
   52              	.L8:
-  89:Src/mode.c    ****             }
-  90:Src/mode.c    ****             if(mode > 6){
-  91:Src/mode.c    ****                 mode = 0;
-  53              		.loc 1 91 0
+  80:Src/mode.c    ****             }
+  81:Src/mode.c    ****             if(mode > 6){
+  82:Src/mode.c    ****                 mode = 0;
+  53              		.loc 1 82 0
   54 0012 0024     		movs	r4, #0
   55              	.LVL4:
   56              	.L5:
-  92:Src/mode.c    ****             }else if(mode < 0){
-  93:Src/mode.c    ****                 mode = 6;
-  94:Src/mode.c    ****             }
-  95:Src/mode.c    ****             enc_l.distance = 0;
-  57              		.loc 1 95 0
+  83:Src/mode.c    ****             }else if(mode < 0){
+  84:Src/mode.c    ****                 mode = 6;
+  85:Src/mode.c    ****             }
+  86:Src/mode.c    ****             enc_l.distance = 0;
+  57              		.loc 1 86 0
   58 0014 1C4B     		ldr	r3, .L13
   59 0016 0022     		movs	r2, #0
   60 0018 9A60     		str	r2, [r3, #8]	@ float
-  96:Src/mode.c    ****             Output_Buzzer(170-10*mode);
-  61              		.loc 1 96 0
+  87:Src/mode.c    ****             Output_Buzzer(170-10*mode);
+  61              		.loc 1 87 0
   62 001a C4EB4413 		rsb	r3, r4, r4, lsl #5
   63 001e C4EB8303 		rsb	r3, r4, r3, lsl #2
   64 0022 5800     		lsls	r0, r3, #1
@@ -172,34 +163,34 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccpGmg3b.s 			page 1
   68 002c FFF7FEFF 		bl	Output_Buzzer
   69              	.LVL5:
   70              	.L2:
-  97:Src/mode.c    ****         }
-  98:Src/mode.c    ****         if(Push()==ON){
-  71              		.loc 1 98 0
+  88:Src/mode.c    ****         }
+  89:Src/mode.c    ****         if(Push()==ON){
+  71              		.loc 1 89 0
   72 0030 FFF7FEFF 		bl	Push
   73              	.LVL6:
   74 0034 0128     		cmp	r0, #1
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccpGmg3b.s 			page 4
-
-
   75 0036 1DD0     		beq	.L11
-  99:Src/mode.c    ****             Output_Buzzer(HZ_C_H);
- 100:Src/mode.c    ****             HAL_Delay(500);
- 101:Src/mode.c    ****             break;
- 102:Src/mode.c    ****         }
- 103:Src/mode.c    ****         LED_Control(mode);
-  76              		.loc 1 103 0
+  90:Src/mode.c    ****             Output_Buzzer(HZ_C_H);
+  91:Src/mode.c    ****             HAL_Delay(500);
+  92:Src/mode.c    ****             break;
+  93:Src/mode.c    ****         }
+  94:Src/mode.c    ****         LED_Control(mode);
+  76              		.loc 1 94 0
   77 0038 E0B2     		uxtb	r0, r4
   78 003a FFF7FEFF 		bl	LED_Control
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccIkshKQ.s 			page 4
+
+
   79              	.LVL7:
- 104:Src/mode.c    ****         printf("%d\r",mode);
-  80              		.loc 1 104 0
+  95:Src/mode.c    ****         printf("%d\r",mode);
+  80              		.loc 1 95 0
   81 003e 2146     		mov	r1, r4
   82 0040 1248     		ldr	r0, .L13+4
   83 0042 FFF7FEFF 		bl	printf
   84              	.LVL8:
   85              	.L7:
-  84:Src/mode.c    ****             if((int16_t)enc_l.distance > 30){
-  86              		.loc 1 84 0
+  75:Src/mode.c    ****             if((int16_t)enc_l.distance > 30){
+  86              		.loc 1 75 0
   87 0046 104B     		ldr	r3, .L13
   88 0048 D3ED027A 		vldr.32	s15, [r3, #8]
   89 004c FDEEE77A 		vcvt.s32.f32	s15, s15
@@ -209,49 +200,49 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccpGmg3b.s 			page 1
   93 005a 92B2     		uxth	r2, r2
   94 005c 3C2A     		cmp	r2, #60
   95 005e E7D9     		bls	.L2
-  85:Src/mode.c    ****                 mode++;
-  96              		.loc 1 85 0
+  76:Src/mode.c    ****                 mode++;
+  96              		.loc 1 76 0
   97 0060 1E2B     		cmp	r3, #30
   98 0062 D0DD     		ble	.L3
-  86:Src/mode.c    ****             }else if((int16_t)enc_l.distance < -30){
-  99              		.loc 1 86 0
+  77:Src/mode.c    ****             }else if((int16_t)enc_l.distance < -30){
+  99              		.loc 1 77 0
  100 0064 0134     		adds	r4, r4, #1
  101              	.LVL9:
  102 0066 64B2     		sxtb	r4, r4
  103              	.LVL10:
  104              	.L4:
-  90:Src/mode.c    ****                 mode = 0;
- 105              		.loc 1 90 0
+  81:Src/mode.c    ****                 mode = 0;
+ 105              		.loc 1 81 0
  106 0068 062C     		cmp	r4, #6
  107 006a D2DC     		bgt	.L8
-  92:Src/mode.c    ****                 mode = 6;
- 108              		.loc 1 92 0
+  83:Src/mode.c    ****                 mode = 6;
+ 108              		.loc 1 83 0
  109 006c 002C     		cmp	r4, #0
  110 006e D1DA     		bge	.L5
-  93:Src/mode.c    ****             }
- 111              		.loc 1 93 0
+  84:Src/mode.c    ****             }
+ 111              		.loc 1 84 0
  112 0070 0624     		movs	r4, #6
  113              	.LVL11:
  114 0072 CFE7     		b	.L5
  115              	.LVL12:
  116              	.L11:
-  99:Src/mode.c    ****             HAL_Delay(500);
- 117              		.loc 1 99 0
+  90:Src/mode.c    ****             HAL_Delay(500);
+ 117              		.loc 1 90 0
  118 0074 4C20     		movs	r0, #76
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccpGmg3b.s 			page 5
-
-
  119 0076 FFF7FEFF 		bl	Output_Buzzer
  120              	.LVL13:
- 100:Src/mode.c    ****             break;
- 121              		.loc 1 100 0
+  91:Src/mode.c    ****             break;
+ 121              		.loc 1 91 0
  122 007a 4FF4FA70 		mov	r0, #500
  123 007e FFF7FEFF 		bl	HAL_Delay
  124              	.LVL14:
- 105:Src/mode.c    ****     }
- 106:Src/mode.c    ****     return mode;
- 107:Src/mode.c    **** }
- 125              		.loc 1 107 0
+  96:Src/mode.c    ****     }
+  97:Src/mode.c    ****     return mode;
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccIkshKQ.s 			page 5
+
+
+  98:Src/mode.c    **** }
+ 125              		.loc 1 98 0
  126 0082 2046     		mov	r0, r4
  127 0084 10BD     		pop	{r4, pc}
  128              	.LVL15:
@@ -262,500 +253,482 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccpGmg3b.s 			page 1
  133 008c 00000000 		.word	.LC0
  134              		.cfi_endproc
  135              	.LFE127:
- 137              		.section	.text.Mode_Sensor_Check,"ax",%progbits
+ 137              		.section	.text.Mode_Run,"ax",%progbits
  138              		.align	1
- 139              		.global	Mode_Sensor_Check
+ 139              		.global	Mode_Run
  140              		.syntax unified
  141              		.thumb
  142              		.thumb_func
  143              		.fpu fpv4-sp-d16
- 145              	Mode_Sensor_Check:
+ 145              	Mode_Run:
  146              	.LFB128:
- 108:Src/mode.c    **** 
- 109:Src/mode.c    **** 
- 110:Src/mode.c    **** void Mode_Sensor_Check(void){
- 147              		.loc 1 110 0
+  99:Src/mode.c    **** 
+ 100:Src/mode.c    **** 
+ 101:Src/mode.c    **** void Mode_Run(void){
+ 147              		.loc 1 101 0
  148              		.cfi_startproc
  149              		@ args = 0, pretend = 0, frame = 0
  150              		@ frame_needed = 0, uses_anonymous_args = 0
- 151 0000 10B5     		push	{r4, lr}
+ 151 0000 08B5     		push	{r3, lr}
  152              	.LCFI1:
  153              		.cfi_def_cfa_offset 8
- 154              		.cfi_offset 4, -8
+ 154              		.cfi_offset 3, -8
  155              		.cfi_offset 14, -4
- 111:Src/mode.c    ****     flag.ir_led = TRUE;
- 156              		.loc 1 111 0
- 157 0002 2C4B     		ldr	r3, .L28
- 158 0004 0122     		movs	r2, #1
- 159 0006 1A70     		strb	r2, [r3]
- 160 0008 26E0     		b	.L22
- 161              	.L25:
- 112:Src/mode.c    ****     while(1){
- 113:Src/mode.c    ****         if(sen_r.is_wall==TRUE){
- 114:Src/mode.c    ****             HAL_GPIO_WritePin(led0_GPIO_Port,led0_Pin,GPIO_PIN_RESET);
- 162              		.loc 1 114 0
- 163 000a 0022     		movs	r2, #0
- 164 000c 4FF40051 		mov	r1, #8192
- 165 0010 2948     		ldr	r0, .L28+4
- 166 0012 FFF7FEFF 		bl	HAL_GPIO_WritePin
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccpGmg3b.s 			page 6
+ 102:Src/mode.c    ****     Plan_Adachi();
+ 156              		.loc 1 102 0
+ 157 0002 FFF7FEFF 		bl	Plan_Adachi
+ 158              	.LVL16:
+ 103:Src/mode.c    **** }
+ 159              		.loc 1 103 0
+ 160 0006 08BD     		pop	{r3, pc}
+ 161              		.cfi_endproc
+ 162              	.LFE128:
+ 164              		.section	.text.Mode_Sensor_Check,"ax",%progbits
+ 165              		.align	1
+ 166              		.global	Mode_Sensor_Check
+ 167              		.syntax unified
+ 168              		.thumb
+ 169              		.thumb_func
+ 170              		.fpu fpv4-sp-d16
+ 172              	Mode_Sensor_Check:
+ 173              	.LFB129:
+ 104:Src/mode.c    **** 
+ 105:Src/mode.c    **** 
+ 106:Src/mode.c    **** void Mode_Sensor_Check(void){
+ 174              		.loc 1 106 0
+ 175              		.cfi_startproc
+ 176              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccIkshKQ.s 			page 6
 
 
- 167              	.LVL16:
- 168 0016 29E0     		b	.L17
- 169              	.L26:
- 115:Src/mode.c    ****         }else{
- 116:Src/mode.c    ****             HAL_GPIO_WritePin(led0_GPIO_Port,led0_Pin,GPIO_PIN_SET);
+ 177              		@ frame_needed = 0, uses_anonymous_args = 0
+ 178 0000 10B5     		push	{r4, lr}
+ 179              	.LCFI2:
+ 180              		.cfi_def_cfa_offset 8
+ 181              		.cfi_offset 4, -8
+ 182              		.cfi_offset 14, -4
+ 107:Src/mode.c    ****     flag.ir_led = TRUE;
+ 183              		.loc 1 107 0
+ 184 0002 2C4B     		ldr	r3, .L30
+ 185 0004 0122     		movs	r2, #1
+ 186 0006 1A70     		strb	r2, [r3]
+ 187 0008 26E0     		b	.L24
+ 188              	.L27:
+ 108:Src/mode.c    ****     while(1){
+ 109:Src/mode.c    ****         if(sen_r.is_wall==TRUE){
+ 110:Src/mode.c    ****             HAL_GPIO_WritePin(led0_GPIO_Port,led0_Pin,GPIO_PIN_RESET);
+ 189              		.loc 1 110 0
+ 190 000a 0022     		movs	r2, #0
+ 191 000c 4FF40051 		mov	r1, #8192
+ 192 0010 2948     		ldr	r0, .L30+4
+ 193 0012 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 194              	.LVL17:
+ 195 0016 29E0     		b	.L19
+ 196              	.L28:
+ 111:Src/mode.c    ****         }else{
+ 112:Src/mode.c    ****             HAL_GPIO_WritePin(led0_GPIO_Port,led0_Pin,GPIO_PIN_SET);
+ 113:Src/mode.c    ****         }
+ 114:Src/mode.c    ****         if(sen_l.is_wall==TRUE){
+ 115:Src/mode.c    ****             HAL_GPIO_WritePin(led1_GPIO_Port,led1_Pin,GPIO_PIN_RESET);
+ 197              		.loc 1 115 0
+ 198 0018 0022     		movs	r2, #0
+ 199 001a 4FF48041 		mov	r1, #16384
+ 200 001e 2648     		ldr	r0, .L30+4
+ 201 0020 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 202              	.LVL18:
+ 203 0024 2CE0     		b	.L21
+ 204              	.L29:
+ 116:Src/mode.c    ****         }else{
+ 117:Src/mode.c    ****             HAL_GPIO_WritePin(led1_GPIO_Port,led1_Pin,GPIO_PIN_SET);
+ 118:Src/mode.c    ****         }
+ 119:Src/mode.c    ****         if(sen_front.is_wall==TRUE){
+ 120:Src/mode.c    ****             HAL_GPIO_WritePin(led3_GPIO_Port,led3_Pin,GPIO_PIN_RESET);
+ 205              		.loc 1 120 0
+ 206 0026 244C     		ldr	r4, .L30+4
+ 207 0028 0022     		movs	r2, #0
+ 208 002a 4FF48071 		mov	r1, #256
+ 209 002e 2046     		mov	r0, r4
+ 210 0030 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 211              	.LVL19:
+ 121:Src/mode.c    ****             HAL_GPIO_WritePin(led2_GPIO_Port,led2_Pin,GPIO_PIN_RESET);
+ 212              		.loc 1 121 0
+ 213 0034 0022     		movs	r2, #0
+ 214 0036 8021     		movs	r1, #128
+ 215 0038 2046     		mov	r0, r4
+ 216 003a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 217              	.LVL20:
+ 218              	.L23:
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccIkshKQ.s 			page 7
+
+
+ 122:Src/mode.c    ****         }else{
+ 123:Src/mode.c    ****             HAL_GPIO_WritePin(led3_GPIO_Port,led3_Pin,GPIO_PIN_SET);
+ 124:Src/mode.c    ****             HAL_GPIO_WritePin(led2_GPIO_Port,led2_Pin,GPIO_PIN_SET);
+ 125:Src/mode.c    ****         }
+ 126:Src/mode.c    ****         printf("l:%d f:%d r:%d \r",sen_l.adc,sen_front.adc,sen_r.adc);
+ 219              		.loc 1 126 0
+ 220 003e 1F4B     		ldr	r3, .L30+8
+ 221 0040 9B88     		ldrh	r3, [r3, #4]
+ 222 0042 1F4A     		ldr	r2, .L30+12
+ 223 0044 9288     		ldrh	r2, [r2, #4]
+ 224 0046 1F49     		ldr	r1, .L30+16
+ 225 0048 8988     		ldrh	r1, [r1, #4]
+ 226 004a 1F48     		ldr	r0, .L30+20
+ 227 004c FFF7FEFF 		bl	printf
+ 228              	.LVL21:
+ 127:Src/mode.c    **** 
+ 128:Src/mode.c    ****         if(Push()==ON){
+ 229              		.loc 1 128 0
+ 230 0050 FFF7FEFF 		bl	Push
+ 231              	.LVL22:
+ 232 0054 0128     		cmp	r0, #1
+ 233 0056 24D0     		beq	.L26
+ 234              	.L24:
+ 109:Src/mode.c    ****             HAL_GPIO_WritePin(led0_GPIO_Port,led0_Pin,GPIO_PIN_RESET);
+ 235              		.loc 1 109 0
+ 236 0058 184B     		ldr	r3, .L30+8
+ 237 005a 9B7A     		ldrb	r3, [r3, #10]	@ zero_extendqisi2
+ 238 005c 012B     		cmp	r3, #1
+ 239 005e D4D0     		beq	.L27
+ 112:Src/mode.c    ****         }
+ 240              		.loc 1 112 0
+ 241 0060 0122     		movs	r2, #1
+ 242 0062 4FF40051 		mov	r1, #8192
+ 243 0066 1448     		ldr	r0, .L30+4
+ 244 0068 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 245              	.LVL23:
+ 246              	.L19:
+ 114:Src/mode.c    ****             HAL_GPIO_WritePin(led1_GPIO_Port,led1_Pin,GPIO_PIN_RESET);
+ 247              		.loc 1 114 0
+ 248 006c 154B     		ldr	r3, .L30+16
+ 249 006e 9B7A     		ldrb	r3, [r3, #10]	@ zero_extendqisi2
+ 250 0070 012B     		cmp	r3, #1
+ 251 0072 D1D0     		beq	.L28
  117:Src/mode.c    ****         }
- 118:Src/mode.c    ****         if(sen_l.is_wall==TRUE){
- 119:Src/mode.c    ****             HAL_GPIO_WritePin(led1_GPIO_Port,led1_Pin,GPIO_PIN_RESET);
- 170              		.loc 1 119 0
- 171 0018 0022     		movs	r2, #0
- 172 001a 4FF48041 		mov	r1, #16384
- 173 001e 2648     		ldr	r0, .L28+4
- 174 0020 FFF7FEFF 		bl	HAL_GPIO_WritePin
- 175              	.LVL17:
- 176 0024 2CE0     		b	.L19
- 177              	.L27:
- 120:Src/mode.c    ****         }else{
- 121:Src/mode.c    ****             HAL_GPIO_WritePin(led1_GPIO_Port,led1_Pin,GPIO_PIN_SET);
- 122:Src/mode.c    ****         }
- 123:Src/mode.c    ****         if(sen_front.is_wall==TRUE){
- 124:Src/mode.c    ****             HAL_GPIO_WritePin(led3_GPIO_Port,led3_Pin,GPIO_PIN_RESET);
- 178              		.loc 1 124 0
- 179 0026 244C     		ldr	r4, .L28+4
- 180 0028 0022     		movs	r2, #0
- 181 002a 4FF48071 		mov	r1, #256
- 182 002e 2046     		mov	r0, r4
- 183 0030 FFF7FEFF 		bl	HAL_GPIO_WritePin
- 184              	.LVL18:
- 125:Src/mode.c    ****             HAL_GPIO_WritePin(led2_GPIO_Port,led2_Pin,GPIO_PIN_RESET);
- 185              		.loc 1 125 0
- 186 0034 0022     		movs	r2, #0
- 187 0036 8021     		movs	r1, #128
- 188 0038 2046     		mov	r0, r4
- 189 003a FFF7FEFF 		bl	HAL_GPIO_WritePin
- 190              	.LVL19:
- 191              	.L21:
- 126:Src/mode.c    ****         }else{
- 127:Src/mode.c    ****             HAL_GPIO_WritePin(led3_GPIO_Port,led3_Pin,GPIO_PIN_SET);
- 128:Src/mode.c    ****             HAL_GPIO_WritePin(led2_GPIO_Port,led2_Pin,GPIO_PIN_SET);
- 129:Src/mode.c    ****         }
- 130:Src/mode.c    ****         printf("l:%d f:%d r:%d \r",sen_l.adc,sen_front.adc,sen_r.adc);
- 192              		.loc 1 130 0
- 193 003e 1F4B     		ldr	r3, .L28+8
- 194 0040 9B88     		ldrh	r3, [r3, #4]
- 195 0042 1F4A     		ldr	r2, .L28+12
- 196 0044 9288     		ldrh	r2, [r2, #4]
- 197 0046 1F49     		ldr	r1, .L28+16
- 198 0048 8988     		ldrh	r1, [r1, #4]
- 199 004a 1F48     		ldr	r0, .L28+20
- 200 004c FFF7FEFF 		bl	printf
- 201              	.LVL20:
- 131:Src/mode.c    **** 
- 132:Src/mode.c    ****         if(Push()==ON){
- 202              		.loc 1 132 0
- 203 0050 FFF7FEFF 		bl	Push
- 204              	.LVL21:
- 205 0054 0128     		cmp	r0, #1
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccpGmg3b.s 			page 7
+ 252              		.loc 1 117 0
+ 253 0074 0122     		movs	r2, #1
+ 254 0076 4FF48041 		mov	r1, #16384
+ 255 007a 0F48     		ldr	r0, .L30+4
+ 256 007c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 257              	.LVL24:
+ 258              	.L21:
+ 119:Src/mode.c    ****             HAL_GPIO_WritePin(led3_GPIO_Port,led3_Pin,GPIO_PIN_RESET);
+ 259              		.loc 1 119 0
+ 260 0080 0F4B     		ldr	r3, .L30+12
+ 261 0082 9B7A     		ldrb	r3, [r3, #10]	@ zero_extendqisi2
+ 262 0084 012B     		cmp	r3, #1
+ 263 0086 CED0     		beq	.L29
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccIkshKQ.s 			page 8
 
 
- 206 0056 24D0     		beq	.L24
- 207              	.L22:
- 113:Src/mode.c    ****             HAL_GPIO_WritePin(led0_GPIO_Port,led0_Pin,GPIO_PIN_RESET);
- 208              		.loc 1 113 0
- 209 0058 184B     		ldr	r3, .L28+8
- 210 005a 9B7A     		ldrb	r3, [r3, #10]	@ zero_extendqisi2
- 211 005c 012B     		cmp	r3, #1
- 212 005e D4D0     		beq	.L25
- 116:Src/mode.c    ****         }
- 213              		.loc 1 116 0
- 214 0060 0122     		movs	r2, #1
- 215 0062 4FF40051 		mov	r1, #8192
- 216 0066 1448     		ldr	r0, .L28+4
- 217 0068 FFF7FEFF 		bl	HAL_GPIO_WritePin
- 218              	.LVL22:
- 219              	.L17:
- 118:Src/mode.c    ****             HAL_GPIO_WritePin(led1_GPIO_Port,led1_Pin,GPIO_PIN_RESET);
- 220              		.loc 1 118 0
- 221 006c 154B     		ldr	r3, .L28+16
- 222 006e 9B7A     		ldrb	r3, [r3, #10]	@ zero_extendqisi2
- 223 0070 012B     		cmp	r3, #1
- 224 0072 D1D0     		beq	.L26
- 121:Src/mode.c    ****         }
- 225              		.loc 1 121 0
- 226 0074 0122     		movs	r2, #1
- 227 0076 4FF48041 		mov	r1, #16384
- 228 007a 0F48     		ldr	r0, .L28+4
- 229 007c FFF7FEFF 		bl	HAL_GPIO_WritePin
- 230              	.LVL23:
- 231              	.L19:
- 123:Src/mode.c    ****             HAL_GPIO_WritePin(led3_GPIO_Port,led3_Pin,GPIO_PIN_RESET);
- 232              		.loc 1 123 0
- 233 0080 0F4B     		ldr	r3, .L28+12
- 234 0082 9B7A     		ldrb	r3, [r3, #10]	@ zero_extendqisi2
- 235 0084 012B     		cmp	r3, #1
- 236 0086 CED0     		beq	.L27
- 127:Src/mode.c    ****             HAL_GPIO_WritePin(led2_GPIO_Port,led2_Pin,GPIO_PIN_SET);
- 237              		.loc 1 127 0
- 238 0088 0B4C     		ldr	r4, .L28+4
- 239 008a 0122     		movs	r2, #1
- 240 008c 4FF48071 		mov	r1, #256
- 241 0090 2046     		mov	r0, r4
- 242 0092 FFF7FEFF 		bl	HAL_GPIO_WritePin
- 243              	.LVL24:
- 128:Src/mode.c    ****         }
- 244              		.loc 1 128 0
- 245 0096 0122     		movs	r2, #1
- 246 0098 8021     		movs	r1, #128
- 247 009a 2046     		mov	r0, r4
- 248 009c FFF7FEFF 		bl	HAL_GPIO_WritePin
- 249              	.LVL25:
- 250 00a0 CDE7     		b	.L21
- 251              	.L24:
- 133:Src/mode.c    ****             Output_Buzzer(HZ_C_H);
- 252              		.loc 1 133 0
- 253 00a2 4C20     		movs	r0, #76
- 254 00a4 FFF7FEFF 		bl	Output_Buzzer
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccpGmg3b.s 			page 8
+ 123:Src/mode.c    ****             HAL_GPIO_WritePin(led2_GPIO_Port,led2_Pin,GPIO_PIN_SET);
+ 264              		.loc 1 123 0
+ 265 0088 0B4C     		ldr	r4, .L30+4
+ 266 008a 0122     		movs	r2, #1
+ 267 008c 4FF48071 		mov	r1, #256
+ 268 0090 2046     		mov	r0, r4
+ 269 0092 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 270              	.LVL25:
+ 124:Src/mode.c    ****         }
+ 271              		.loc 1 124 0
+ 272 0096 0122     		movs	r2, #1
+ 273 0098 8021     		movs	r1, #128
+ 274 009a 2046     		mov	r0, r4
+ 275 009c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 276              	.LVL26:
+ 277 00a0 CDE7     		b	.L23
+ 278              	.L26:
+ 129:Src/mode.c    ****             Output_Buzzer(HZ_C_H);
+ 279              		.loc 1 129 0
+ 280 00a2 4C20     		movs	r0, #76
+ 281 00a4 FFF7FEFF 		bl	Output_Buzzer
+ 282              	.LVL27:
+ 130:Src/mode.c    ****             HAL_Delay(500);
+ 283              		.loc 1 130 0
+ 284 00a8 4FF4FA70 		mov	r0, #500
+ 285 00ac FFF7FEFF 		bl	HAL_Delay
+ 286              	.LVL28:
+ 131:Src/mode.c    ****             break;
+ 132:Src/mode.c    ****         }
+ 133:Src/mode.c    ****     }
+ 134:Src/mode.c    **** }...
+ 287              		.loc 1 134 0
+ 288 00b0 10BD     		pop	{r4, pc}
+ 289              	.L31:
+ 290 00b2 00BF     		.align	2
+ 291              	.L30:
+ 292 00b4 00000000 		.word	flag
+ 293 00b8 00080240 		.word	1073874944
+ 294 00bc 00000000 		.word	sen_r
+ 295 00c0 00000000 		.word	sen_front
+ 296 00c4 00000000 		.word	sen_l
+ 297 00c8 00000000 		.word	.LC1
+ 298              		.cfi_endproc
+ 299              	.LFE129:
+ 301              		.section	.text.Mode_mouse,"ax",%progbits
+ 302              		.align	1
+ 303              		.global	Mode_mouse
+ 304              		.syntax unified
+ 305              		.thumb
+ 306              		.thumb_func
+ 307              		.fpu fpv4-sp-d16
+ 309              	Mode_mouse:
+ 310              	.LFB126:
+  17:Src/mode.c    **** void Mode_mouse(int8_t mode){
+ 311              		.loc 1 17 0
+ 312              		.cfi_startproc
+ 313              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccIkshKQ.s 			page 9
 
 
- 255              	.LVL26:
- 134:Src/mode.c    ****             HAL_Delay(500);
- 256              		.loc 1 134 0
- 257 00a8 4FF4FA70 		mov	r0, #500
- 258 00ac FFF7FEFF 		bl	HAL_Delay
- 259              	.LVL27:
- 135:Src/mode.c    ****             break;
- 136:Src/mode.c    ****         }
- 137:Src/mode.c    ****     }
- 138:Src/mode.c    **** }...
- 260              		.loc 1 138 0
- 261 00b0 10BD     		pop	{r4, pc}
- 262              	.L29:
- 263 00b2 00BF     		.align	2
- 264              	.L28:
- 265 00b4 00000000 		.word	flag
- 266 00b8 00080240 		.word	1073874944
- 267 00bc 00000000 		.word	sen_r
- 268 00c0 00000000 		.word	sen_front
- 269 00c4 00000000 		.word	sen_l
- 270 00c8 00000000 		.word	.LC1
- 271              		.cfi_endproc
- 272              	.LFE128:
- 274              		.section	.text.Mode_mouse,"ax",%progbits
- 275              		.align	1
- 276              		.global	Mode_mouse
- 277              		.syntax unified
- 278              		.thumb
- 279              		.thumb_func
- 280              		.fpu fpv4-sp-d16
- 282              	Mode_mouse:
- 283              	.LFB126:
-  16:Src/mode.c    **** void Mode_mouse(int8_t mode){
- 284              		.loc 1 16 0
- 285              		.cfi_startproc
- 286              		@ args = 0, pretend = 0, frame = 0
- 287              		@ frame_needed = 0, uses_anonymous_args = 0
- 288              	.LVL28:
- 289 0000 08B5     		push	{r3, lr}
- 290              	.LCFI2:
- 291              		.cfi_def_cfa_offset 8
- 292              		.cfi_offset 3, -8
- 293              		.cfi_offset 14, -4
-  17:Src/mode.c    ****     switch(mode){
- 294              		.loc 1 17 0
- 295 0002 0628     		cmp	r0, #6
- 296 0004 22D8     		bhi	.L30
- 297 0006 DFE800F0 		tbb	[pc, r0]
- 298              	.L33:
- 299 000a 04       		.byte	(.L32-.L33)/2
- 300 000b 22       		.byte	(.L34-.L33)/2
- 301 000c 3C       		.byte	(.L35-.L33)/2
- 302 000d 56       		.byte	(.L36-.L33)/2
- 303 000e 21       		.byte	(.L30-.L33)/2
- 304 000f 21       		.byte	(.L30-.L33)/2
- 305 0010 70       		.byte	(.L37-.L33)/2
- 306 0011 00       		.p2align 1
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccpGmg3b.s 			page 9
+ 314              		@ frame_needed = 0, uses_anonymous_args = 0
+ 315              	.LVL29:
+ 316 0000 08B5     		push	{r3, lr}
+ 317              	.LCFI3:
+ 318              		.cfi_def_cfa_offset 8
+ 319              		.cfi_offset 3, -8
+ 320              		.cfi_offset 14, -4
+  18:Src/mode.c    ****     switch(mode){
+ 321              		.loc 1 18 0
+ 322 0002 0628     		cmp	r0, #6
+ 323 0004 07D8     		bhi	.L32
+ 324 0006 DFE800F0 		tbb	[pc, r0]
+ 325              	.L35:
+ 326 000a 04       		.byte	(.L34-.L35)/2
+ 327 000b 07       		.byte	(.L36-.L35)/2
+ 328 000c 21       		.byte	(.L37-.L35)/2
+ 329 000d 3B       		.byte	(.L38-.L35)/2
+ 330 000e 06       		.byte	(.L32-.L35)/2
+ 331 000f 06       		.byte	(.L32-.L35)/2
+ 332 0010 55       		.byte	(.L39-.L35)/2
+ 333 0011 00       		.p2align 1
+ 334              	.L34:
+  20:Src/mode.c    ****             Mode_Run();
+ 335              		.loc 1 20 0
+ 336 0012 FFF7FEFF 		bl	Mode_Run
+ 337              	.LVL30:
+ 338              	.L32:
+  64:Src/mode.c    **** }
+ 339              		.loc 1 64 0
+ 340 0016 08BD     		pop	{r3, pc}
+ 341              	.LVL31:
+ 342              	.L36:
+  23:Src/mode.c    ****             flag.ir_led = TRUE;
+ 343              		.loc 1 23 0
+ 344 0018 284B     		ldr	r3, .L47
+ 345 001a 0122     		movs	r2, #1
+ 346 001c 1A70     		strb	r2, [r3]
+ 347              	.L40:
+  24:Src/mode.c    ****             while(sen_front.is_wall != TRUE){}
+ 348              		.loc 1 24 0 discriminator 1
+ 349 001e 284B     		ldr	r3, .L47+4
+ 350 0020 9B7A     		ldrb	r3, [r3, #10]	@ zero_extendqisi2
+ 351 0022 012B     		cmp	r3, #1
+ 352 0024 FBD1     		bne	.L40
+  25:Src/mode.c    ****             flag.ir_led = FALSE;
+ 353              		.loc 1 25 0
+ 354 0026 254B     		ldr	r3, .L47
+ 355 0028 0022     		movs	r2, #0
+ 356 002a 1A70     		strb	r2, [r3]
+  26:Src/mode.c    ****             Output_Buzzer(HZ_F);
+ 357              		.loc 1 26 0
+ 358 002c 7220     		movs	r0, #114
+ 359              	.LVL32:
+ 360 002e FFF7FEFF 		bl	Output_Buzzer
+ 361              	.LVL33:
+  27:Src/mode.c    ****             gyro_offset_calc_reset();
+ 362              		.loc 1 27 0
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccIkshKQ.s 			page 10
 
 
- 307              	.L32:
-  19:Src/mode.c    ****             flag.ir_led = TRUE;
- 308              		.loc 1 19 0
- 309 0012 374B     		ldr	r3, .L46
- 310 0014 0122     		movs	r2, #1
- 311 0016 1A70     		strb	r2, [r3]
- 312              	.L38:
-  20:Src/mode.c    ****             while(sen_front.is_wall != TRUE){}
- 313              		.loc 1 20 0 discriminator 1
- 314 0018 364B     		ldr	r3, .L46+4
- 315 001a 9B7A     		ldrb	r3, [r3, #10]	@ zero_extendqisi2
- 316 001c 012B     		cmp	r3, #1
- 317 001e FBD1     		bne	.L38
-  21:Src/mode.c    ****             flag.ir_led = FALSE;
- 318              		.loc 1 21 0
- 319 0020 334B     		ldr	r3, .L46
- 320 0022 0022     		movs	r2, #0
- 321 0024 1A70     		strb	r2, [r3]
-  22:Src/mode.c    ****             Output_Buzzer(HZ_F);
- 322              		.loc 1 22 0
- 323 0026 7220     		movs	r0, #114
- 324              	.LVL29:
- 325 0028 FFF7FEFF 		bl	Output_Buzzer
- 326              	.LVL30:
-  23:Src/mode.c    ****             gyro_offset_calc_reset();
- 327              		.loc 1 23 0
- 328 002c FFF7FEFF 		bl	gyro_offset_calc_reset
- 329              	.LVL31:
-  24:Src/mode.c    ****             HAL_Delay(2500);
- 330              		.loc 1 24 0
- 331 0030 40F6C410 		movw	r0, #2500
- 332 0034 FFF7FEFF 		bl	HAL_Delay
- 333              	.LVL32:
-  25:Src/mode.c    ****             Motion_Start();
- 334              		.loc 1 25 0
- 335 0038 FFF7FEFF 		bl	Motion_Start
- 336              	.LVL33:
-  26:Src/mode.c    ****             Motion_Right();
- 337              		.loc 1 26 0
- 338 003c FFF7FEFF 		bl	Motion_Right
- 339              	.LVL34:
-  27:Src/mode.c    ****             Motion_Left();
- 340              		.loc 1 27 0
- 341 0040 FFF7FEFF 		bl	Motion_Left
- 342              	.LVL35:
-  28:Src/mode.c    ****             Motion_Straight();
- 343              		.loc 1 28 0
- 344 0044 FFF7FEFF 		bl	Motion_Straight
- 345              	.LVL36:
-  29:Src/mode.c    ****             Motion_Goal();
- 346              		.loc 1 29 0
- 347 0048 FFF7FEFF 		bl	Motion_Goal
- 348              	.LVL37:
- 349              	.L30:
-  73:Src/mode.c    **** }
- 350              		.loc 1 73 0
- 351 004c 08BD     		pop	{r3, pc}
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccpGmg3b.s 			page 10
+ 363 0032 FFF7FEFF 		bl	gyro_offset_calc_reset
+ 364              	.LVL34:
+  28:Src/mode.c    ****             HAL_Delay(2500);
+ 365              		.loc 1 28 0
+ 366 0036 40F6C410 		movw	r0, #2500
+ 367 003a FFF7FEFF 		bl	HAL_Delay
+ 368              	.LVL35:
+  29:Src/mode.c    ****             LeftTurn();
+ 369              		.loc 1 29 0
+ 370 003e FFF7FEFF 		bl	LeftTurn
+ 371              	.LVL36:
+ 372              	.L41:
+  30:Src/mode.c    ****             while(flag.motion_end==FALSE){}
+ 373              		.loc 1 30 0 discriminator 1
+ 374 0042 1E4B     		ldr	r3, .L47
+ 375 0044 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
+ 376 0046 002B     		cmp	r3, #0
+ 377 0048 FBD0     		beq	.L41
+ 378 004a E4E7     		b	.L32
+ 379              	.LVL37:
+ 380              	.L37:
+  33:Src/mode.c    ****             flag.ir_led = TRUE;
+ 381              		.loc 1 33 0
+ 382 004c 1B4B     		ldr	r3, .L47
+ 383 004e 0122     		movs	r2, #1
+ 384 0050 1A70     		strb	r2, [r3]
+ 385              	.L42:
+  34:Src/mode.c    ****             while(sen_front.is_wall != TRUE){}
+ 386              		.loc 1 34 0 discriminator 1
+ 387 0052 1B4B     		ldr	r3, .L47+4
+ 388 0054 9B7A     		ldrb	r3, [r3, #10]	@ zero_extendqisi2
+ 389 0056 012B     		cmp	r3, #1
+ 390 0058 FBD1     		bne	.L42
+  35:Src/mode.c    ****             flag.ir_led = FALSE;
+ 391              		.loc 1 35 0
+ 392 005a 184B     		ldr	r3, .L47
+ 393 005c 0022     		movs	r2, #0
+ 394 005e 1A70     		strb	r2, [r3]
+  36:Src/mode.c    ****             Output_Buzzer(HZ_F);
+ 395              		.loc 1 36 0
+ 396 0060 7220     		movs	r0, #114
+ 397              	.LVL38:
+ 398 0062 FFF7FEFF 		bl	Output_Buzzer
+ 399              	.LVL39:
+  37:Src/mode.c    ****             gyro_offset_calc_reset();
+ 400              		.loc 1 37 0
+ 401 0066 FFF7FEFF 		bl	gyro_offset_calc_reset
+ 402              	.LVL40:
+  38:Src/mode.c    ****             HAL_Delay(2500);
+ 403              		.loc 1 38 0
+ 404 006a 40F6C410 		movw	r0, #2500
+ 405 006e FFF7FEFF 		bl	HAL_Delay
+ 406              	.LVL41:
+  39:Src/mode.c    ****             RightTurn();
+ 407              		.loc 1 39 0
+ 408 0072 FFF7FEFF 		bl	RightTurn
+ 409              	.LVL42:
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccIkshKQ.s 			page 11
 
 
- 352              	.LVL38:
- 353              	.L34:
-  32:Src/mode.c    ****             flag.ir_led = TRUE;
- 354              		.loc 1 32 0
- 355 004e 284B     		ldr	r3, .L46
- 356 0050 0122     		movs	r2, #1
- 357 0052 1A70     		strb	r2, [r3]
- 358              	.L39:
-  33:Src/mode.c    ****             while(sen_front.is_wall != TRUE){}
- 359              		.loc 1 33 0 discriminator 1
- 360 0054 274B     		ldr	r3, .L46+4
- 361 0056 9B7A     		ldrb	r3, [r3, #10]	@ zero_extendqisi2
- 362 0058 012B     		cmp	r3, #1
- 363 005a FBD1     		bne	.L39
-  34:Src/mode.c    ****             flag.ir_led = FALSE;
- 364              		.loc 1 34 0
- 365 005c 244B     		ldr	r3, .L46
- 366 005e 0022     		movs	r2, #0
- 367 0060 1A70     		strb	r2, [r3]
-  35:Src/mode.c    ****             Output_Buzzer(HZ_F);
- 368              		.loc 1 35 0
- 369 0062 7220     		movs	r0, #114
- 370              	.LVL39:
- 371 0064 FFF7FEFF 		bl	Output_Buzzer
- 372              	.LVL40:
-  36:Src/mode.c    ****             gyro_offset_calc_reset();
- 373              		.loc 1 36 0
- 374 0068 FFF7FEFF 		bl	gyro_offset_calc_reset
- 375              	.LVL41:
-  37:Src/mode.c    ****             HAL_Delay(2500);
- 376              		.loc 1 37 0
- 377 006c 40F6C410 		movw	r0, #2500
- 378 0070 FFF7FEFF 		bl	HAL_Delay
- 379              	.LVL42:
-  38:Src/mode.c    ****             LeftTurn();
- 380              		.loc 1 38 0
- 381 0074 FFF7FEFF 		bl	LeftTurn
- 382              	.LVL43:
- 383              	.L40:
-  39:Src/mode.c    ****             while(flag.motion_end==FALSE){}
- 384              		.loc 1 39 0 discriminator 1
- 385 0078 1D4B     		ldr	r3, .L46
- 386 007a 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
- 387 007c 002B     		cmp	r3, #0
- 388 007e FBD0     		beq	.L40
- 389 0080 E4E7     		b	.L30
- 390              	.LVL44:
- 391              	.L35:
-  42:Src/mode.c    ****             flag.ir_led = TRUE;
- 392              		.loc 1 42 0
- 393 0082 1B4B     		ldr	r3, .L46
- 394 0084 0122     		movs	r2, #1
- 395 0086 1A70     		strb	r2, [r3]
- 396              	.L41:
-  43:Src/mode.c    ****             while(sen_front.is_wall != TRUE){}
- 397              		.loc 1 43 0 discriminator 1
- 398 0088 1A4B     		ldr	r3, .L46+4
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccpGmg3b.s 			page 11
+ 410              	.L43:
+  40:Src/mode.c    ****             while(flag.motion_end==FALSE){}
+ 411              		.loc 1 40 0 discriminator 1
+ 412 0076 114B     		ldr	r3, .L47
+ 413 0078 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
+ 414 007a 002B     		cmp	r3, #0
+ 415 007c FBD0     		beq	.L43
+ 416 007e CAE7     		b	.L32
+ 417              	.LVL43:
+ 418              	.L38:
+  43:Src/mode.c    ****             flag.ir_led = TRUE;
+ 419              		.loc 1 43 0
+ 420 0080 0E4B     		ldr	r3, .L47
+ 421 0082 0122     		movs	r2, #1
+ 422 0084 1A70     		strb	r2, [r3]
+ 423              	.L44:
+  44:Src/mode.c    ****             while(sen_front.is_wall != TRUE){}
+ 424              		.loc 1 44 0 discriminator 1
+ 425 0086 0E4B     		ldr	r3, .L47+4
+ 426 0088 9B7A     		ldrb	r3, [r3, #10]	@ zero_extendqisi2
+ 427 008a 012B     		cmp	r3, #1
+ 428 008c FBD1     		bne	.L44
+  45:Src/mode.c    ****             flag.ir_led = FALSE;
+ 429              		.loc 1 45 0
+ 430 008e 0B4B     		ldr	r3, .L47
+ 431 0090 0022     		movs	r2, #0
+ 432 0092 1A70     		strb	r2, [r3]
+  46:Src/mode.c    ****             Output_Buzzer(HZ_F);
+ 433              		.loc 1 46 0
+ 434 0094 7220     		movs	r0, #114
+ 435              	.LVL44:
+ 436 0096 FFF7FEFF 		bl	Output_Buzzer
+ 437              	.LVL45:
+  47:Src/mode.c    ****             gyro_offset_calc_reset();
+ 438              		.loc 1 47 0
+ 439 009a FFF7FEFF 		bl	gyro_offset_calc_reset
+ 440              	.LVL46:
+  48:Src/mode.c    ****             HAL_Delay(2500);
+ 441              		.loc 1 48 0
+ 442 009e 40F6C410 		movw	r0, #2500
+ 443 00a2 FFF7FEFF 		bl	HAL_Delay
+ 444              	.LVL47:
+  49:Src/mode.c    ****             U_Turn();
+ 445              		.loc 1 49 0
+ 446 00a6 FFF7FEFF 		bl	U_Turn
+ 447              	.LVL48:
+ 448              	.L45:
+  50:Src/mode.c    ****             while(flag.motion_end==FALSE){}
+ 449              		.loc 1 50 0 discriminator 1
+ 450 00aa 044B     		ldr	r3, .L47
+ 451 00ac 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
+ 452 00ae 002B     		cmp	r3, #0
+ 453 00b0 FBD0     		beq	.L45
+ 454 00b2 B0E7     		b	.L32
+ 455              	.LVL49:
+ 456              	.L39:
+  59:Src/mode.c    ****             Mode_Sensor_Check();
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccIkshKQ.s 			page 12
 
 
- 399 008a 9B7A     		ldrb	r3, [r3, #10]	@ zero_extendqisi2
- 400 008c 012B     		cmp	r3, #1
- 401 008e FBD1     		bne	.L41
-  44:Src/mode.c    ****             flag.ir_led = FALSE;
- 402              		.loc 1 44 0
- 403 0090 174B     		ldr	r3, .L46
- 404 0092 0022     		movs	r2, #0
- 405 0094 1A70     		strb	r2, [r3]
-  45:Src/mode.c    ****             Output_Buzzer(HZ_F);
- 406              		.loc 1 45 0
- 407 0096 7220     		movs	r0, #114
- 408              	.LVL45:
- 409 0098 FFF7FEFF 		bl	Output_Buzzer
- 410              	.LVL46:
-  46:Src/mode.c    ****             gyro_offset_calc_reset();
- 411              		.loc 1 46 0
- 412 009c FFF7FEFF 		bl	gyro_offset_calc_reset
- 413              	.LVL47:
-  47:Src/mode.c    ****             HAL_Delay(2500);
- 414              		.loc 1 47 0
- 415 00a0 40F6C410 		movw	r0, #2500
- 416 00a4 FFF7FEFF 		bl	HAL_Delay
- 417              	.LVL48:
-  48:Src/mode.c    ****             RightTurn();
- 418              		.loc 1 48 0
- 419 00a8 FFF7FEFF 		bl	RightTurn
- 420              	.LVL49:
- 421              	.L42:
-  49:Src/mode.c    ****             while(flag.motion_end==FALSE){}
- 422              		.loc 1 49 0 discriminator 1
- 423 00ac 104B     		ldr	r3, .L46
- 424 00ae 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
- 425 00b0 002B     		cmp	r3, #0
- 426 00b2 FBD0     		beq	.L42
- 427 00b4 CAE7     		b	.L30
- 428              	.LVL50:
- 429              	.L36:
-  52:Src/mode.c    ****             flag.ir_led = TRUE;
- 430              		.loc 1 52 0
- 431 00b6 0E4B     		ldr	r3, .L46
- 432 00b8 0122     		movs	r2, #1
- 433 00ba 1A70     		strb	r2, [r3]
- 434              	.L43:
-  53:Src/mode.c    ****             while(sen_front.is_wall != TRUE){}
- 435              		.loc 1 53 0 discriminator 1
- 436 00bc 0D4B     		ldr	r3, .L46+4
- 437 00be 9B7A     		ldrb	r3, [r3, #10]	@ zero_extendqisi2
- 438 00c0 012B     		cmp	r3, #1
- 439 00c2 FBD1     		bne	.L43
-  54:Src/mode.c    ****             flag.ir_led = FALSE;
- 440              		.loc 1 54 0
- 441 00c4 0A4B     		ldr	r3, .L46
- 442 00c6 0022     		movs	r2, #0
- 443 00c8 1A70     		strb	r2, [r3]
-  55:Src/mode.c    ****             Output_Buzzer(HZ_F);
- 444              		.loc 1 55 0
- 445 00ca 7220     		movs	r0, #114
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccpGmg3b.s 			page 12
-
-
- 446              	.LVL51:
- 447 00cc FFF7FEFF 		bl	Output_Buzzer
- 448              	.LVL52:
-  56:Src/mode.c    ****             gyro_offset_calc_reset();
- 449              		.loc 1 56 0
- 450 00d0 FFF7FEFF 		bl	gyro_offset_calc_reset
- 451              	.LVL53:
-  57:Src/mode.c    ****             HAL_Delay(2500);
- 452              		.loc 1 57 0
- 453 00d4 40F6C410 		movw	r0, #2500
- 454 00d8 FFF7FEFF 		bl	HAL_Delay
- 455              	.LVL54:
-  58:Src/mode.c    ****             U_Turn();
- 456              		.loc 1 58 0
- 457 00dc FFF7FEFF 		bl	U_Turn
- 458              	.LVL55:
- 459              	.L44:
-  59:Src/mode.c    ****             while(flag.motion_end==FALSE){}
- 460              		.loc 1 59 0 discriminator 1
- 461 00e0 034B     		ldr	r3, .L46
- 462 00e2 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
- 463 00e4 002B     		cmp	r3, #0
- 464 00e6 FBD0     		beq	.L44
- 465 00e8 B0E7     		b	.L30
- 466              	.LVL56:
- 467              	.L37:
-  68:Src/mode.c    ****             Mode_Sensor_Check();
- 468              		.loc 1 68 0
- 469 00ea FFF7FEFF 		bl	Mode_Sensor_Check
- 470              	.LVL57:
-  73:Src/mode.c    **** }
- 471              		.loc 1 73 0
- 472 00ee ADE7     		b	.L30
- 473              	.L47:
- 474              		.align	2
- 475              	.L46:
- 476 00f0 00000000 		.word	flag
- 477 00f4 00000000 		.word	sen_front
- 478              		.cfi_endproc
- 479              	.LFE126:
- 481              		.section	.rodata.Mode_Sensor_Check.str1.4,"aMS",%progbits,1
- 482              		.align	2
- 483              	.LC1:
- 484 0000 6C3A2564 		.ascii	"l:%d f:%d r:%d \015\000"
- 484      20663A25 
- 484      6420723A 
- 484      2564200D 
- 484      00
- 485              		.section	.rodata.Mode_select.str1.4,"aMS",%progbits,1
- 486              		.align	2
- 487              	.LC0:
- 488 0000 25640D00 		.ascii	"%d\015\000"
- 489              		.text
- 490              	.Letext0:
- 491              		.file 2 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
- 492              		.file 3 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
- 493              		.file 4 "Inc/global.h"
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccpGmg3b.s 			page 13
-
-
- 494              		.file 5 "Drivers/CMSIS/Include/core_cm4.h"
- 495              		.file 6 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
- 496              		.file 7 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h"
- 497              		.file 8 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
- 498              		.file 9 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
- 499              		.file 10 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\lib\\gcc\\arm-none-eab
- 500              		.file 11 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include
- 501              		.file 12 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
- 502              		.file 13 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
- 503              		.file 14 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
- 504              		.file 15 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h"
- 505              		.file 16 "Inc/spi.h"
- 506              		.file 17 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include
- 507              		.file 18 "Inc/interface.h"
- 508              		.file 19 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
- 509              		.file 20 "Inc/motion.h"
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccpGmg3b.s 			page 14
+ 457              		.loc 1 59 0
+ 458 00b4 FFF7FEFF 		bl	Mode_Sensor_Check
+ 459              	.LVL50:
+  64:Src/mode.c    **** }
+ 460              		.loc 1 64 0
+ 461 00b8 ADE7     		b	.L32
+ 462              	.L48:
+ 463 00ba 00BF     		.align	2
+ 464              	.L47:
+ 465 00bc 00000000 		.word	flag
+ 466 00c0 00000000 		.word	sen_front
+ 467              		.cfi_endproc
+ 468              	.LFE126:
+ 470              		.section	.rodata.Mode_Sensor_Check.str1.4,"aMS",%progbits,1
+ 471              		.align	2
+ 472              	.LC1:
+ 473 0000 6C3A2564 		.ascii	"l:%d f:%d r:%d \015\000"
+ 473      20663A25 
+ 473      6420723A 
+ 473      2564200D 
+ 473      00
+ 474              		.section	.rodata.Mode_select.str1.4,"aMS",%progbits,1
+ 475              		.align	2
+ 476              	.LC0:
+ 477 0000 25640D00 		.ascii	"%d\015\000"
+ 478              		.text
+ 479              	.Letext0:
+ 480              		.file 2 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
+ 481              		.file 3 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
+ 482              		.file 4 "Inc/global.h"
+ 483              		.file 5 "Drivers/CMSIS/Include/core_cm4.h"
+ 484              		.file 6 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
+ 485              		.file 7 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h"
+ 486              		.file 8 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
+ 487              		.file 9 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
+ 488              		.file 10 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\lib\\gcc\\arm-none-eab
+ 489              		.file 11 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include
+ 490              		.file 12 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 491              		.file 13 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
+ 492              		.file 14 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 493              		.file 15 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h"
+ 494              		.file 16 "Inc/spi.h"
+ 495              		.file 17 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include
+ 496              		.file 18 "Inc/interface.h"
+ 497              		.file 19 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
+ 498              		.file 20 "Inc/motion_plan.h"
+ 499              		.file 21 "Inc/motion.h"
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccIkshKQ.s 			page 13
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 mode.c
-C:\Users\kotaro\AppData\Local\Temp\ccpGmg3b.s:18     .text.Mode_select:00000000 $t
-C:\Users\kotaro\AppData\Local\Temp\ccpGmg3b.s:25     .text.Mode_select:00000000 Mode_select
-C:\Users\kotaro\AppData\Local\Temp\ccpGmg3b.s:132    .text.Mode_select:00000088 $d
-C:\Users\kotaro\AppData\Local\Temp\ccpGmg3b.s:138    .text.Mode_Sensor_Check:00000000 $t
-C:\Users\kotaro\AppData\Local\Temp\ccpGmg3b.s:145    .text.Mode_Sensor_Check:00000000 Mode_Sensor_Check
-C:\Users\kotaro\AppData\Local\Temp\ccpGmg3b.s:265    .text.Mode_Sensor_Check:000000b4 $d
-C:\Users\kotaro\AppData\Local\Temp\ccpGmg3b.s:275    .text.Mode_mouse:00000000 $t
-C:\Users\kotaro\AppData\Local\Temp\ccpGmg3b.s:282    .text.Mode_mouse:00000000 Mode_mouse
-C:\Users\kotaro\AppData\Local\Temp\ccpGmg3b.s:299    .text.Mode_mouse:0000000a $d
-C:\Users\kotaro\AppData\Local\Temp\ccpGmg3b.s:476    .text.Mode_mouse:000000f0 $d
-C:\Users\kotaro\AppData\Local\Temp\ccpGmg3b.s:482    .rodata.Mode_Sensor_Check.str1.4:00000000 $d
-C:\Users\kotaro\AppData\Local\Temp\ccpGmg3b.s:486    .rodata.Mode_select.str1.4:00000000 $d
-C:\Users\kotaro\AppData\Local\Temp\ccpGmg3b.s:306    .text.Mode_mouse:00000011 $d
-C:\Users\kotaro\AppData\Local\Temp\ccpGmg3b.s:306    .text.Mode_mouse:00000012 $t
+C:\Users\kotaro\AppData\Local\Temp\ccIkshKQ.s:18     .text.Mode_select:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\ccIkshKQ.s:25     .text.Mode_select:00000000 Mode_select
+C:\Users\kotaro\AppData\Local\Temp\ccIkshKQ.s:132    .text.Mode_select:00000088 $d
+C:\Users\kotaro\AppData\Local\Temp\ccIkshKQ.s:138    .text.Mode_Run:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\ccIkshKQ.s:145    .text.Mode_Run:00000000 Mode_Run
+C:\Users\kotaro\AppData\Local\Temp\ccIkshKQ.s:165    .text.Mode_Sensor_Check:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\ccIkshKQ.s:172    .text.Mode_Sensor_Check:00000000 Mode_Sensor_Check
+C:\Users\kotaro\AppData\Local\Temp\ccIkshKQ.s:292    .text.Mode_Sensor_Check:000000b4 $d
+C:\Users\kotaro\AppData\Local\Temp\ccIkshKQ.s:302    .text.Mode_mouse:00000000 $t
+C:\Users\kotaro\AppData\Local\Temp\ccIkshKQ.s:309    .text.Mode_mouse:00000000 Mode_mouse
+C:\Users\kotaro\AppData\Local\Temp\ccIkshKQ.s:326    .text.Mode_mouse:0000000a $d
+C:\Users\kotaro\AppData\Local\Temp\ccIkshKQ.s:465    .text.Mode_mouse:000000bc $d
+C:\Users\kotaro\AppData\Local\Temp\ccIkshKQ.s:471    .rodata.Mode_Sensor_Check.str1.4:00000000 $d
+C:\Users\kotaro\AppData\Local\Temp\ccIkshKQ.s:475    .rodata.Mode_select.str1.4:00000000 $d
+C:\Users\kotaro\AppData\Local\Temp\ccIkshKQ.s:333    .text.Mode_mouse:00000011 $d
+C:\Users\kotaro\AppData\Local\Temp\ccIkshKQ.s:333    .text.Mode_mouse:00000012 $t
 
 UNDEFINED SYMBOLS
 Output_Buzzer
@@ -764,17 +737,13 @@ LED_Control
 printf
 HAL_Delay
 enc_l
+Plan_Adachi
 HAL_GPIO_WritePin
 flag
 sen_r
 sen_front
 sen_l
 gyro_offset_calc_reset
-Motion_Start
-Motion_Right
-Motion_Left
-Motion_Straight
-Motion_Goal
 LeftTurn
 RightTurn
 U_Turn

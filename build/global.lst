@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccXzeeCQ.s 			page 1
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc6020TR.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -32,13 +32,13 @@ ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccXzeeCQ.s 			page 1
   29              		.comm	sen_fr,16,4
   30              		.comm	sen_fl,16,4
   31              		.comm	sen_l,16,4
-  32              		.comm	flag,4,4
+  32              		.comm	flag,3,4
   33              	.Letext0:
   34              		.file 1 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
   35              		.file 2 "c:\\program files (x86)\\gnu tools arm embedded\\7 2017-q4-major\\arm-none-eabi\\include\
   36              		.file 3 "Inc/global.h"
   37              		.file 4 "Src/global.c"
-ARM GAS  C:\Users\kotaro\AppData\Local\Temp\ccXzeeCQ.s 			page 2
+ARM GAS  C:\Users\kotaro\AppData\Local\Temp\cc6020TR.s 			page 2
 
 
 DEFINED SYMBOLS
@@ -58,6 +58,6 @@ DEFINED SYMBOLS
                             *COM*:00000010 sen_fr
                             *COM*:00000010 sen_fl
                             *COM*:00000010 sen_l
-                            *COM*:00000004 flag
+                            *COM*:00000003 flag
 
 NO UNDEFINED SYMBOLS

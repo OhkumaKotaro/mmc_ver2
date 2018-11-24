@@ -8,6 +8,7 @@
 
 void Mode_mouse(int8_t mode);
 int8_t Mode_select(void);
+void Mode_Run(void);
 void Mode_Sensor_Check(void);
 
 #ifdef __cplusplus

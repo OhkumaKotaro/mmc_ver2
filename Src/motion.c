@@ -74,7 +74,7 @@ void Motion_Uturn(void){
     while(flag.motion_end==FALSE){}
 }
 
-void Motion_Kabe(void){
+void Motion_Kabeate(void){
     //U turn 
     Straight_half_stop();
     while(flag.motion_end==FALSE){}

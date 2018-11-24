@@ -16,15 +16,8 @@
 #define ON 1
 #define OFF 0
 
-#define LEFT 0
-#define FRONT 1
-#define RIGHT 2
-#define BACK 3
-
 //calc
 #define dt 0.001f
-
-
 
 
 /*************struct**************/

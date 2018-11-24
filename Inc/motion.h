@@ -25,7 +25,7 @@ void Motion_Straight(void);
 void Motion_Left(void);
 void Motion_Right(void);
 void Motion_Uturn(void);
-void Motion_Kabe(void);
+void Motion_Kabeate(void);
 void Motion_Goal(void);
 
 

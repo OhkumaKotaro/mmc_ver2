@@ -84,7 +84,9 @@ Src/maze_infomation.c \
 Src/interface.c \
 Src/other_function.c \
 Src/filter.c \
-Src/calculate.c
+Src/calculate.c \
+Src/motion_plan.c \
+Src/maze.c
 
 # ASM sources
 ASM_SOURCES =  \

@@ -1,6 +1,6 @@
 #include "maze_analysis.h"
-#include "maze_infomation.h"
 #include "global.h"
+#include "maze.h"
 
 /****************************************************************************************************
  * outline : create map
@@ -13,8 +13,8 @@ void MAZE_Create_Step( void ){
 	 * <戻り値> : なし
 	 */
 	// 初期化
-	for( int i = 0; i <= MAZE_SIZE; i++ ){
-		for( int j = 0; j <= MAZE_SIZE; j++ ){
+	for( int i = 0; i < MAZE_SIZE; i++ ){
+		for( int j = 0; j < MAZE_SIZE; j++ ){
 			if( i == mazeDef.maze_goal_x && j == mazeDef.maze_goal_y ){
 				maze.step[i][j] = 0;
 			}
@@ -31,17 +31,17 @@ void MAZE_Create_Step( void ){
 	while( end_flag == TRUE ){
 		end_flag = FALSE;
 		uint8_t i=0;
-		for( i = 0; i <= MAZE_SIZE; i++ ){
+		for( i = 0; i < MAZE_SIZE; i++ ){
 			uint8_t j=0;
-			for( j = 0; j <= MAZE_SIZE; j++ ){
+			for( j = 0; j < MAZE_SIZE; j++ ){
 				if( maze.step[i][j] == MAX_STEP ){
-					if( j < MAZE_SIZE){	//北壁
+					if( j < MAZE_SIZE-1){	//北壁
 						if( (maze.wall_north[i][j] == FALSE)&&(maze.step[i][j+1] == stepNum) ){
 							maze.step[i][j] = stepNum + 1;
 							end_flag = TRUE;
 						}
 					}
-					if( i < MAZE_SIZE){	//東壁
+					if( i < MAZE_SIZE-1){	//東壁
 						if( (maze.wall_east[i][j] == FALSE)&&(maze.step[i+1][j] == stepNum) ){
 							maze.step[i][j] = stepNum + 1;
 							end_flag = TRUE;
